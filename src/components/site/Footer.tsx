@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, LogIn } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { Container } from "./Container";
 
@@ -29,16 +29,16 @@ function FacebookGlyph() {
 
 const exploreLinks = [
   { href: "/menu", label: "Menu" },
-  { href: "/carte-du-bar", label: "Carte du bar" },
+  { href: "/menu?tab=bar", label: "Carte du bar" },
   { href: "/evenements", label: "Événements" },
-  { href: "/privatisation", label: "Privatisation" },
-  { href: "/galerie", label: "Galerie" },
+  { href: "/evenements#galerie", label: "Galerie" },
 ];
 
 const serviceLinks = [
   { href: "/reservation", label: "Réserver une table" },
   { href: "/commande", label: "Commander en ligne" },
   { href: "/a-propos", label: "À propos" },
+  { href: "/a-propos#privatisation", label: "Privatisation" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -131,11 +131,20 @@ export function Footer() {
       </Container>
 
       <div className="border-t border-border-subtle/80 py-6">
-        <Container className="flex flex-col items-center justify-between gap-2 text-xs text-muted sm:flex-row">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
-          </p>
-          <p>{siteConfig.location}</p>
+        <Container className="flex flex-col items-center justify-between gap-4 text-xs text-muted sm:flex-row">
+          <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-4">
+            <p>
+              © {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
+            </p>
+            <p>{siteConfig.location}</p>
+          </div>
+          <Link
+            href="/connexion"
+            className="flex items-center gap-2 rounded-full border border-border-subtle px-4 py-2 text-xs text-muted transition-colors hover:border-gold hover:text-gold"
+          >
+            <LogIn size={14} />
+            Espace staff
+          </Link>
         </Container>
       </div>
     </footer>

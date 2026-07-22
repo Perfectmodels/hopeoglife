@@ -5,11 +5,12 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { ButtonLink } from "@/components/site/Button";
 import { BrandedVisual } from "@/components/site/BrandedVisual";
 import { getUpcomingEvents } from "@/lib/queries/events";
+import { galleryPlaceholders } from "@/lib/demo-data";
 
 export const metadata: Metadata = {
   title: "Événements",
   description:
-    "Soirées lounge, brunchs et événements à thème chez Hope Of Life, bar lounge et restaurant de luxe à Angondjé.",
+    "Soirées lounge, brunchs et événements à thème chez Hope Of Life, bar lounge et restaurant de luxe à Angondjé. Découvrez aussi notre galerie photo.",
 };
 
 export default async function EventsPage() {
@@ -74,9 +75,23 @@ export default async function EventsPage() {
           <p className="mt-2 text-sm text-muted">
             Découvrez nos offres de privatisation pour vos occasions spéciales.
           </p>
-          <ButtonLink href="/privatisation" className="mt-6 inline-flex">
+          <ButtonLink href="/a-propos#privatisation" className="mt-6 inline-flex">
             Demander une privatisation
           </ButtonLink>
+        </div>
+      </Container>
+
+      <Container id="galerie" className="scroll-mt-24 border-t border-border-subtle/70 pt-24 mt-24">
+        <SectionHeading
+          eyebrow="Galerie"
+          title="L'univers Hope Of Life"
+          description="Photos à venir — cette galerie sera bientôt enrichie avec les visuels du lieu, des plats, des cocktails et de nos événements."
+          align="center"
+        />
+        <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {galleryPlaceholders.map((item) => (
+            <BrandedVisual key={item.id} label={item.label} className="aspect-[4/5]" />
+          ))}
         </div>
       </Container>
     </section>

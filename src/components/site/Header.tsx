@@ -10,13 +10,9 @@ import { ButtonLink } from "./Button";
 import { Container } from "./Container";
 
 const navLinks = [
-  { href: "/", label: "Accueil" },
   { href: "/a-propos", label: "À propos" },
   { href: "/menu", label: "Menu" },
-  { href: "/carte-du-bar", label: "Carte du bar" },
   { href: "/evenements", label: "Événements" },
-  { href: "/privatisation", label: "Privatisation" },
-  { href: "/galerie", label: "Galerie" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -56,10 +52,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <ButtonLink href="/commande" variant="outline">
-            Commander
-          </ButtonLink>
+        <div className="hidden items-center lg:flex">
           <ButtonLink href="/reservation" variant="primary">
             Réserver une table
           </ButtonLink>
@@ -91,10 +84,7 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="mt-2 flex flex-col gap-3 px-3">
-              <ButtonLink href="/commande" variant="outline" onClick={() => setOpen(false)}>
-                Commander
-              </ButtonLink>
+            <div className="mt-2 px-3">
               <ButtonLink href="/reservation" variant="primary" onClick={() => setOpen(false)}>
                 Réserver une table
               </ButtonLink>

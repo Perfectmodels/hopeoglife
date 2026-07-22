@@ -2,44 +2,40 @@ import type { Metadata } from "next";
 import { Container } from "@/components/site/Container";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { ButtonLink } from "@/components/site/Button";
-import { MenuList } from "@/components/site/MenuList";
 import { BrandedVisual } from "@/components/site/BrandedVisual";
+import { MenuTabs } from "@/components/site/MenuTabs";
 import { getMenuByKind } from "@/lib/queries/menu";
 
 export const metadata: Metadata = {
-  title: "Menu du restaurant",
+  title: "Menu",
   description:
-    "Découvrez le menu du restaurant Hope Of Life : entrées, plats, grillades, spécialités et desserts.",
+    "Découvrez le menu du restaurant et la carte du bar Hope Of Life : entrées, plats, grillades, desserts, cocktails signature, champagnes et spiritueux.",
 };
 
-export default async function MenuPage() {
-  const categories = await getMenuByKind("restaurant");
+export default async function MenuPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tab?: string }>;
+}) {
+  const { tab } = await searchParams;
+  const [restaurant, bar] = await Promise.all([
+    getMenuByKind("restaurant"),
+    getMenuByKind("bar"),
+  ]);
 
   return (
     <section className="py-24">
       <Container>
         <SectionHeading
-          eyebrow="Restaurant"
-          title="Notre menu"
-          description="Une cuisine raffinée, entre saveurs locales et inspirations internationales. Composée chaque jour avec des produits sélectionnés."
+          eyebrow="Restaurant & Bar"
+          title="Notre carte"
+          description="Une cuisine raffinée et des cocktails signature, entre saveurs locales et inspirations internationales."
         />
 
         <BrandedVisual className="mt-10 h-48 sm:h-64" watermarkSize={110} />
 
-        <div className="mt-10 flex flex-wrap gap-2">
-          {categories.map((c) => (
-            <a
-              key={c.id}
-              href={`#${c.id}`}
-              className="rounded-full border border-border-subtle px-4 py-2 text-xs uppercase tracking-widest text-muted transition-colors hover:border-gold hover:text-gold"
-            >
-              {c.name}
-            </a>
-          ))}
-        </div>
-
-        <div className="mt-16">
-          <MenuList categories={categories} />
+        <div className="mt-10">
+          <MenuTabs restaurant={restaurant} bar={bar} initialTab={tab === "bar" ? "bar" : "restaurant"} />
         </div>
 
         <div className="mt-16 flex flex-wrap gap-4 border-t border-border-subtle/70 pt-10">

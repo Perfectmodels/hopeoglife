@@ -130,7 +130,7 @@ export default async function HomePage() {
               <ButtonLink href="/menu" variant="outline">
                 Voir le menu complet
               </ButtonLink>
-              <ButtonLink href="/carte-du-bar" variant="ghost">
+              <ButtonLink href="/menu?tab=bar" variant="ghost">
                 Voir la carte du bar
               </ButtonLink>
             </div>
@@ -179,7 +179,7 @@ export default async function HomePage() {
             ))}
           </div>
           <div className="mt-10 flex justify-center">
-            <ButtonLink href="/galerie" variant="outline">
+            <ButtonLink href="/evenements#galerie" variant="outline">
               Voir la galerie
             </ButtonLink>
           </div>

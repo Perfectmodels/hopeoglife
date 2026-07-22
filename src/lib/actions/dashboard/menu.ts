@@ -99,7 +99,6 @@ export async function updateMenuItemImage(id: string, imageUrl: string) {
   await supabase.from("menu_items").update({ image_url: imageUrl }).eq("id", id);
   revalidatePath("/dashboard/menu");
   revalidatePath("/menu");
-  revalidatePath("/carte-du-bar");
 }
 
 export async function toggleMenuItemAvailability(id: string, isAvailable: boolean) {

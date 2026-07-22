@@ -54,7 +54,7 @@ export default function ReservationPage() {
           <div className="rounded-2xl border border-gold/30 bg-gold/5 p-8 text-sm leading-relaxed text-muted">
             Pour les groupes de plus de 15 personnes ou une privatisation d&apos;espace, merci de
             passer par notre{" "}
-            <a href="/privatisation" className="text-gold hover:underline">
+            <a href="/a-propos#privatisation" className="text-gold hover:underline">
               formulaire de privatisation
             </a>
             .
