@@ -53,6 +53,16 @@ export const stockMovementTypes: Record<string, StatusConfig> = {
   inventaire: { label: "Inventaire", tone: "neutral" },
 };
 
+export const paymentMethodLabels: Record<string, string> = {
+  especes: "Espèces",
+  carte: "Carte bancaire",
+  mobile_money: "Mobile Money",
+  virement: "Virement",
+  en_ligne: "En ligne",
+  mixte: "Mixte",
+  offert: "Offert",
+};
+
 export function toOptions(config: Record<string, StatusConfig>) {
   return Object.entries(config).map(([value, { label }]) => ({ value, label }));
 }

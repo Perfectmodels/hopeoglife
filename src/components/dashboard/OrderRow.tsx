@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useFormState } from "react-dom";
-import { Wallet } from "lucide-react";
+import Link from "next/link";
+import { Wallet, Receipt } from "lucide-react";
 import { StatusSelect } from "./StatusSelect";
 import { updateOrderStatus, recordPayment } from "@/lib/actions/dashboard/orders";
 import { orderStatuses, toOptions } from "@/lib/statuses";
@@ -80,6 +81,14 @@ export function OrderRow({ order }: { order: Order }) {
               </form>
             ) : null}
           </>
+        ) : order.status === "payee" ? (
+          <Link
+            href={`/recu/${order.id}`}
+            target="_blank"
+            className="flex w-fit items-center gap-1.5 rounded-full border border-border-subtle px-3 py-1.5 text-xs text-muted hover:border-gold hover:text-gold"
+          >
+            <Receipt size={13} /> Reçu
+          </Link>
         ) : (
           <span className="text-xs text-muted">—</span>
         )}
