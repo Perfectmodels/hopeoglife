@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/guard";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { Card, EmptyState } from "@/components/dashboard/Card";
@@ -10,7 +10,7 @@ export const metadata = { title: "Personnel" };
 export default async function PersonnelPage() {
   await requireRole("/dashboard/personnel");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data: employees } = await supabase
     .from("employees")
     .select("id, first_name, last_name, phone, email, role, active")

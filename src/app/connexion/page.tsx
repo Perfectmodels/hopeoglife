@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LoginForm } from "@/components/dashboard/LoginForm";
+import { ConnexionTabs } from "@/components/dashboard/ConnexionTabs";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function ConnexionPage() {
           <p className="mt-2 text-sm text-muted">Espace personnel</p>
         </div>
         <div className="rounded-2xl border border-border-subtle bg-background-elevated p-8">
-          <LoginForm />
+          <ConnexionTabs />
         </div>
       </div>
     </div>

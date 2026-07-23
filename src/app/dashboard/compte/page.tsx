@@ -1,13 +1,24 @@
 import { requireEmployee } from "@/lib/auth/guard";
+import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { Card } from "@/components/dashboard/Card";
 import { ChangePasswordForm } from "@/components/dashboard/ChangePasswordForm";
+import { SetMyPinForm } from "@/components/dashboard/SetMyPinForm";
 import { roleLabels } from "@/lib/dashboard-nav";
 
 export const metadata = { title: "Mon compte" };
 
 export default async function ComptePage() {
   const employee = await requireEmployee();
+
+  const [supabase, admin] = [await createClient(), createAdminClient()];
+  const [{ data: authSession }, { data: profile }] = await Promise.all([
+    supabase.auth.getUser(),
+    admin.from("employees").select("pin_hash").eq("id", employee.id).maybeSingle(),
+  ]);
+  const hasOfficeAccess = Boolean(authSession.user);
+  const hasPin = Boolean(profile?.pin_hash);
 
   return (
     <div>
@@ -35,9 +46,16 @@ export default async function ComptePage() {
         </Card>
 
         <Card>
-          <p className="mb-4 font-display text-lg text-champagne">Changer mon mot de passe</p>
-          <ChangePasswordForm />
+          <p className="mb-4 font-display text-lg text-champagne">Mon code PIN</p>
+          <SetMyPinForm hasPin={hasPin} />
         </Card>
+
+        {hasOfficeAccess ? (
+          <Card>
+            <p className="mb-4 font-display text-lg text-champagne">Changer mon mot de passe</p>
+            <ChangePasswordForm />
+          </Card>
+        ) : null}
       </div>
     </div>
   );

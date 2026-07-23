@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
 
 const RESERVATION_STATUSES = [
@@ -22,7 +22,7 @@ export async function updateReservationStatus(id: string, status: string) {
   const employee = await getCurrentEmployee();
   if (!employee) throw new Error("Non autorisé");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data: previous } = await supabase
     .from("reservations")
     .select("status")
@@ -48,7 +48,7 @@ export async function assignReservationTable(id: string, tableId: string | null)
   const employee = await getCurrentEmployee();
   if (!employee) throw new Error("Non autorisé");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   await supabase
     .from("reservations")
     .update({ table_id: tableId })

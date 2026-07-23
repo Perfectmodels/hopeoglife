@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
 import type { ActionResult } from "@/lib/actions/types";
 
@@ -33,7 +33,7 @@ export async function createStockItem(
     return { success: false, message: parsed.error.issues[0]?.message ?? "Formulaire invalide." };
   }
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { error } = await supabase.from("stock_items").insert({
     name: parsed.data.name,
     unit: parsed.data.unit,
@@ -74,7 +74,7 @@ export async function recordStockMovement(
   }
 
   const { stockItemId, type, quantity, reason } = parsed.data;
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const { data: item } = await supabase
     .from("stock_items")

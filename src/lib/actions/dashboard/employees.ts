@@ -1,8 +1,8 @@
 "use server";
 
 import { z } from "zod";
+import { randomBytes } from "crypto";
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
 import { hashPin, verifyPin } from "@/lib/auth/pin";
@@ -16,11 +16,15 @@ const profileSchema = z.object({
   lastName: z.string().trim().min(1, "Le nom est requis"),
   phone: z.string().trim().optional(),
   email: z.string().trim().email("Adresse e-mail invalide"),
-  password: z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères"),
+  password: z.union([z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères"), z.literal("")]).optional(),
   role: z.enum(ROLES),
   hiredAt: z.string().optional(),
-  pin: z.union([pinSchema, z.literal("")]).optional(),
+  pin: pinSchema,
 });
+
+function generateRandomPassword() {
+  return randomBytes(24).toString("base64url");
+}
 
 export async function createEmployeeProfile(
   _prev: ActionResult | null,
@@ -48,10 +52,12 @@ export async function createEmployeeProfile(
 
   const data = parsed.data;
   const adminClient = createAdminClient();
+  const hasOfficeAccess = Boolean(data.password);
+  const password = data.password || generateRandomPassword();
 
   const { data: created, error: createUserError } = await adminClient.auth.admin.createUser({
     email: data.email,
-    password: data.password,
+    password,
     email_confirm: true,
     user_metadata: { first_name: data.firstName, last_name: data.lastName },
   });
@@ -66,8 +72,7 @@ export async function createEmployeeProfile(
     };
   }
 
-  const supabase = await createClient();
-  const { error: profileError } = await supabase.from("employees").insert({
+  const { error: profileError } = await adminClient.from("employees").insert({
     id: created.user.id,
     first_name: data.firstName,
     last_name: data.lastName,
@@ -75,7 +80,7 @@ export async function createEmployeeProfile(
     email: data.email,
     role: data.role,
     hired_at: data.hiredAt || null,
-    pin_hash: data.pin ? hashPin(data.pin) : null,
+    pin_hash: hashPin(data.pin),
   });
 
   if (profileError) {
@@ -90,7 +95,12 @@ export async function createEmployeeProfile(
   }
 
   revalidatePath("/dashboard/personnel");
-  return { success: true, message: `Compte créé pour ${data.firstName} ${data.lastName}.` };
+  return {
+    success: true,
+    message: hasOfficeAccess
+      ? `Compte créé pour ${data.firstName} ${data.lastName}. Connexion au quotidien par PIN, accès e-mail/mot de passe disponible pour le back-office.`
+      : `Compte créé pour ${data.firstName} ${data.lastName}. Connexion par code PIN uniquement.`,
+  };
 }
 
 export async function updateEmployeeRole(id: string, role: string) {
@@ -100,7 +110,7 @@ export async function updateEmployeeRole(id: string, role: string) {
     throw new Error("Non autorisé");
   }
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   await supabase.from("employees").update({ role }).eq("id", id);
   revalidatePath("/dashboard/personnel");
 }
@@ -111,7 +121,7 @@ export async function toggleEmployeeActive(id: string, active: boolean) {
     throw new Error("Non autorisé");
   }
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   await supabase.from("employees").update({ active }).eq("id", id);
   revalidatePath("/dashboard/personnel");
 }
@@ -132,7 +142,7 @@ export async function setEmployeePin(
     return { success: false, message: parsed.error?.issues[0]?.message ?? "Code PIN invalide." };
   }
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { error } = await supabase
     .from("employees")
     .update({ pin_hash: hashPin(parsed.data) })
@@ -152,6 +162,38 @@ export async function setEmployeePin(
   return { success: true, message: "Code PIN enregistré." };
 }
 
+export async function setMyPin(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const employee = await getCurrentEmployee();
+  if (!employee) return { success: false, message: "Non autorisé." };
+
+  const parsed = pinSchema.safeParse(formData.get("pin"));
+  if (!parsed.success) {
+    return { success: false, message: parsed.error.issues[0]?.message ?? "Code PIN invalide." };
+  }
+
+  const supabase = createAdminClient();
+  const { error } = await supabase
+    .from("employees")
+    .update({ pin_hash: hashPin(parsed.data) })
+    .eq("id", employee.id);
+
+  if (error) {
+    return {
+      success: false,
+      message:
+        error.code === "23505"
+          ? "Ce code PIN est déjà utilisé par un autre employé."
+          : "Impossible d'enregistrer le code PIN.",
+    };
+  }
+
+  revalidatePath("/dashboard/compte");
+  return { success: true, message: "Code PIN mis à jour." };
+}
+
 export type PinIdentifyResult =
   | { success: true; employee: { id: string; firstName: string; lastName: string } }
   | { success: false; message: string };
@@ -164,7 +206,7 @@ export async function identifyByPin(pin: string): Promise<PinIdentifyResult> {
     return { success: false, message: "Code PIN invalide." };
   }
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data: employees } = await supabase
     .from("employees")
     .select("id, first_name, last_name, pin_hash")

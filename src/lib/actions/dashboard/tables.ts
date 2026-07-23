@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
 
 const TABLE_STATUSES = [
@@ -23,7 +23,7 @@ export async function updateTableStatus(id: string, status: string) {
   const employee = await getCurrentEmployee();
   if (!employee) throw new Error("Non autorisé");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   await supabase.from("dining_tables").update({ status }).eq("id", id);
 
   revalidatePath("/dashboard/salle");

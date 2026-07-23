@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
 import type { ActionResult } from "@/lib/actions/types";
 
@@ -9,7 +9,7 @@ export async function getOpenCashSession() {
   const employee = await getCurrentEmployee();
   if (!employee) return null;
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data } = await supabase
     .from("cash_sessions")
     .select("id, opened_at, opening_amount, cashier_id")
@@ -28,7 +28,7 @@ export async function openCashSession(
   if (!employee) return { success: false, message: "Non autorisé." };
 
   const openingAmount = Number(formData.get("openingAmount") ?? 0);
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const { data: existing } = await supabase
     .from("cash_sessions")
@@ -64,7 +64,7 @@ export async function closeCashSession(
 
   const sessionId = String(formData.get("sessionId") ?? "");
   const closingAmount = Number(formData.get("closingAmount") ?? 0);
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const { data: session } = await supabase
     .from("cash_sessions")
@@ -126,7 +126,7 @@ export async function addCashMovement(
     return { success: false, message: "Mouvement invalide." };
   }
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { error } = await supabase.from("cash_movements").insert({
     cash_session_id: sessionId,
     type,

@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import type { Ticket } from "@/components/dashboard/KitchenBoard";
 
 type OrderItemRow = {
@@ -19,7 +19,7 @@ type OrderItemRow = {
 };
 
 export async function getTickets(destination: "cuisine" | "bar"): Promise<Ticket[]> {
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data } = await supabase
     .from("order_items")
     .select(

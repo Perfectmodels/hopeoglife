@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/guard";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { EmptyState } from "@/components/dashboard/Card";
@@ -9,7 +9,7 @@ export const metadata = { title: "Plan de salle" };
 export default async function SallePage() {
   await requireRole("/dashboard/salle");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data: areas } = await supabase
     .from("dining_areas")
     .select("id, name, is_vip, dining_tables ( id, label, capacity, status )")

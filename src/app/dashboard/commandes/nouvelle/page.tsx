@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/guard";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { StaffOrderBuilder } from "@/components/dashboard/StaffOrderBuilder";
@@ -11,7 +11,7 @@ type CategoryRow = { id: string; name: string; kind: string; menu_items: ItemRow
 export default async function NouvelleCommandePage() {
   await requireRole("/dashboard/commandes");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const [{ data: categories }, { data: tables }] = await Promise.all([
     supabase

@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/guard";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { Card, EmptyState, StatTile } from "@/components/dashboard/Card";
@@ -43,7 +43,7 @@ export default async function RapportsPage({
   const rangeStart = new Date(`${fromDate}T00:00:00`).toISOString();
   const rangeEnd = new Date(new Date(`${toDate}T00:00:00`).getTime() + 86400000).toISOString();
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const [{ data: orders }, { data: payments }] = await Promise.all([
     supabase

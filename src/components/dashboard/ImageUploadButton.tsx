@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { ImagePlus, Loader2 } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { uploadMenuImage } from "@/lib/actions/dashboard/menu";
 import { cn } from "@/lib/utils";
 
 const MAX_SIZE_MB = 5;
@@ -40,21 +40,18 @@ export function ImageUploadButton({
     setUploading(true);
 
     try {
-      const supabase = createClient();
-      const ext = file.name.split(".").pop() ?? "jpg";
-      const path = `${pathPrefix}/${Date.now()}.${ext}`;
+      const body = new FormData();
+      body.set("file", file);
+      body.set("pathPrefix", pathPrefix);
 
-      const { error: uploadError } = await supabase.storage
-        .from("menu-images")
-        .upload(path, file, { upsert: true, cacheControl: "3600" });
+      const result = await uploadMenuImage(body);
 
-      if (uploadError) {
-        setError("Échec de l'envoi. Réessayez.");
+      if (!result.success) {
+        setError(result.message);
         return;
       }
 
-      const { data } = supabase.storage.from("menu-images").getPublicUrl(path);
-      onUploaded(data.publicUrl);
+      onUploaded(result.url);
     } catch {
       setError("Une erreur est survenue.");
     } finally {

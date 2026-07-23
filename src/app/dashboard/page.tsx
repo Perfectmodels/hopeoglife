@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { StatTile, Card, EmptyState } from "@/components/dashboard/Card";
 import { formatXAF } from "@/lib/utils";
@@ -13,7 +13,7 @@ function todayRange() {
 }
 
 export default async function DashboardHomePage() {
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { start, end, today } = todayRange();
 
   const [

@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/guard";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { Card, EmptyState } from "@/components/dashboard/Card";
@@ -21,7 +21,7 @@ type Category = { id: string; name: string; kind: string; menu_items: Item[] };
 export default async function MenuAdminPage() {
   await requireRole("/dashboard/menu");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data: categories } = await supabase
     .from("menu_categories")
     .select(

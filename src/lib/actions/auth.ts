@@ -4,11 +4,80 @@ import { z } from "zod";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
+import { verifyPin } from "@/lib/auth/pin";
+import { createPinSession, clearPinSession } from "@/lib/auth/pin-session";
+import { getCurrentEmployee } from "@/lib/auth/session";
 import type { ActionResult } from "./types";
 
 const MAX_FAILED_ATTEMPTS = 5;
 const LOCKOUT_WINDOW_MINUTES = 15;
+
+async function getClientIp() {
+  const headerList = await headers();
+  return (
+    headerList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    headerList.get("x-real-ip") ||
+    "unknown"
+  );
+}
+
+export async function loginWithPin(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const pin = String(formData.get("pin") ?? "");
+  if (!/^\d{4,6}$/.test(pin)) {
+    return { success: false, message: "Code PIN invalide." };
+  }
+
+  if (!isSupabaseConfigured) {
+    return {
+      success: false,
+      message: "Supabase n'est pas encore connecté. Renseignez .env.local pour activer la connexion.",
+    };
+  }
+
+  const admin = createAdminClient();
+  const throttleKey = `pin_ip:${await getClientIp()}`;
+
+  const { data: failedCount } = await admin.rpc("count_recent_failed_logins", {
+    p_email: throttleKey,
+    p_minutes: LOCKOUT_WINDOW_MINUTES,
+  });
+
+  if (typeof failedCount === "number" && failedCount >= MAX_FAILED_ATTEMPTS) {
+    return {
+      success: false,
+      message: `Trop de tentatives échouées. Réessayez dans ${LOCKOUT_WINDOW_MINUTES} minutes.`,
+    };
+  }
+
+  const { data: employees } = await admin
+    .from("employees")
+    .select("id, pin_hash")
+    .eq("active", true)
+    .not("pin_hash", "is", null);
+
+  const match = (employees ?? []).find((e) => e.pin_hash && verifyPin(pin, e.pin_hash));
+
+  if (!match) {
+    await admin.rpc("record_login_attempt", { p_email: throttleKey, p_success: false });
+    return { success: false, message: "Code PIN non reconnu." };
+  }
+
+  await admin.rpc("record_login_attempt", { p_email: throttleKey, p_success: true });
+  await createPinSession(match.id);
+  await admin.from("activity_logs").insert({
+    actor_id: match.id,
+    action: "auth.pin_login",
+    entity_type: "employee",
+    entity_id: match.id,
+  });
+
+  redirect("/dashboard");
+}
 
 async function getSiteOrigin() {
   const headerList = await headers();
@@ -89,22 +158,22 @@ export async function signIn(_prev: ActionResult | null, formData: FormData): Pr
 
 export async function signOut() {
   if (isSupabaseConfigured) {
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    const employee = await getCurrentEmployee();
 
-    if (user) {
-      await supabase.from("activity_logs").insert({
-        actor_id: user.id,
+    if (employee) {
+      const admin = createAdminClient();
+      await admin.from("activity_logs").insert({
+        actor_id: employee.id,
         action: "auth.logout",
         entity_type: "employee",
-        entity_id: user.id,
+        entity_id: employee.id,
       });
     }
 
+    const supabase = await createClient();
     await supabase.auth.signOut();
   }
+  await clearPinSession();
   redirect("/connexion");
 }
 

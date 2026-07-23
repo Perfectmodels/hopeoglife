@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
 import type { ActionResult } from "@/lib/actions/types";
 
@@ -80,7 +80,7 @@ export async function createStaffOrder(
   }
 
   const data = parsed.data;
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   let serverId = employee.id;
   if (data.servedById) {
@@ -152,7 +152,7 @@ export async function transferOrderTable(orderId: string, newTableId: string) {
   if (!employee) throw new Error("Non autorisé");
   if (!newTableId) throw new Error("Table invalide");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data: order } = await supabase
     .from("orders")
     .select("id, table_id, status")
@@ -195,7 +195,7 @@ export async function updateOrderStatus(id: string, status: string) {
   const employee = await getCurrentEmployee();
   if (!employee) throw new Error("Non autorisé");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   await supabase.from("orders").update({ status }).eq("id", id);
 
   revalidatePath("/dashboard/commandes");
@@ -211,7 +211,7 @@ export async function updateOrderItemStatus(id: string, status: string) {
   const employee = await getCurrentEmployee();
   if (!employee) throw new Error("Non autorisé");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   await supabase.from("order_items").update({ status }).eq("id", id);
 
   revalidatePath("/dashboard/cuisine");
@@ -237,7 +237,7 @@ export async function recordPayment(
     return { success: false, message: "Paiement invalide." };
   }
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const { data: order } = await supabase
     .from("orders")

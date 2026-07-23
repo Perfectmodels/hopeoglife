@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/guard";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { EmptyState } from "@/components/dashboard/Card";
@@ -22,7 +22,7 @@ type OrderRowData = {
 export default async function CommandesPage() {
   await requireRole("/dashboard/commandes");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const [{ data: orders }, { data: tables }] = await Promise.all([
     supabase
       .from("orders")

@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/guard";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { Card } from "@/components/dashboard/Card";
@@ -14,7 +14,7 @@ export const metadata = { title: "Caisse" };
 
 export default async function CaissePage() {
   const employee = await requireRole("/dashboard/caisse");
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const { data: session } = await supabase
     .from("cash_sessions")

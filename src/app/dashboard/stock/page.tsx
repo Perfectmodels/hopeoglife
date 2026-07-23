@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/guard";
 import { PageHeader } from "@/components/dashboard/PageHeader";
 import { Card, EmptyState } from "@/components/dashboard/Card";
@@ -10,7 +10,7 @@ export const metadata = { title: "Stock" };
 export default async function StockPage() {
   await requireRole("/dashboard/stock");
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data: items } = await supabase
     .from("stock_items")
     .select("id, name, unit, category, quantity_on_hand, low_stock_threshold")

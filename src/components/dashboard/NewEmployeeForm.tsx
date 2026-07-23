@@ -18,12 +18,13 @@ function generatePassword() {
 export function NewEmployeeForm() {
   const [state, formAction] = useFormState(createEmployeeProfile, null);
   const [password, setPassword] = useState("");
+  const [officeAccess, setOfficeAccess] = useState(false);
 
   return (
     <form action={formAction} className="space-y-3">
       <p className="text-xs leading-relaxed text-muted">
-        Le compte est créé directement dans Supabase Authentication et le profil est ajouté ici.
-        Communiquez le mot de passe temporaire à l&apos;employé.
+        Le compte est créé directement dans Supabase Authentication. La connexion au quotidien se
+        fait par code PIN.
       </p>
       <div className="grid grid-cols-2 gap-3">
         <FormField label="Prénom" htmlFor="firstName">
@@ -55,29 +56,8 @@ export function NewEmployeeForm() {
           <input id="hiredAt" name="hiredAt" type="date" className={inputClasses} />
         </FormField>
       </div>
-      <FormField label="Mot de passe temporaire" htmlFor="password">
-        <div className="flex gap-2">
-          <input
-            id="password"
-            name="password"
-            type="text"
-            required
-            minLength={8}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Au moins 8 caractères"
-            className={`${inputClasses} font-mono`}
-          />
-          <button
-            type="button"
-            onClick={() => setPassword(generatePassword())}
-            className="shrink-0 rounded-lg border border-border-subtle px-4 py-3 text-xs text-muted transition-colors hover:border-gold hover:text-gold"
-          >
-            Générer
-          </button>
-        </div>
-      </FormField>
-      <FormField label="Code PIN (optionnel, 4 chiffres)" htmlFor="pin">
+
+      <FormField label="Code PIN (connexion au quotidien)" htmlFor="pin">
         <input
           id="pin"
           name="pin"
@@ -85,10 +65,45 @@ export function NewEmployeeForm() {
           inputMode="numeric"
           pattern="\d{4,6}"
           maxLength={6}
-          placeholder="Pour l'identification rapide en salle"
+          required
+          placeholder="4 à 6 chiffres"
           className={`${inputClasses} font-mono`}
         />
       </FormField>
+
+      <label className="flex items-center gap-2 text-xs text-muted">
+        <input
+          type="checkbox"
+          checked={officeAccess}
+          onChange={(e) => setOfficeAccess(e.target.checked)}
+          className="h-3.5 w-3.5 rounded border-border-subtle"
+        />
+        Donner aussi un accès e-mail / mot de passe (back-office)
+      </label>
+
+      {officeAccess ? (
+        <FormField label="Mot de passe temporaire" htmlFor="password">
+          <div className="flex gap-2">
+            <input
+              id="password"
+              name="password"
+              type="text"
+              minLength={8}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Au moins 8 caractères"
+              className={`${inputClasses} font-mono`}
+            />
+            <button
+              type="button"
+              onClick={() => setPassword(generatePassword())}
+              className="shrink-0 rounded-lg border border-border-subtle px-4 py-3 text-xs text-muted transition-colors hover:border-gold hover:text-gold"
+            >
+              Générer
+            </button>
+          </div>
+        </FormField>
+      ) : null}
 
       {state ? (
         <div

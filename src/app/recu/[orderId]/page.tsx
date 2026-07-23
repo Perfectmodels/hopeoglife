@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireEmployee } from "@/lib/auth/guard";
 import { PrintButton } from "@/components/dashboard/PrintButton";
 import { paymentMethodLabels } from "@/lib/statuses";
@@ -46,7 +46,7 @@ export default async function RecuPage({
   await requireEmployee();
   const { orderId } = await params;
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data: order } = await supabase
     .from("orders")
     .select(
