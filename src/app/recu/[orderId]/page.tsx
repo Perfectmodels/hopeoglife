@@ -17,6 +17,8 @@ type ReceiptOrder = {
   total_amount: number;
   discount_amount: number;
   status: string;
+  customer_name: string | null;
+  service_type: string;
   dining_tables: { label: string } | null;
   employees: { first_name: string; last_name: string } | null;
   order_items: {
@@ -24,9 +26,16 @@ type ReceiptOrder = {
     quantity: number;
     unit_price: number;
     notes: string | null;
+    modifiers: string[] | null;
     menu_items: { name: string } | null;
   }[];
-  payments: { method: string; amount: number; created_at: string }[];
+  payments: { method: string; amount: number; tip_amount: number; created_at: string }[];
+};
+
+const SERVICE_TYPE_LABELS: Record<string, string> = {
+  sur_place: "Sur place",
+  a_emporter: "À emporter",
+  livraison: "Livraison",
 };
 
 export default async function RecuPage({
@@ -41,7 +50,7 @@ export default async function RecuPage({
   const { data: order } = await supabase
     .from("orders")
     .select(
-      "id, order_number, created_at, total_amount, discount_amount, status, dining_tables ( label ), employees ( first_name, last_name ), order_items ( id, quantity, unit_price, notes, menu_items ( name ) ), payments ( method, amount, created_at )"
+      "id, order_number, created_at, total_amount, discount_amount, status, customer_name, service_type, dining_tables ( label ), employees ( first_name, last_name ), order_items ( id, quantity, unit_price, notes, modifiers, menu_items ( name ) ), payments ( method, amount, tip_amount, created_at )"
     )
     .eq("id", orderId)
     .maybeSingle()
@@ -53,6 +62,9 @@ export default async function RecuPage({
     (sum, item) => sum + Number(item.unit_price) * item.quantity,
     0
   );
+  const totalPaid = order.payments.reduce((sum, p) => sum + Number(p.amount), 0);
+  const totalTips = order.payments.reduce((sum, p) => sum + Number(p.tip_amount ?? 0), 0);
+  const remaining = Number(order.total_amount) - totalPaid;
 
   return (
     <div className="min-h-screen bg-neutral-200 py-10 print:bg-white print:py-0">
@@ -83,6 +95,8 @@ export default async function RecuPage({
             })}
             {order.dining_tables ? ` — Table ${order.dining_tables.label}` : ""}
           </p>
+          <p>{SERVICE_TYPE_LABELS[order.service_type] ?? order.service_type}</p>
+          {order.customer_name ? <p>Client : {order.customer_name}</p> : null}
           {order.employees ? (
             <p>
               Servi par {order.employees.first_name} {order.employees.last_name}
@@ -102,6 +116,9 @@ export default async function RecuPage({
                     {formatXAF(Number(item.unit_price) * item.quantity)}
                   </span>
                 </div>
+                {item.modifiers && item.modifiers.length > 0 ? (
+                  <p className="pl-4 text-[10px] text-neutral-600">{item.modifiers.join(", ")}</p>
+                ) : null}
                 {item.notes ? <p className="pl-4 text-[10px] text-neutral-600">{item.notes}</p> : null}
               </div>
             ))}
@@ -136,6 +153,18 @@ export default async function RecuPage({
                     <span>{formatXAF(Number(payment.amount))}</span>
                   </div>
                 ))}
+                {totalTips > 0 ? (
+                  <div className="flex justify-between">
+                    <span>Pourboire</span>
+                    <span>{formatXAF(totalTips)}</span>
+                  </div>
+                ) : null}
+                {remaining > 0 ? (
+                  <div className="flex justify-between font-semibold">
+                    <span>Solde restant</span>
+                    <span>{formatXAF(remaining)}</span>
+                  </div>
+                ) : null}
               </div>
             </>
           ) : null}

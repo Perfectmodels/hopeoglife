@@ -6,11 +6,14 @@ type OrderItemRow = {
   quantity: number;
   notes: string | null;
   status: string;
+  modifiers: string[] | null;
+  priority: string;
   menu_items: { name: string } | null;
   orders: {
     id: string;
     order_number: string;
     created_at: string;
+    customer_name: string | null;
     dining_tables: { label: string } | null;
   } | null;
 };
@@ -20,7 +23,7 @@ export async function getTickets(destination: "cuisine" | "bar"): Promise<Ticket
   const { data } = await supabase
     .from("order_items")
     .select(
-      "id, quantity, notes, status, menu_items ( name ), orders ( id, order_number, created_at, dining_tables ( label ) )"
+      "id, quantity, notes, status, modifiers, priority, menu_items ( name ), orders ( id, order_number, created_at, customer_name, dining_tables ( label ) )"
     )
     .eq("destination", destination)
     .neq("status", "servi")
@@ -40,6 +43,8 @@ export async function getTickets(destination: "cuisine" | "bar"): Promise<Ticket
       quantity: row.quantity,
       notes: row.notes,
       status: row.status,
+      modifiers: row.modifiers ?? [],
+      priority: row.priority,
     };
 
     if (existing) {
@@ -49,6 +54,7 @@ export async function getTickets(destination: "cuisine" | "bar"): Promise<Ticket
         orderId: order.id,
         orderNumber: order.order_number,
         tableLabel: order.dining_tables?.label ?? null,
+        customerName: order.customer_name,
         createdAt: order.created_at,
         items: [item],
       });

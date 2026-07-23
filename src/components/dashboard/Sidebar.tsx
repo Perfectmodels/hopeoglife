@@ -14,6 +14,7 @@ import {
   Boxes,
   Users,
   UserCircle,
+  BarChart3,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/lib/dashboard-nav";
@@ -29,6 +30,7 @@ const icons: Record<string, React.ElementType> = {
   "/dashboard/menu": UtensilsCrossed,
   "/dashboard/stock": Boxes,
   "/dashboard/personnel": Users,
+  "/dashboard/rapports": BarChart3,
 };
 
 export function Sidebar({ items }: { items: NavItem[] }) {

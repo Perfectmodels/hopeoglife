@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { Clock, AlertTriangle } from "lucide-react";
+import { Clock, AlertTriangle, Flame } from "lucide-react";
 import { updateOrderItemStatus } from "@/lib/actions/dashboard/orders";
 import { cn } from "@/lib/utils";
 
@@ -11,12 +11,15 @@ export type TicketItem = {
   quantity: number;
   notes: string | null;
   status: string;
+  modifiers: string[];
+  priority: string;
 };
 
 export type Ticket = {
   orderId: string;
   orderNumber: string;
   tableLabel: string | null;
+  customerName: string | null;
   createdAt: string;
   items: TicketItem[];
 };
@@ -34,11 +37,20 @@ function ItemRow({ item }: { item: TicketItem }) {
   const action = nextAction[item.status];
 
   return (
-    <div className="flex items-center justify-between gap-3 border-b border-border-subtle/60 py-3 last:border-0">
+    <div
+      className={cn(
+        "flex items-center justify-between gap-3 border-b border-border-subtle/60 py-3 last:border-0",
+        item.priority === "urgente" && "-mx-2 rounded-lg border-b-0 bg-red-500/5 px-2"
+      )}
+    >
       <div>
-        <p className="text-sm text-champagne">
+        <p className="flex items-center gap-1.5 text-sm text-champagne">
+          {item.priority === "urgente" ? <Flame size={13} className="text-red-400" /> : null}
           {item.quantity}× {item.name}
         </p>
+        {item.modifiers.length > 0 ? (
+          <p className="text-xs text-gold-soft">{item.modifiers.join(", ")}</p>
+        ) : null}
         {item.notes ? <p className="text-xs text-muted">{item.notes}</p> : null}
       </div>
       <div className="flex shrink-0 items-center gap-2">
@@ -112,7 +124,10 @@ export function KitchenBoard({ tickets }: { tickets: Ticket[] }) {
                 <Clock size={12} /> {elapsedMin} min
               </span>
             </div>
-            <p className="mb-2 text-xs text-muted">Commande {ticket.orderNumber}</p>
+            <p className="mb-2 text-xs text-muted">
+              Commande {ticket.orderNumber}
+              {ticket.customerName ? ` — ${ticket.customerName}` : ""}
+            </p>
             <div>
               {ticket.items.map((item) => (
                 <ItemRow key={item.id} item={item} />

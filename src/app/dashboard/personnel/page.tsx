@@ -31,6 +31,7 @@ export default async function PersonnelPage() {
                     <th className="px-4 py-2">Contact</th>
                     <th className="px-4 py-2">Rôle</th>
                     <th className="px-4 py-2">Statut</th>
+                    <th className="px-4 py-2">PIN</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border-subtle">

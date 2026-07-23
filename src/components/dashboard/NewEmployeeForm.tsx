@@ -77,6 +77,18 @@ export function NewEmployeeForm() {
           </button>
         </div>
       </FormField>
+      <FormField label="Code PIN (optionnel, 4 chiffres)" htmlFor="pin">
+        <input
+          id="pin"
+          name="pin"
+          type="text"
+          inputMode="numeric"
+          pattern="\d{4,6}"
+          maxLength={6}
+          placeholder="Pour l'identification rapide en salle"
+          className={`${inputClasses} font-mono`}
+        />
+      </FormField>
 
       {state ? (
         <div

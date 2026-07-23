@@ -5,9 +5,11 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
+import { hashPin, verifyPin } from "@/lib/auth/pin";
 import type { ActionResult } from "@/lib/actions/types";
 
 const ROLES = ["admin", "manager", "caissier", "serveur", "cuisine", "bar", "stock"] as const;
+const pinSchema = z.string().trim().regex(/^\d{4,6}$/, "Le code PIN doit contenir 4 à 6 chiffres");
 
 const profileSchema = z.object({
   firstName: z.string().trim().min(1, "Le prénom est requis"),
@@ -17,6 +19,7 @@ const profileSchema = z.object({
   password: z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères"),
   role: z.enum(ROLES),
   hiredAt: z.string().optional(),
+  pin: z.union([pinSchema, z.literal("")]).optional(),
 });
 
 export async function createEmployeeProfile(
@@ -36,6 +39,7 @@ export async function createEmployeeProfile(
     password: formData.get("password"),
     role: formData.get("role"),
     hiredAt: formData.get("hiredAt"),
+    pin: formData.get("pin"),
   });
 
   if (!parsed.success) {
@@ -71,11 +75,18 @@ export async function createEmployeeProfile(
     email: data.email,
     role: data.role,
     hired_at: data.hiredAt || null,
+    pin_hash: data.pin ? hashPin(data.pin) : null,
   });
 
   if (profileError) {
     await adminClient.auth.admin.deleteUser(created.user.id);
-    return { success: false, message: "Impossible de créer le profil du membre du personnel." };
+    return {
+      success: false,
+      message:
+        profileError.code === "23505"
+          ? "Ce code PIN est déjà utilisé par un autre employé."
+          : "Impossible de créer le profil du membre du personnel.",
+    };
   }
 
   revalidatePath("/dashboard/personnel");
@@ -103,4 +114,71 @@ export async function toggleEmployeeActive(id: string, active: boolean) {
   const supabase = await createClient();
   await supabase.from("employees").update({ active }).eq("id", id);
   revalidatePath("/dashboard/personnel");
+}
+
+export async function setEmployeePin(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const employee = await getCurrentEmployee();
+  if (!employee || (employee.role !== "admin" && employee.role !== "manager")) {
+    return { success: false, message: "Non autorisé." };
+  }
+
+  const id = String(formData.get("employeeId") ?? "");
+  const parsed = pinSchema.safeParse(formData.get("pin"));
+
+  if (!id || !parsed.success) {
+    return { success: false, message: parsed.error?.issues[0]?.message ?? "Code PIN invalide." };
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("employees")
+    .update({ pin_hash: hashPin(parsed.data) })
+    .eq("id", id);
+
+  if (error) {
+    return {
+      success: false,
+      message:
+        error.code === "23505"
+          ? "Ce code PIN est déjà utilisé par un autre employé."
+          : "Impossible d'enregistrer le code PIN.",
+    };
+  }
+
+  revalidatePath("/dashboard/personnel");
+  return { success: true, message: "Code PIN enregistré." };
+}
+
+export type PinIdentifyResult =
+  | { success: true; employee: { id: string; firstName: string; lastName: string } }
+  | { success: false; message: string };
+
+export async function identifyByPin(pin: string): Promise<PinIdentifyResult> {
+  const requester = await getCurrentEmployee();
+  if (!requester) return { success: false, message: "Non autorisé." };
+
+  if (!/^\d{4,6}$/.test(pin)) {
+    return { success: false, message: "Code PIN invalide." };
+  }
+
+  const supabase = await createClient();
+  const { data: employees } = await supabase
+    .from("employees")
+    .select("id, first_name, last_name, pin_hash")
+    .eq("active", true)
+    .not("pin_hash", "is", null);
+
+  const match = (employees ?? []).find((e) => e.pin_hash && verifyPin(pin, e.pin_hash));
+
+  if (!match) {
+    return { success: false, message: "Code PIN non reconnu." };
+  }
+
+  return {
+    success: true,
+    employee: { id: match.id, firstName: match.first_name, lastName: match.last_name },
+  };
 }

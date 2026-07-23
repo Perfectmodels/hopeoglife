@@ -1,11 +1,18 @@
 "use client";
 
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
+import { useFormState } from "react-dom";
+import { KeyRound } from "lucide-react";
 import { StatusSelect } from "./StatusSelect";
-import { updateEmployeeRole, toggleEmployeeActive } from "@/lib/actions/dashboard/employees";
+import {
+  updateEmployeeRole,
+  toggleEmployeeActive,
+  setEmployeePin,
+} from "@/lib/actions/dashboard/employees";
 import { roleLabels } from "@/lib/dashboard-nav";
 import type { EmployeeRole } from "@/lib/auth/session";
 import { cn } from "@/lib/utils";
+import { SubmitButton } from "@/components/site/SubmitButton";
 
 type Employee = {
   id: string;
@@ -21,6 +28,8 @@ const roleOptions = Object.entries(roleLabels).map(([value, label]) => ({ value,
 
 export function EmployeeRow({ employee }: { employee: Employee }) {
   const [isPending, startTransition] = useTransition();
+  const [pinOpen, setPinOpen] = useState(false);
+  const [pinState, pinAction] = useFormState(setEmployeePin, null);
 
   return (
     <tr>
@@ -52,6 +61,36 @@ export function EmployeeRow({ employee }: { employee: Employee }) {
         >
           {employee.active ? "Actif" : "Inactif"}
         </button>
+      </td>
+      <td className="px-4 py-3">
+        <button
+          type="button"
+          onClick={() => setPinOpen((v) => !v)}
+          className="flex items-center gap-1.5 rounded-full border border-border-subtle px-3 py-1.5 text-xs text-muted hover:border-gold hover:text-gold"
+        >
+          <KeyRound size={12} /> Code PIN
+        </button>
+        {pinOpen ? (
+          <form action={pinAction} className="mt-2 flex items-center gap-1.5">
+            <input type="hidden" name="employeeId" value={employee.id} />
+            <input
+              name="pin"
+              type="text"
+              inputMode="numeric"
+              pattern="\d{4,6}"
+              maxLength={6}
+              placeholder="4-6 chiffres"
+              required
+              className="w-24 rounded-md border border-border-subtle bg-background px-2 py-1.5 font-mono text-xs text-foreground outline-none focus:border-gold"
+            />
+            <SubmitButton label="OK" pendingLabel="..." className="px-3 py-1.5 text-xs" />
+          </form>
+        ) : null}
+        {pinOpen && pinState ? (
+          <p className={cn("mt-1 text-[11px]", pinState.success ? "text-gold" : "text-red-400")}>
+            {pinState.message}
+          </p>
+        ) : null}
       </td>
     </tr>
   );

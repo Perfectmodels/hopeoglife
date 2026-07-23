@@ -17,6 +17,7 @@ export const dashboardNav: NavItem[] = [
   { href: "/dashboard/menu", label: "Menu", roles: ["admin", "manager"] },
   { href: "/dashboard/stock", label: "Stock", roles: ["admin", "manager", "stock"] },
   { href: "/dashboard/personnel", label: "Personnel", roles: ["admin", "manager"] },
+  { href: "/dashboard/rapports", label: "Rapports", roles: ["admin", "manager"] },
 ];
 
 export function navForRole(role: EmployeeRole): NavItem[] {
