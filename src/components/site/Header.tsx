@@ -62,14 +62,27 @@ export function Header() {
           type="button"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           onClick={() => setOpen((v) => !v)}
-          className="text-champagne lg:hidden"
+          className="relative h-6 w-6 text-champagne lg:hidden"
         >
-          {open ? <X size={26} /> : <Menu size={26} />}
+          <Menu
+            size={26}
+            className={cn(
+              "absolute inset-0 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)]",
+              open ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
+            )}
+          />
+          <X
+            size={26}
+            className={cn(
+              "absolute inset-0 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)]",
+              open ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
+            )}
+          />
         </button>
       </Container>
 
-      {open ? (
-        <div className="border-t border-border-subtle/80 bg-background lg:hidden">
+      <div className={cn("collapse-panel lg:hidden", open && "is-open")}>
+        <div className="border-t border-border-subtle/80 bg-background">
           <Container className="flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
               <Link
@@ -91,7 +104,7 @@ export function Header() {
             </div>
           </Container>
         </div>
-      ) : null}
+      </div>
     </header>
   );
 }

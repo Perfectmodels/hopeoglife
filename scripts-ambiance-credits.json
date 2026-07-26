@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hero-terrace",
+    "fileName": "hero-terrace.jpg",
+    "title": "File:Colorado; Under the turquoise sky (IA coloradoundertur00chic).pdf",
+    "artist": "[Chicago, Rock Island and Pacific railway company] [from old catalog]",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Colorado;_Under_the_turquoise_sky_(IA_coloradoundertur00chic).pdf"
+  },
+  {
+    "id": "hero-cocktail",
+    "fileName": "hero-cocktail.jpg",
+    "title": "File:Vietnam Magazine Vol. V, Nº 10 1972.pdf",
+    "artist": "Vietnam Council on Foreign Relations",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnam_Magazine_Vol._V,_N%C2%BA_10_1972.pdf"
+  },
+  {
+    "id": "hero-gallery-1",
+    "fileName": "hero-gallery-1.jpg",
+    "title": "File:The Examiner Vol. 7 No. 12 (IA December1999Examiner).pdf",
+    "artist": "U.S. Navy. Naval Hospital Twentynine Palms",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Examiner_Vol._7_No._12_(IA_December1999Examiner).pdf"
+  },
+  {
+    "id": "hero-gallery-2",
+    "fileName": "hero-gallery-2.jpg",
+    "title": "File:Reception lounge at Amantaka luxury Resort & Hotel at blue hour in Luang Prabang Laos.jpg",
+    "artist": "Basile Morin",
+    "license": "CC BY-SA 4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Reception_lounge_at_Amantaka_luxury_Resort_%26_Hotel_at_blue_hour_in_Luang_Prabang_Laos.jpg"
+  },
+  {
+    "id": "hero-gallery-3",
+    "fileName": "hero-gallery-3.jpg",
+    "title": "File:Descriptions of occupations (IA cu31924054144336).pdf",
+    "artist": "United States. Bureau of Labor Statistics\nUnited States Employment Service",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Descriptions_of_occupations_(IA_cu31924054144336).pdf"
+  },
+  {
+    "id": "hero-event",
+    "fileName": "hero-event.png",
+    "title": "File:Moon Lounge Omicron Prime (ISRC USUAN1200084).mp3",
+    "artist": "Kevin MacLeod",
+    "license": "CC BY 3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Moon_Lounge_Omicron_Prime_(ISRC_USUAN1200084).mp3"
+  }
+]

@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { Clock, AlertTriangle, Flame } from "lucide-react";
 import { updateOrderItemStatus } from "@/lib/actions/dashboard/orders";
 import { cn } from "@/lib/utils";
@@ -34,13 +34,24 @@ const nextAction: Record<string, { label: string; next: string } | null> = {
 
 function ItemRow({ item }: { item: TicketItem }) {
   const [isPending, startTransition] = useTransition();
+  const [justUpdated, setJustUpdated] = useState(false);
+  const prevStatus = useRef(item.status);
   const action = nextAction[item.status];
+
+  useEffect(() => {
+    if (prevStatus.current === item.status) return;
+    prevStatus.current = item.status;
+    setJustUpdated(true);
+    const timer = setTimeout(() => setJustUpdated(false), 900);
+    return () => clearTimeout(timer);
+  }, [item.status]);
 
   return (
     <div
       className={cn(
-        "flex items-center justify-between gap-3 border-b border-border-subtle/60 py-3 last:border-0",
-        item.priority === "urgente" && "-mx-2 rounded-lg border-b-0 bg-red-500/5 px-2"
+        "flex items-center justify-between gap-3 rounded-lg border-b border-border-subtle/60 py-3 transition-[background-color] duration-150 last:border-0",
+        item.priority === "urgente" && "-mx-2 rounded-lg border-b-0 bg-red-500/5 px-2",
+        justUpdated && "animate-flash-gold"
       )}
     >
       <div>
@@ -64,7 +75,7 @@ function ItemRow({ item }: { item: TicketItem }) {
               })
             }
             aria-label="Signaler indisponible"
-            className="rounded-full border border-red-500/40 p-2 text-red-400 hover:bg-red-500/10 disabled:opacity-50"
+            className="rounded-full border border-red-500/40 p-2 text-red-400 transition-transform duration-150 hover:bg-red-500/10 active:scale-90 disabled:opacity-50"
           >
             <AlertTriangle size={14} />
           </button>
@@ -78,7 +89,7 @@ function ItemRow({ item }: { item: TicketItem }) {
                 updateOrderItemStatus(item.id, action.next);
               })
             }
-            className="rounded-full bg-gold px-4 py-2 text-xs font-medium text-background hover:bg-gold-soft disabled:opacity-50"
+            className="rounded-full bg-gold px-4 py-2 text-xs font-medium text-background transition-transform duration-150 hover:bg-gold-soft active:scale-90 disabled:opacity-50"
           >
             {action.label}
           </button>
@@ -109,7 +120,7 @@ export function KitchenBoard({ tickets }: { tickets: Ticket[] }) {
         return (
           <div
             key={ticket.orderId}
-            className="rounded-2xl border border-border-subtle bg-background-elevated p-5"
+            className="animate-pop-in rounded-2xl border border-border-subtle bg-background-elevated p-5"
           >
             <div className="mb-3 flex items-center justify-between">
               <p className="font-display text-base text-champagne">

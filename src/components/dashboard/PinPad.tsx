@@ -38,13 +38,18 @@ export function PinPad({
 
   return (
     <div className="w-full max-w-[280px]">
-      <div className="mb-4 flex items-center justify-center gap-3">
+      <div
+        className={cn(
+          "mb-4 flex items-center justify-center gap-3",
+          error && "animate-shake"
+        )}
+      >
         {Array.from({ length }).map((_, i) => (
           <span
             key={i}
             className={cn(
-              "h-3 w-3 rounded-full border border-gold/50",
-              i < pin.length ? "bg-gold" : "bg-transparent"
+              "h-3 w-3 rounded-full border border-gold/50 transition-all duration-150 [transition-timing-function:var(--ease-out-quart)]",
+              i < pin.length ? "scale-110 bg-gold" : "scale-100 bg-transparent"
             )}
           />
         ))}
@@ -60,7 +65,7 @@ export function PinPad({
             disabled={key === "" || submitting}
             onClick={() => press(key)}
             className={cn(
-              "flex h-14 items-center justify-center rounded-xl border border-border-subtle text-lg text-champagne transition-colors hover:border-gold hover:text-gold disabled:opacity-0",
+              "flex h-14 items-center justify-center rounded-xl border border-border-subtle text-lg text-champagne transition-all duration-150 [transition-timing-function:var(--ease-out-quart)] hover:border-gold hover:text-gold active:scale-90 disabled:opacity-0",
               key === "⌫" && "text-muted"
             )}
           >

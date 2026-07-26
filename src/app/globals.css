@@ -9,6 +9,11 @@
   --gold-soft: #e3c987;
   --champagne: #e9dcbd;
   --border-subtle: #2a2620;
+
+  /* Motion — feutré et cinématographique côté vitrine, vif côté espace personnel */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
@@ -49,5 +54,142 @@ body {
 @media print {
   @page {
     margin: 8mm;
+  }
+}
+
+/* ── Entrée du hero (vitrine) — joue une seule fois au chargement ── */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-rise {
+  opacity: 0;
+  animation: hero-rise 900ms var(--ease-out-quart) both;
+  animation-delay: var(--hero-delay, 0ms);
+}
+
+/* ── Changement de contenu (vitrine) — ex. bascule d'onglet ── */
+@keyframes site-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-fade-in {
+  animation: site-fade-in 450ms var(--ease-out-quart) both;
+}
+
+/* ── Scroll reveal (vitrine) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 700ms var(--ease-out-quart),
+    transform 700ms var(--ease-out-quart);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Feedback keyframes (espace personnel) ── */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes flash-gold {
+  0% {
+    background-color: color-mix(in oklch, var(--gold) 22%, transparent);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 240ms var(--ease-out-quart);
+}
+
+.animate-flash-gold {
+  animation: flash-gold 900ms var(--ease-out-quart);
+}
+
+.animate-shake {
+  animation: shake 420ms var(--ease-out-quart);
+}
+
+/* ── Collapsible inline panels (espace personnel) — grid-rows, jamais height ── */
+.collapse-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 260ms var(--ease-out-quart),
+    opacity 200ms var(--ease-out-quart);
+}
+
+.collapse-panel.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.collapse-panel > div {
+  overflow: hidden;
+  min-height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    transform: none;
   }
 }

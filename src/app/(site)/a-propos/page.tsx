@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Container } from "@/components/site/Container";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { ButtonLink } from "@/components/site/Button";
-import { BrandedVisual } from "@/components/site/BrandedVisual";
 import { PrivatizationForm } from "@/components/site/PrivatizationForm";
 import { siteConfig } from "@/lib/site-config";
 
@@ -47,31 +46,36 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden py-24">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(90% 70% at 50% 0%, rgba(201,162,74,0.14), transparent 60%)",
-          }}
+      {/* Hero bannière */}
+      <div className="relative overflow-hidden bg-background">
+        <Image
+          src="/hero/hero-gallery-2.jpg"
+          alt="Ambiance lounge Hope Of Life"
+          width={1920}
+          height={600}
+          className="h-56 w-full object-cover sm:h-72 lg:h-96"
+          priority
         />
-        <Container className="relative flex flex-col items-center text-center">
-          <Image
-            src="/Logo.png"
-            alt="Hope Of Life"
-            width={140}
-            height={158}
-            priority
-            className="mb-10 h-32 w-auto sm:h-36"
-          />
-          <SectionHeading
-            eyebrow="Notre histoire"
-            title={`${siteConfig.name}, l'art de recevoir`}
-            description={`Situé à ${siteConfig.location}, ${siteConfig.name} est né de la volonté de créer un lieu unique à Libreville : un restaurant gastronomique et un bar lounge réunis dans un même écrin, où chaque détail est pensé pour offrir une expérience haut de gamme.`}
-            align="center"
-          />
-        </Container>
-      </section>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/20" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Container className="flex flex-col items-center text-center">
+            <Image
+              src="/Logo.png"
+              alt="Hope Of Life"
+              width={100}
+              height={113}
+              priority
+              className="mb-6 h-20 w-auto opacity-90 sm:h-24"
+            />
+            <SectionHeading
+              eyebrow="Notre histoire"
+              title={`${siteConfig.name}, l'art de recevoir`}
+              description={`Situé à ${siteConfig.location}, ${siteConfig.name} est né de la volonté de créer un lieu unique à Libreville : un restaurant gastronomique et un bar lounge réunis dans un même écrin, où chaque détail est pensé pour offrir une expérience haut de gamme.`}
+              align="center"
+            />
+          </Container>
+        </div>
+      </div>
 
       <section className="border-t border-border-subtle/70 bg-background-elevated py-24">
         <Container className="grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -81,8 +85,30 @@ export default function AboutPage() {
             description="Le restaurant propose une cuisine raffinée mêlant saveurs locales et influences internationales. Le bar lounge invite à prolonger la soirée autour de cocktails signature, dans une ambiance feutrée aux tons dorés et cuivrés."
           />
           <div className="grid grid-cols-2 gap-4">
-            <BrandedVisual label="Restaurant" className="aspect-[4/5]" />
-            <BrandedVisual label="Bar Lounge" className="aspect-[4/5]" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border-subtle">
+              <Image
+                src="/hero/hero-gallery-1.jpg"
+                alt="Restaurant Hope Of Life"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <p className="text-center text-xs uppercase tracking-[0.2em] text-muted">Restaurant</p>
+              </div>
+            </div>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border-subtle">
+              <Image
+                src="/hero/hero-cocktail.jpg"
+                alt="Bar Lounge Hope Of Life"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <p className="text-center text-xs uppercase tracking-[0.2em] text-muted">Bar Lounge</p>
+              </div>
+            </div>
           </div>
         </Container>
       </section>

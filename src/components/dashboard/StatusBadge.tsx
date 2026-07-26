@@ -15,7 +15,7 @@ export function StatusBadge({ label, tone = "neutral" }: { label: string; tone?:
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium capitalize",
+        "inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium capitalize transition-colors duration-200",
         toneClasses[tone]
       )}
     >

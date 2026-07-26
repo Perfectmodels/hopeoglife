@@ -27,7 +27,7 @@ export function StatusSelect({
         });
       }}
       className={cn(
-        "rounded-lg border border-border-subtle bg-background px-3 py-1.5 text-xs text-foreground outline-none transition-colors focus:border-gold disabled:opacity-50",
+        "rounded-lg border border-border-subtle bg-background px-3 py-1.5 text-xs text-foreground outline-none transition-all duration-150 focus:border-gold disabled:opacity-50",
         className
       )}
     >

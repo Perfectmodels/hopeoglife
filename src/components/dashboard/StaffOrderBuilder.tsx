@@ -120,7 +120,7 @@ export function StaffOrderBuilder({
 
   if (state?.success) {
     return (
-      <div className="rounded-2xl border border-gold/40 bg-gold/5 p-8 text-center">
+      <div className="animate-pop-in rounded-2xl border border-gold/40 bg-gold/5 p-8 text-center">
         <p className="font-display text-xl text-champagne">Commande envoyée</p>
         <p className="mt-2 text-sm text-muted">{state.message}</p>
       </div>
@@ -161,7 +161,7 @@ export function StaffOrderBuilder({
                       key={item.id}
                       type="button"
                       onClick={() => addToCart(item)}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-border-subtle bg-background-elevated px-4 py-3 text-left transition-colors hover:border-gold/50"
+                      className="flex items-center justify-between gap-3 rounded-xl border border-border-subtle bg-background-elevated px-4 py-3 text-left transition-transform duration-150 hover:border-gold/50 active:scale-[0.97]"
                     >
                       <span className="truncate text-sm text-champagne">{item.name}</span>
                       <span className="shrink-0 text-xs text-gold">{formatXAF(item.price)}</span>
@@ -186,7 +186,7 @@ export function StaffOrderBuilder({
               {cartLines.map((line) => (
                 <div
                   key={line.menuItemId}
-                  className="rounded-lg border border-border-subtle/70 p-3"
+                  className="animate-pop-in rounded-lg border border-border-subtle/70 p-3"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="truncate text-sm text-champagne">{line.name}</span>

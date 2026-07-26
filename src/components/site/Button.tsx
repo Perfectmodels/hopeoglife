@@ -16,7 +16,7 @@ const variantClasses: Record<NonNullable<CommonProps["variant"]>, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-colors duration-200";
+  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-[color,background-color,border-color,box-shadow,transform] duration-200 [transition-timing-function:var(--ease-out-quart)] hover:scale-[1.03] active:scale-[0.97]";
 
 export function ButtonLink({
   href,

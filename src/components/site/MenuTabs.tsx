@@ -31,7 +31,7 @@ export function MenuTabs({
             type="button"
             onClick={() => setTab(option.key)}
             className={cn(
-              "rounded-full border px-5 py-2 text-xs uppercase tracking-widest transition-colors",
+              "rounded-full border px-5 py-2 text-xs uppercase tracking-widest transition-all duration-200 [transition-timing-function:var(--ease-out-quart)] active:scale-95",
               tab === option.key
                 ? "border-gold bg-gold/10 text-gold"
                 : "border-border-subtle text-muted hover:border-gold hover:text-gold"
@@ -42,7 +42,7 @@ export function MenuTabs({
         ))}
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-2">
+      <div key={`chips-${tab}`} className="site-fade-in mt-8 flex flex-wrap gap-2">
         {categories.map((c) => (
           <a
             key={c.id}
@@ -54,7 +54,7 @@ export function MenuTabs({
         ))}
       </div>
 
-      <div className="mt-16">
+      <div key={`list-${tab}`} className="site-fade-in mt-16">
         <MenuList categories={categories} />
       </div>
     </div>
