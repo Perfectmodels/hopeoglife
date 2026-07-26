@@ -11,6 +11,7 @@ type MenuItemRow = {
   allergens: string[] | null;
   is_daily_special: boolean;
   is_available: boolean;
+  sort_order: number;
 };
 
 type MenuCategoryRow = {
@@ -31,7 +32,7 @@ export async function getMenuByKind(kind: "restaurant" | "bar"): Promise<DemoMen
     const { data, error } = await supabase
       .from("menu_categories")
       .select(
-        "id, name, menu_items ( id, name, description, price, image_url, allergens, is_daily_special, is_available )"
+        "id, name, menu_items ( id, name, description, price, image_url, allergens, is_daily_special, is_available, sort_order )"
       )
       .eq("kind", kind)
       .order("sort_order", { ascending: true })
@@ -47,6 +48,7 @@ export async function getMenuByKind(kind: "restaurant" | "bar"): Promise<DemoMen
         name: category.name,
         items: (category.menu_items ?? [])
           .filter((item) => item.is_available)
+          .sort((a, b) => a.sort_order - b.sort_order)
           .map((item) => ({
             id: item.id,
             name: item.name,

@@ -2,20 +2,40 @@
 
 import { useFormState } from "react-dom";
 import { useMemo, useState } from "react";
-import { Minus, Plus, ShoppingBag, AlertCircle, Flame, X } from "lucide-react";
+import Image from "next/image";
+import {
+  Minus,
+  Plus,
+  ShoppingBag,
+  AlertCircle,
+  Flame,
+  X,
+  Search,
+  ScanBarcode,
+} from "lucide-react";
 import { createStaffOrder } from "@/lib/actions/dashboard/orders";
 import { formatXAF, cn } from "@/lib/utils";
 import { SubmitButton } from "@/components/site/SubmitButton";
 import { FormField, inputClasses } from "@/components/site/FormField";
 import { IdentifyServer } from "./IdentifyServer";
 
-type MenuItem = { id: string; name: string; price: number };
+type MenuItem = {
+  id: string;
+  name: string;
+  price: number;
+  regularPrice?: number;
+  imageUrl: string | null;
+  reference: string | null;
+  barcode: string | null;
+  destination: "cuisine" | "bar";
+};
 type MenuCategory = { id: string; name: string; items: MenuItem[] };
 
 type CartLine = {
   menuItemId: string;
   name: string;
   price: number;
+  reference: string | null;
   quantity: number;
   destination: "cuisine" | "bar";
   modifiers: string[];
@@ -38,6 +58,11 @@ export function StaffOrderBuilder({
   tables: { id: string; label: string }[];
 }) {
   const [tab, setTab] = useState<"restaurant" | "bar">("restaurant");
+  const [query, setQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<Record<"restaurant" | "bar", string>>({
+    restaurant: restaurantMenu[0]?.id ?? "",
+    bar: barMenu[0]?.id ?? "",
+  });
   const [cart, setCart] = useState<Record<string, CartLine>>({});
   const [modifierDraft, setModifierDraft] = useState<Record<string, string>>({});
   const [state, formAction] = useFormState(createStaffOrder, null);
@@ -46,7 +71,30 @@ export function StaffOrderBuilder({
   );
 
   const categories = tab === "restaurant" ? restaurantMenu : barMenu;
-  const destination = tab === "restaurant" ? "cuisine" : "bar";
+  const normalizedQuery = normalizeSearch(query);
+  const allItems = useMemo(
+    () =>
+      categories.flatMap((category) =>
+        category.items.map((item) => ({ ...item, categoryName: category.name }))
+      ),
+    [categories]
+  );
+  const visibleItems = useMemo(() => {
+    if (normalizedQuery) {
+      return allItems.filter((item) =>
+        normalizeSearch(
+          `${item.name} ${item.reference ?? ""} ${item.barcode ?? ""} ${item.categoryName}`
+        ).includes(normalizedQuery)
+      );
+    }
+    return (
+      categories.find((category) => category.id === selectedCategory[tab])?.items.map((item) => ({
+        ...item,
+        categoryName:
+          categories.find((category) => category.id === selectedCategory[tab])?.name ?? "",
+      })) ?? categories[0]?.items.map((item) => ({ ...item, categoryName: categories[0].name })) ?? []
+    );
+  }, [allItems, categories, normalizedQuery, selectedCategory, tab]);
   const cartLines = useMemo(() => Object.values(cart), [cart]);
   const total = useMemo(
     () => cartLines.reduce((sum, l) => sum + l.price * l.quantity, 0),
@@ -62,13 +110,27 @@ export function StaffOrderBuilder({
           menuItemId: item.id,
           name: item.name,
           price: item.price,
-          destination,
+          reference: item.reference,
+          destination: item.destination,
           quantity: (existing?.quantity ?? 0) + 1,
           modifiers: existing?.modifiers ?? [],
           priority: existing?.priority ?? "normale",
         },
       };
     });
+  }
+
+  function handleSearchSubmit() {
+    if (!normalizedQuery) return;
+    const exact = allItems.find((item) => {
+      const code = normalizeSearch(item.barcode ?? "");
+      const reference = normalizeSearch(item.reference ?? "");
+      return normalizedQuery === code || normalizedQuery === reference;
+    });
+    if (exact) {
+      addToCart(exact);
+      setQuery("");
+    }
   }
 
   function changeQuantity(id: string, delta: number) {
@@ -138,7 +200,10 @@ export function StaffOrderBuilder({
               <button
                 key={key}
                 type="button"
-                onClick={() => setTab(key)}
+                onClick={() => {
+                  setTab(key);
+                  setQuery("");
+                }}
                 className={cn(
                   "rounded-full border px-5 py-2 text-xs uppercase tracking-widest transition-colors",
                   tab === key
@@ -151,25 +216,127 @@ export function StaffOrderBuilder({
             ))}
           </div>
 
-          <div className="mt-8 space-y-10">
-            {categories.map((category) => (
-              <div key={category.id}>
-                <h3 className="font-display text-lg text-gold-soft">{category.name}</h3>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {category.items.map((item) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => addToCart(item)}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-border-subtle bg-background-elevated px-4 py-3 text-left transition-transform duration-150 hover:border-gold/50 active:scale-[0.97]"
-                    >
-                      <span className="truncate text-sm text-champagne">{item.name}</span>
-                      <span className="shrink-0 text-xs text-gold">{formatXAF(item.price)}</span>
-                    </button>
-                  ))}
-                </div>
+          <div className="mt-5 flex items-center gap-2 rounded-xl border border-border-subtle bg-background-elevated px-3">
+            <Search size={18} className="shrink-0 text-gold" />
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  handleSearchSubmit();
+                }
+              }}
+              placeholder="Rechercher un produit, une référence ou scanner un code…"
+              aria-label="Rechercher ou scanner un produit"
+              className="h-12 w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted"
+            />
+            {query ? (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                aria-label="Effacer la recherche"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-muted hover:bg-background hover:text-champagne"
+              >
+                <X size={16} />
+              </button>
+            ) : (
+              <ScanBarcode size={18} className="text-muted" aria-hidden="true" />
+            )}
+          </div>
+          <p className="mt-2 text-xs text-muted">
+            {allItems.length} produits disponibles · un lecteur code-barres USB peut saisir le code ici.
+          </p>
+
+          {!normalizedQuery ? (
+            <div className="mt-5 flex gap-2 overflow-x-auto pb-2" aria-label="Catégories de produits">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  type="button"
+                  onClick={() =>
+                    setSelectedCategory((previous) => ({ ...previous, [tab]: category.id }))
+                  }
+                  className={cn(
+                    "min-h-11 shrink-0 rounded-full border px-4 text-xs transition-colors",
+                    (selectedCategory[tab] || categories[0]?.id) === category.id
+                      ? "border-gold bg-gold/10 text-gold"
+                      : "border-border-subtle text-muted hover:border-gold/50 hover:text-champagne"
+                  )}
+                >
+                  {category.name} <span className="opacity-60">({category.items.length})</span>
+                </button>
+              ))}
+            </div>
+          ) : null}
+
+          <div className="mt-6">
+            <div className="flex items-end justify-between gap-3">
+              <h3 className="font-display text-lg text-gold-soft">
+                {normalizedQuery
+                  ? `Résultats pour « ${query} »`
+                  : categories.find(
+                        (category) =>
+                          category.id === (selectedCategory[tab] || categories[0]?.id)
+                      )?.name}
+              </h3>
+              <span className="text-xs text-muted">{visibleItems.length} article(s)</span>
+            </div>
+
+            {visibleItems.length > 0 ? (
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {visibleItems.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => addToCart(item)}
+                    className="group flex min-h-20 items-center gap-3 rounded-xl border border-border-subtle bg-background-elevated p-2 text-left transition-transform duration-150 hover:border-gold/50 active:scale-[0.97]"
+                  >
+                    <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-background">
+                      {item.imageUrl ? (
+                        <Image
+                          src={item.imageUrl}
+                          alt=""
+                          fill
+                          sizes="64px"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <ShoppingBag
+                          size={20}
+                          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-muted"
+                        />
+                      )}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="line-clamp-2 text-sm leading-snug text-champagne">
+                        {item.name}
+                      </span>
+                      <span className="mt-1 block truncate text-[10px] text-muted">
+                        {item.reference ?? item.categoryName}
+                      </span>
+                      <span className="mt-1 flex items-center gap-2 text-xs text-gold">
+                        {formatXAF(item.price)}
+                        {item.regularPrice ? (
+                          <span className="text-[10px] text-muted line-through">
+                            {formatXAF(item.regularPrice)}
+                          </span>
+                        ) : null}
+                      </span>
+                    </span>
+                    <Plus
+                      size={16}
+                      className="mr-1 shrink-0 text-muted transition-colors group-hover:text-gold"
+                    />
+                  </button>
+                ))}
               </div>
-            ))}
+            ) : (
+              <div className="mt-4 rounded-xl border border-border-subtle p-8 text-center">
+                <p className="text-sm text-champagne">Aucun produit trouvé.</p>
+                <p className="mt-1 text-xs text-muted">Vérifiez le nom, la référence ou le code.</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -285,7 +452,6 @@ export function StaffOrderBuilder({
                     menuItemId: l.menuItemId,
                     price: l.price,
                     quantity: l.quantity,
-                    destination: l.destination,
                     modifiers: l.modifiers,
                     priority: l.priority,
                   }))
@@ -342,4 +508,12 @@ export function StaffOrderBuilder({
       </div>
     </div>
   );
+}
+
+function normalizeSearch(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .toLocaleLowerCase("fr");
 }

@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "catalog:build": "node scripts-build-product-catalog.mjs",
+    "catalog:images": "node scripts-fetch-product-images.mjs",
+    "catalog:import": "node scripts-import-products.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",

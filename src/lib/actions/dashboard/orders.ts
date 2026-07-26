@@ -34,10 +34,8 @@ function generateOrderNumber() {
 }
 
 const cartItemSchema = z.object({
-  menuItemId: z.string().min(1),
-  price: z.number().nonnegative(),
+  menuItemId: z.string().uuid(),
   quantity: z.number().int().min(1).max(50),
-  destination: z.enum(["cuisine", "bar"]),
   notes: z.string().optional(),
   modifiers: z.array(z.string().trim().min(1)).optional(),
   priority: z.enum(["normale", "urgente"]).optional(),
@@ -82,6 +80,41 @@ export async function createStaffOrder(
   const data = parsed.data;
   const supabase = createAdminClient();
 
+  const productIds = [...new Set(data.cart.map((item) => item.menuItemId))];
+  const { data: products, error: productsError } = await supabase
+    .from("menu_items")
+    .select("id, price, promotional_price, destination, is_available, is_sellable, menu_categories ( kind )")
+    .in("id", productIds);
+
+  if (productsError || !products || products.length !== productIds.length) {
+    return { success: false, message: "Un ou plusieurs produits sont introuvables." };
+  }
+
+  const productById = new Map(products.map((product) => [product.id, product]));
+  const canonicalCart = data.cart.map((item) => {
+    const product = productById.get(item.menuItemId)!;
+    const category = Array.isArray(product.menu_categories)
+      ? product.menu_categories[0]
+      : product.menu_categories;
+    const destination =
+      product.destination === "cuisine" || product.destination === "bar"
+        ? product.destination
+        : category?.kind === "restaurant"
+          ? "cuisine"
+          : "bar";
+    const promotionalPrice = Number(product.promotional_price);
+    return {
+      ...item,
+      price: promotionalPrice > 0 ? promotionalPrice : Number(product.price),
+      destination,
+      available: product.is_available && product.is_sellable,
+    };
+  });
+
+  if (canonicalCart.some((item) => !item.available)) {
+    return { success: false, message: "Un produit du panier n’est plus disponible à la vente." };
+  }
+
   let serverId = employee.id;
   if (data.servedById) {
     const { data: identified } = await supabase
@@ -93,7 +126,7 @@ export async function createStaffOrder(
     if (identified) serverId = identified.id;
   }
 
-  const totalAmount = data.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalAmount = canonicalCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const { data: order, error: orderError } = await supabase
     .from("orders")
@@ -115,7 +148,7 @@ export async function createStaffOrder(
     return { success: false, message: "Impossible de créer la commande." };
   }
 
-  const orderItems = data.cart.map((item) => ({
+  const orderItems = canonicalCart.map((item) => ({
     order_id: order.id,
     menu_item_id: item.menuItemId,
     quantity: item.quantity,
@@ -129,6 +162,7 @@ export async function createStaffOrder(
 
   const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
   if (itemsError) {
+    await supabase.from("orders").delete().eq("id", order.id);
     return { success: false, message: "Impossible d'enregistrer les articles." };
   }
 

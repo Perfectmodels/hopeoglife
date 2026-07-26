@@ -1,0 +1,3484 @@
+{
+  "24-shots-01-shot-tequila": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "24-shots-02-shot-vodka": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "24-shots-03-shot-whisky": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "24-shots-04-shot-rhum": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "24-shots-05-shot-jagermeister": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "24-shots-06-shot-sambuca": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "24-shots-07-shot-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "24-shots-08-plateau-de-6-shots": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "24-shots-09-plateau-de-12-shots": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "24-shots-10-plateau-de-shots-premium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-01-cocktail-signature-du-lounge": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-02-cocktail-tropical-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-03-cocktail-mangue-passion": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-04-cocktail-ananas-coco": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-05-cocktail-gingembre-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-06-cocktail-fruits-rouges": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-07-cocktail-premium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-08-cocktail-vip": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-09-cocktail-flambe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-10-cocktail-xxl": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-11-cocktail-en-carafe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "22-cocktails-signature-12-cocktail-a-partager": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "02-eaux-minerales-01-eau-minerale-33-cl": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "02-eaux-minerales-02-eau-minerale-50-cl": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "02-eaux-minerales-03-eau-minerale-1-5-l": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "02-eaux-minerales-04-eau-gazeuse-33-cl": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "02-eaux-minerales-05-eau-gazeuse-75-cl": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "02-eaux-minerales-06-eau-premium-en-bouteille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "02-eaux-minerales-07-eau-aromatisee-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "02-eaux-minerales-08-eau-aromatisee-menthe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-01-coca-cola-33-cl": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-02-coca-cola-50-cl": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-03-coca-cola-1-l": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-04-coca-cola-zero": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-05-fanta-orange": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-06-fanta-cocktail": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-07-sprite": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-08-schweppes-tonic": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-09-schweppes-agrumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-10-orangina": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-11-vimto": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-12-djino": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-13-world-cola": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-14-soda-gingembre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-15-soda-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-16-soda-ananas": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "01-boissons-gazeuses-17-eau-gazeuse": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "03-jus-et-nectars-01-jus-d-orange": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-02-jus-d-ananas": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-03-jus-de-mangue": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-04-jus-de-pomme": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-05-jus-de-raisin": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-06-jus-de-goyave": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-07-jus-de-passion": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-08-jus-de-tomate": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-09-nectar-de-peche": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-10-cocktail-de-fruits": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-11-jus-de-gingembre": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-12-bissap": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-13-jus-de-citron": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-14-jus-de-pasteque": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-15-jus-de-papaye": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-16-jus-d-avocat": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-17-jus-de-carotte": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-18-jus-de-concombre": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-19-jus-de-baobab": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "03-jus-et-nectars-20-jus-de-canne-a-sucre": {
+    "title": "File:Hermetic fruit jam and juice.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermetic_fruit_jam_and_juice.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bep\" title=\"User:Bep\">Bjørn Erik Pedersen</a>",
+    "license": "CC BY-SA 3.0"
+  },
+  "04-jus-naturels-prepares-01-jus-d-orange-presse": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-02-jus-d-ananas-frais": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-03-jus-de-mangue-frais": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-04-jus-de-pasteque-frais": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-05-jus-de-citron-frais": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-06-jus-de-gingembre-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-07-bissap-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-08-jus-detox": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-09-jus-carotte-orange": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-10-jus-ananas-gingembre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-11-jus-mangue-passion": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-12-jus-concombre-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "04-jus-naturels-prepares-13-jus-pomme-menthe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "05-boissons-energisantes-01-red-bull": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "05-boissons-energisantes-02-monster-energy": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "05-boissons-energisantes-03-xxl-energy": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "05-boissons-energisantes-04-burn": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "05-boissons-energisantes-05-power-horse": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "05-boissons-energisantes-06-reaktor": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "05-boissons-energisantes-07-energy-drink-local": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "05-boissons-energisantes-08-boisson-energetique-sans-sucre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "06-bieres-locales-01-regab": {
+    "title": "File:Kilimanjaro Lager beer.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_Lager_beer.JPG",
+    "artist": null,
+    "license": "CC BY-SA 3.0"
+  },
+  "06-bieres-locales-02-castel-beer": {
+    "title": "File:Kilimanjaro Lager beer.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_Lager_beer.JPG",
+    "artist": null,
+    "license": "CC BY-SA 3.0"
+  },
+  "06-bieres-locales-03-beaufort-lager": {
+    "title": "File:Kilimanjaro Lager beer.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_Lager_beer.JPG",
+    "artist": null,
+    "license": "CC BY-SA 3.0"
+  },
+  "06-bieres-locales-04-33-export": {
+    "title": "File:Kilimanjaro Lager beer.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_Lager_beer.JPG",
+    "artist": null,
+    "license": "CC BY-SA 3.0"
+  },
+  "06-bieres-locales-05-guinness": {
+    "title": "File:Kilimanjaro Lager beer.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_Lager_beer.JPG",
+    "artist": null,
+    "license": "CC BY-SA 3.0"
+  },
+  "06-bieres-locales-06-doppel-munich": {
+    "title": "File:Kilimanjaro Lager beer.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_Lager_beer.JPG",
+    "artist": null,
+    "license": "CC BY-SA 3.0"
+  },
+  "06-bieres-locales-07-beaufort-light": {
+    "title": "File:Kilimanjaro Lager beer.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_Lager_beer.JPG",
+    "artist": null,
+    "license": "CC BY-SA 3.0"
+  },
+  "06-bieres-locales-08-biere-blonde-locale": {
+    "title": "File:Kilimanjaro Lager beer.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_Lager_beer.JPG",
+    "artist": null,
+    "license": "CC BY-SA 3.0"
+  },
+  "06-bieres-locales-09-biere-brune-locale": {
+    "title": "File:Kilimanjaro Lager beer.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_Lager_beer.JPG",
+    "artist": null,
+    "license": "CC BY-SA 3.0"
+  },
+  "07-bieres-importees-01-heineken": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-02-corona": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-03-budweiser": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-04-desperados": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-05-stella-artois": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-06-leffe-blonde": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-07-leffe-brune": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-08-hoegaarden": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-09-bavaria": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-10-carlsberg": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-11-kronenbourg": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-12-peroni": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-13-guinness-foreign-extra": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "07-bieres-importees-14-biere-sans-alcool": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "08-cidres-et-boissons-maltees-01-savanna-dry": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "08-cidres-et-boissons-maltees-02-strongbow": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "08-cidres-et-boissons-maltees-03-smirnoff-ice": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "08-cidres-et-boissons-maltees-04-desperados": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "08-cidres-et-boissons-maltees-05-booster": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "08-cidres-et-boissons-maltees-06-malta-guinness": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "08-cidres-et-boissons-maltees-07-maltina": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "08-cidres-et-boissons-maltees-08-bavaria-malt": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "08-cidres-et-boissons-maltees-09-boisson-maltee-sans-alcool": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-01-bordeaux-rouge": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-02-merlot": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-03-cabernet-sauvignon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-04-pinot-noir": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-05-cotes-du-rhone": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-06-saint-emilion": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-07-medoc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-08-malbec": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-09-syrah": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-10-beaujolais": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-11-vin-rouge-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-12-vin-rouge-au-verre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-13-vin-rouge-en-bouteille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "09-vins-rouges-14-vin-rouge-premium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-01-sauvignon-blanc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-02-chardonnay": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-03-riesling": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-04-pinot-grigio": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-05-muscadet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-06-chablis": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-07-sancerre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-08-vin-blanc-doux": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-09-vin-blanc-sec": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-10-vin-blanc-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-11-vin-blanc-au-verre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "10-vins-blancs-12-vin-blanc-premium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "11-vins-roses-01-cotes-de-provence": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "11-vins-roses-02-rose-doux": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "11-vins-roses-03-rose-sec": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "11-vins-roses-04-rose-petillant": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "11-vins-roses-05-vin-rose-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "11-vins-roses-06-vin-rose-au-verre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "11-vins-roses-07-vin-rose-premium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-01-moet-chandon-brut": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-02-moet-chandon-rose": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-03-veuve-clicquot": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-04-laurent-perrier": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-05-ruinart-blanc-de-blancs": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-06-ruinart-rose": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-07-dom-perignon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-08-nicolas-feuillatte": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-09-perrier-jouet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-10-taittinger": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-11-bollinger": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-12-champagne-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-13-champagne-premium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "12-champagnes-14-champagne-prestige": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "13-vins-mousseux-01-prosecco": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "13-vins-mousseux-02-cava": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "13-vins-mousseux-03-mousseux-brut": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "13-vins-mousseux-04-mousseux-demi-sec": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "13-vins-mousseux-05-mousseux-rose": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "13-vins-mousseux-06-mousseux-sans-alcool": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "13-vins-mousseux-07-vin-petillant-au-verre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-01-johnnie-walker-red-label": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-02-johnnie-walker-black-label": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-03-johnnie-walker-gold-label": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-04-johnnie-walker-blue-label": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-05-chivas-regal-12-ans": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-06-chivas-regal-18-ans": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-07-jack-daniel-s": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-08-jameson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-09-ballantine-s": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-10-grant-s": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-11-william-lawson-s": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-12-j-b": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-13-glenfiddich": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-14-glenlivet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-15-macallan": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-16-singleton": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-17-dewar-s": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-18-famous-grouse": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-19-whisky-au-verre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-20-whisky-en-bouteille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "14-whiskies-21-pack-whisky": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-01-hennessy-vs": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-02-hennessy-vsop": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-03-hennessy-xo": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-04-remy-martin-vsop": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-05-remy-martin-xo": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-06-martell-vs": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-07-martell-vsop": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-08-martell-blue-swift": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-09-courvoisier": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-10-camus": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-11-brandy-local": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-12-cognac-au-verre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "15-cognacs-et-brandys-13-cognac-en-bouteille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-01-bacardi-carta-blanca": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-02-bacardi-gold": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-03-captain-morgan": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-04-havana-club": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-05-diplomatico": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-06-zacapa": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-07-saint-james": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-08-trois-rivieres": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-09-malibu": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-10-rhum-blanc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-11-rhum-ambre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-12-rhum-vieux": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-13-rhum-arrange": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-14-rhum-au-verre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "16-rhums-15-rhum-en-bouteille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-01-absolut": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-02-smirnoff": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-03-grey-goose": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-05-ciroc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-07-eristoff": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-08-russian-standard": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-09-vodka-aromatisee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-10-vodka-au-verre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-11-vodka-en-bouteille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-12-pack-vodka": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "18-gins-02-bombay-sapphire": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "18-gins-03-tanqueray": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "18-gins-04-beefeater": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "18-gins-05-hendrick-s": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "18-gins-06-bulldog-gin": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "18-gins-07-roku-gin": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "18-gins-08-gin-local": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "18-gins-09-gin-au-verre": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "18-gins-10-gin-en-bouteille": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "19-tequilas-01-jose-cuervo": {
+    "title": "File:15-09-26-RalfR-WLC-0244.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:15-09-26-RalfR-WLC-0244.jpg",
+    "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q15080600\" class=\"extiw\" title=\"d:Q15080600\"><span title=\"German civil engineer and photographer\">Ralf Roletschek</span></a></bdi>",
+    "license": "CC BY-SA 3.0"
+  },
+  "19-tequilas-02-olmeca": {
+    "title": "File:Tequila Corralejo 100ml (Blanco), Mexico, 2026-03-30.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Tequila_Corralejo_100ml_(Blanco),_Mexico,_2026-03-30.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Crisco_1492\" title=\"User:Crisco 1492\">Chris Woodrich</a>",
+    "license": "CC BY 4.0"
+  },
+  "19-tequilas-03-sierra": {
+    "title": "File:15-09-26-RalfR-WLC-0244.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:15-09-26-RalfR-WLC-0244.jpg",
+    "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q15080600\" class=\"extiw\" title=\"d:Q15080600\"><span title=\"German civil engineer and photographer\">Ralf Roletschek</span></a></bdi>",
+    "license": "CC BY-SA 3.0"
+  },
+  "19-tequilas-04-patron-silver": {
+    "title": "File:Tequila Corralejo 100ml (Blanco), Mexico, 2026-03-30.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Tequila_Corralejo_100ml_(Blanco),_Mexico,_2026-03-30.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Crisco_1492\" title=\"User:Crisco 1492\">Chris Woodrich</a>",
+    "license": "CC BY 4.0"
+  },
+  "19-tequilas-05-patron-gold": {
+    "title": "File:15-09-26-RalfR-WLC-0244.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:15-09-26-RalfR-WLC-0244.jpg",
+    "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q15080600\" class=\"extiw\" title=\"d:Q15080600\"><span title=\"German civil engineer and photographer\">Ralf Roletschek</span></a></bdi>",
+    "license": "CC BY-SA 3.0"
+  },
+  "19-tequilas-06-don-julio": {
+    "title": "File:Tequila Corralejo 100ml (Blanco), Mexico, 2026-03-30.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Tequila_Corralejo_100ml_(Blanco),_Mexico,_2026-03-30.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Crisco_1492\" title=\"User:Crisco 1492\">Chris Woodrich</a>",
+    "license": "CC BY 4.0"
+  },
+  "19-tequilas-07-tequila-blanche": {
+    "title": "File:15-09-26-RalfR-WLC-0244.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:15-09-26-RalfR-WLC-0244.jpg",
+    "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q15080600\" class=\"extiw\" title=\"d:Q15080600\"><span title=\"German civil engineer and photographer\">Ralf Roletschek</span></a></bdi>",
+    "license": "CC BY-SA 3.0"
+  },
+  "19-tequilas-08-tequila-reposado": {
+    "title": "File:Tequila Corralejo 100ml (Blanco), Mexico, 2026-03-30.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Tequila_Corralejo_100ml_(Blanco),_Mexico,_2026-03-30.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Crisco_1492\" title=\"User:Crisco 1492\">Chris Woodrich</a>",
+    "license": "CC BY 4.0"
+  },
+  "19-tequilas-09-tequila-au-shot": {
+    "title": "File:15-09-26-RalfR-WLC-0244.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:15-09-26-RalfR-WLC-0244.jpg",
+    "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q15080600\" class=\"extiw\" title=\"d:Q15080600\"><span title=\"German civil engineer and photographer\">Ralf Roletschek</span></a></bdi>",
+    "license": "CC BY-SA 3.0"
+  },
+  "19-tequilas-10-tequila-en-bouteille": {
+    "title": "File:Tequila Corralejo 100ml (Blanco), Mexico, 2026-03-30.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Tequila_Corralejo_100ml_(Blanco),_Mexico,_2026-03-30.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Crisco_1492\" title=\"User:Crisco 1492\">Chris Woodrich</a>",
+    "license": "CC BY 4.0"
+  },
+  "20-liqueurs-et-aperitifs-01-baileys": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-02-amarula": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-03-cointreau": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-04-grand-marnier": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-05-jagermeister": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-06-sambuca": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-07-get-27": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-08-campari": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-09-martini-rouge": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-10-martini-blanc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-11-aperol": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-12-ricard": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-13-pastis": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-14-kahlua": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-15-triple-sec": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-16-liqueur-de-menthe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-17-liqueur-de-cafe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-18-liqueur-de-coco": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "20-liqueurs-et-aperitifs-19-liqueur-au-verre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-01-mojito": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-02-mojito-fraise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-03-mojito-passion": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-04-pina-colada": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-05-sex-on-the-beach": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-06-long-island-iced-tea": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-07-margarita": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-08-blue-lagoon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-09-cosmopolitan": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-10-tequila-sunrise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-11-mai-tai": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-12-daiquiri": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-13-caipirinha": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-14-cuba-libre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-15-moscow-mule": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-16-gin-tonic": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-17-whisky-sour": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-18-negroni": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-19-aperol-spritz": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-20-espresso-martini": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-21-old-fashioned": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-22-manhattan": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-23-bloody-mary": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "21-cocktails-classiques-24-white-russian": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-01-virgin-mojito": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-02-virgin-colada": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-03-virgin-passion": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-04-virgin-sunrise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-05-cocktail-fruits-rouges-sans-alcool": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-06-cocktail-gingembre-sans-alcool": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-07-cocktail-tropical-sans-alcool": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-08-cocktail-concombre-menthe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-09-cocktail-ananas-coco": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "23-mocktails-sans-alcool-10-cocktail-maison-sans-alcool": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-01-cafe-espresso": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-02-cafe-double-espresso": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-03-cafe-allonge": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-04-cafe-au-lait": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-05-cappuccino": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-06-latte": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-07-chocolat-chaud": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-08-the-vert": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-09-the-noir": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-10-the-a-la-menthe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-11-the-au-gingembre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-12-infusion-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-13-infusion-detox": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-14-cafe-glace": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "25-boissons-chaudes-15-the-glace": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-01-chicha-menthe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-02-chicha-pomme": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-03-chicha-raisin": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-04-chicha-pasteque": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-05-chicha-mangue": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-06-chicha-myrtille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-07-chicha-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-08-chicha-menthe-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-09-chicha-double-pomme": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-10-chicha-fruits-rouges": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-11-chicha-premium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-12-chicha-vip": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-13-recharge-charbon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-14-changement-de-gout": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "26-chichas-15-embout-individuel": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-01-petit-dejeuner-continental": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-02-petit-dejeuner-complet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-03-omelette-nature": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-04-omelette-fromage": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-05-omelette-jambon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-06-oeufs-au-plat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-07-oeufs-brouilles": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-08-pain-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-09-croissant": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-11-beignets": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-12-tartines-beurre-confiture": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-13-bouillie": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-14-fruits-frais": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-15-yaourt": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-16-cafe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "27-petits-dejeuners-17-jus-naturel": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-01-salade-verte": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-02-salade-composee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-03-salade-cesar": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-04-salade-avocat-crevettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-05-salade-de-thon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-06-salade-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-07-salade-de-crudites": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-08-carpaccio-de-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-09-carpaccio-de-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-10-assiette-de-charcuterie": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-11-assiette-de-fromages": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-12-avocat-vinaigrette": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-13-tartare-de-saumon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "28-entrees-froides-14-tartare-de-thon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-01-nems": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-02-samoussas": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-03-beignets-de-crevettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-04-crevettes-sautees": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-05-ailes-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-06-brochettes-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-07-brochettes-de-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-08-escargots": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-09-soupe-du-jour": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-10-veloute-de-legumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-11-gratin-de-fruits-de-mer": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-12-calamars-frits": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-13-mini-burgers": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "29-entrees-chaudes-14-croquettes-de-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-01-poulet-braise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-02-poulet-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-03-demi-poulet-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-04-brochettes-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-05-brochettes-de-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-06-brochettes-mixtes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-07-cote-de-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-08-entrecote-grillee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-09-steak-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-10-travers-de-porc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-11-cotelettes-d-agneau": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-12-saucisses-grillees": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-13-poisson-braise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-14-bar-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-15-dorade-grillee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-16-capitaine-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-17-gambas-grillees": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "30-grillades-18-plateau-de-grillades": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-01-steak-sauce-au-poivre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-02-steak-sauce-champignons": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-03-emince-de-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-04-boeuf-saute-aux-legumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-05-boeuf-bourguignon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-06-filet-de-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-07-cote-de-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-08-porc-saute": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-09-porc-braise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-10-travers-de-porc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-11-agneau-roti": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-12-mouton-sauce": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-13-boulettes-de-viande": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-14-escalope-de-veau": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "31-plats-de-viande-15-mixed-grill": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-01-poulet-braise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-02-poulet-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-03-poulet-roti": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-04-poulet-curry": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-05-poulet-creme-champignons": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-06-poulet-saute-aux-legumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-07-poulet-pane": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-08-ailes-de-poulet-epicees": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-09-escalope-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-10-cuisse-de-poulet-grillee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-11-poulet-sauce-arachide": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-12-poulet-nyembwe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "32-plats-de-volaille-13-poulet-aux-olives": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-01-poisson-braise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-02-poisson-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-03-poisson-frit": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-04-filet-de-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-05-poisson-sauce-tomate": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-06-poisson-sauce-oseille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-07-dorade-royale": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-08-bar-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-09-capitaine-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-10-carpe-frite": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-11-sole-meuniere": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-12-saumon-grille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-13-crevettes-sautees": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-14-gambas-flambees": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-15-calamars-sautes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-16-plateau-de-fruits-de-mer": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-17-langouste-grillee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "33-poissons-et-fruits-de-mer-18-crabe-farci": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-01-poulet-nyembwe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-02-poisson-nyembwe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-03-odika-au-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-04-odika-au-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-05-feuilles-de-manioc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-06-poisson-sale-aux-aubergines": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-07-bouillon-de-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-08-bouillon-de-viande": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-09-sauce-graine": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-10-nkumu": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-11-atanga": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-12-manioc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-13-banane-plantain": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-14-riz-sauce-tomate": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-15-poisson-fume-aux-legumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-16-crabe-farci": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-17-paquet-de-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-18-porc-epic-selon-disponibilite-et-reglementation": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-19-viande-fumee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "34-plats-gabonais-20-saka-saka": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-01-mafe-au-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-02-mafe-au-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-03-yassa-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-04-yassa-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-05-thieboudienne": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-06-ndole": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-07-eru": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-08-poulet-dg": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-09-attieke-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-10-alloco-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-11-kedjenou-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-12-sauce-gombo": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-13-riz-gras": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-14-jollof-rice": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-15-foutou-sauce-graine": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "35-plats-africains-16-placali-sauce-gombo": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-01-spaghetti-bolognaise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-02-spaghetti-carbonara": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-03-tagliatelles-au-saumon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-04-penne-sauce-tomate": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-05-penne-au-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-06-linguine-fruits-de-mer": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-07-macaroni-gratine": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-08-lasagnes-bolognaise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-09-lasagnes-vegetariennes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-10-pates-aux-crevettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-11-pates-sauce-pesto": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "36-pates-12-pates-quatre-fromages": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-01-riz-blanc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-02-riz-parfume": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-03-riz-cantonais": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-04-riz-saute-aux-legumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-05-riz-au-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-06-riz-aux-crevettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-07-riz-sauce-tomate": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-08-riz-au-curry": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-09-riz-gras": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-10-riz-jollof": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-11-riz-aux-fruits-de-mer": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "37-riz-12-riz-coco": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-01-burger-classique": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-02-cheeseburger": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-03-double-cheeseburger": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-04-burger-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-05-burger-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-06-burger-bacon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-07-burger-barbecue": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-08-burger-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-09-burger-premium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-10-burger-vegetarien": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-11-mini-burgers": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-12-menu-burger-avec-frites": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-13-supplement-fromage": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-14-supplement-oeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "38-burgers-15-supplement-bacon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-01-sandwich-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-02-sandwich-thon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-03-sandwich-jambon-fromage": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-04-club-sandwich": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-05-croque-monsieur": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-06-croque-madame": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-07-wrap-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-08-wrap-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-09-wrap-crevettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-10-wrap-vegetarien": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-11-panini-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-12-panini-jambon-fromage": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-13-shawarma-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "39-sandwichs-et-wraps-14-shawarma-viande": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-01-pizza-margherita": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-02-pizza-reine": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-03-pizza-quatre-fromages": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-04-pizza-pepperoni": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-05-pizza-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-06-pizza-viande-hachee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-07-pizza-fruits-de-mer": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-08-pizza-thon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-09-pizza-vegetarienne": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-10-pizza-barbecue": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-11-pizza-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-12-pizza-speciale-lounge": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-13-pizza-petite": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-14-pizza-moyenne": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-15-pizza-grande": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-16-supplement-fromage": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-17-supplement-viande": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "40-pizzas-18-supplement-fruits-de-mer": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-01-frites": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-02-pommes-sautees": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-03-pommes-vapeur": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-04-puree-de-pommes-de-terre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-05-riz-blanc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-06-riz-saute": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-07-banane-plantain-frite": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-08-alloco": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-09-manioc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-10-attieke": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-11-legumes-sautes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-12-haricots-verts": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-13-salade-verte": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-14-macedoine": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-15-patate-douce": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-16-igname": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-17-couscous": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-18-semoule": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-19-pain": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "41-accompagnements-20-sauce-supplementaire": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-01-sauce-poivre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-02-sauce-champignons": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-03-sauce-barbecue": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-04-sauce-tomate": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-05-sauce-curry": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-06-sauce-arachide": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-07-sauce-mayonnaise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-08-sauce-tartare": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-09-sauce-moutarde": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-10-sauce-piment": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-11-sauce-ail": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-12-sauce-fromagere": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-13-sauce-cocktail": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-14-sauce-vinaigrette": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "42-sauces-15-sauce-maison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "43-menus-enfants-01-mini-burger-et-frites": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "43-menus-enfants-02-nuggets-et-frites": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "43-menus-enfants-03-mini-pizza": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "43-menus-enfants-04-poulet-pane-et-frites": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "43-menus-enfants-05-pates-sauce-tomate": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "43-menus-enfants-06-riz-au-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "43-menus-enfants-07-jus-de-fruit": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "43-menus-enfants-08-glace-enfant": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "43-menus-enfants-09-menu-enfant-complet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-01-salade-vegetarienne": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-02-riz-aux-legumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-03-pates-aux-legumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-04-burger-vegetarien": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-05-pizza-vegetarienne": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-06-poelee-de-legumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-07-curry-de-legumes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-08-couscous-vegetarien": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-09-legumes-grilles": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-10-avocat-garni": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "44-plats-vegetariens-11-wrap-vegetarien": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-01-salade-de-fruits": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-02-fruits-frais": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-03-creme-caramel": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-04-mousse-au-chocolat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-05-tiramisu": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-06-fondant-au-chocolat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-07-cheesecake": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-08-gateau-du-jour": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-09-crepes-au-sucre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-10-crepes-au-chocolat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-11-gaufres": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-12-glace-une-boule": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-13-glace-deux-boules": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-15-coupe-de-glace": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-16-banane-flambee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-17-ananas-roti": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-18-tarte-aux-pommes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-19-tarte-au-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-20-brownie": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-21-cafe-gourmand": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-01-glace-vanille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-02-glace-chocolat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-04-glace-caramel": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-05-glace-pistache": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-06-glace-cafe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-07-sorbet-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-08-sorbet-mangue": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-09-sorbet-passion": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-10-sorbet-coco": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-11-coupe-tropicale": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-12-coupe-chocolat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-13-coupe-fruits-rouges": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-01-planche-de-charcuterie": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-02-planche-de-fromages": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-03-planche-mixte": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-04-planche-de-grillades": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-05-planche-de-fruits-de-mer": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-06-planche-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-07-planche-aperitive": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-08-planche-vip": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-09-plateau-de-fruits": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-10-plateau-de-desserts": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-11-plateau-de-mini-burgers": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "47-planches-a-partager-12-plateau-de-samoussas-et-nems": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-01-menu-entree-et-plat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-02-menu-plat-et-dessert": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-03-menu-complet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-04-menu-dejeuner": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-05-menu-diner": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-06-menu-couple": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-07-menu-famille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-08-menu-anniversaire": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-09-menu-groupe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-10-menu-entreprise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-11-menu-vip": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-12-buffet-a-volonte": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-13-brunch": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "48-formules-et-menus-14-formule-afterwork": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-01-pack-whisky-standard": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-02-pack-whisky-premium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-03-pack-vodka": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-04-pack-rhum": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-05-pack-gin": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-06-pack-tequila": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-07-pack-champagne": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-08-pack-biere": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-09-pack-cocktail": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-10-pack-anniversaire": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-11-pack-couple": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-12-pack-vip": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-13-pack-table-lounge": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-14-pack-evenement": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-15-pack-bouteille-et-boissons-energisantes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-16-pack-bouteille-et-jus": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-17-pack-bouteille-et-eau": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "49-packs-bar-et-lounge-18-pack-chicha-et-cocktail": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-01-supplement-viande": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-02-supplement-poisson": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-03-supplement-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-04-supplement-crevettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-05-supplement-fromage": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-06-supplement-oeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-07-supplement-avocat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-08-supplement-frites": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-09-supplement-riz": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-10-supplement-plantain": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-11-supplement-sauce": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-12-supplement-pain": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-13-supplement-glacons": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-14-supplement-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-15-supplement-fruits": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-16-supplement-mixeur": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "50-supplements-et-extras-17-supplement-boisson-energisante": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-01-boeuf": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-02-poulet-entier": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-03-cuisse-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-04-blanc-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-05-ailes-de-poulet": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-06-porc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-07-agneau": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-08-mouton": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-09-viande-hachee": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-10-saucisses": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-11-bacon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "51-viandes-12-jambon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-01-dorade": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-02-bar": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-03-capitaine": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-04-carpe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-05-sole": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-06-saumon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-07-thon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-08-crevettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-09-gambas": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-10-calamars": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-11-crabe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-12-langouste": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-13-poisson-fume": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "52-poissons-et-produits-de-mer-14-poisson-sale": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-01-tomate": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-02-oignon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-03-ail": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-04-poivron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-05-carotte": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-06-concombre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-07-salade": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-08-chou": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-09-aubergine": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-10-courgette": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-11-haricot-vert": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-12-pomme-de-terre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-13-patate-douce": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-14-manioc": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-15-gombo": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-16-avocat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "53-legumes-17-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-01-orange": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-02-ananas": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-03-mangue": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-04-banane": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-05-banane-plantain": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-06-pasteque": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-07-papaye": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-08-pomme": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-09-raisin": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-10-fraise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-11-citron-vert": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-12-fruit-de-la-passion": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-13-noix-de-coco": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "54-fruits-14-goyave": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-01-riz": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-02-pates": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-03-farine": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-04-sucre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-05-sel": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-06-poivre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-07-semoule": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-08-couscous": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-09-chapelure": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-10-haricots": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-11-lentilles": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-12-arachides": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-13-epices": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-14-bouillon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "55-produits-secs-15-levure": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-01-lait": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-02-beurre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-03-creme-fraiche": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-04-fromage": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-05-mozzarella": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-06-parmesan": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-07-yaourt": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-08-oeufs": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-09-glace": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "56-produits-laitiers-10-lait-concentre": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-01-sirop-de-grenadine": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-02-sirop-de-menthe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-03-sirop-de-fraise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-04-sirop-de-vanille": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-05-sirop-de-caramel": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-06-sirop-de-passion": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-07-sirop-de-coco": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-08-sucre-de-canne": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-09-eau-tonique": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-10-glacons": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-11-menthe-fraiche": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-12-citron": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-13-orange": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-14-ananas": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-15-cerises-cocktail": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-16-olives": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-17-pailles": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-18-agitateurs": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-19-serviettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "57-produits-de-bar-20-cure-dents": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-01-tabac-menthe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-02-tabac-pomme": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-03-tabac-raisin": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-04-tabac-pasteque": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-05-tabac-mangue": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-06-tabac-fruits-rouges": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-07-charbon": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-08-papier-aluminium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-09-embouts": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-10-tuyaux": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-11-foyers": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-12-melasses": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "58-produits-de-chicha-13-produits-d-entretien-chicha": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-01-boites-a-emporter": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-02-sacs-de-livraison": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-03-gobelets": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-04-pailles": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-05-serviettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-06-papier-aluminium": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-07-film-alimentaire": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-08-barquettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-09-couverts-jetables": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-10-bouteilles-d-eau-personnalisees": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-11-sachets-de-sauce": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-12-etiquettes": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "59-emballages-13-papier-ticket": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-01-liquide-vaisselle": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-02-desinfectant": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-03-eau-de-javel": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-04-nettoyant-sol": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-05-nettoyant-vitres": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-06-savon-pour-les-mains": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-07-essuie-tout": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-08-sacs-poubelle": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-09-eponges": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-10-gants": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-11-papier-toilette": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-12-desodorisant": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-13-produit-pour-inox": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "60-produits-d-entretien-14-produit-pour-machines-a-cafe": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-04-belvedere": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "17-vodkas-06-skyy-vodka": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "18-gins-01-gordon-s": {
+    "title": "File:Assorted gin bottles on a store shelf.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Assorted_gin_bottles_on_a_store_shelf.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83015819@N00\">Jon Worth</a>",
+    "license": "CC BY 2.0"
+  },
+  "27-petits-dejeuners-10-pain-au-chocolat": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "45-desserts-14-glace-trois-boules": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  },
+  "46-glaces-et-sorbets-03-glace-fraise": {
+    "source": "AI-generated fallback",
+    "license": "Project asset"
+  }
+}
