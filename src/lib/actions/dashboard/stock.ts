@@ -39,24 +39,40 @@ export async function createStockItem(
   }
 
   const supabase = createAdminClient();
-  const { error } = await supabase.from("stock_items").insert({
-    name: parsed.data.name,
-    unit: parsed.data.unit,
-    category: parsed.data.category || null,
-    quantity_on_hand: parsed.data.quantityOnHand,
-    low_stock_threshold: parsed.data.lowStockThreshold,
-    barcode: parsed.data.barcode || null,
-    image_url: parsed.data.imageUrl || null,
-  });
+  const { data: item, error } = await supabase
+    .from("stock_items")
+    .insert({
+      name: parsed.data.name,
+      unit: parsed.data.unit,
+      category: parsed.data.category || null,
+      quantity_on_hand: parsed.data.quantityOnHand,
+      low_stock_threshold: parsed.data.lowStockThreshold,
+      image_url: parsed.data.imageUrl || null,
+    })
+    .select("id")
+    .single();
 
-  if (error) {
-    return {
-      success: false,
-      message:
-        error.code === "23505"
-          ? "Ce code-barres est déjà associé à un autre produit."
-          : "Impossible de créer le produit de stock.",
-    };
+  if (error || !item) {
+    return { success: false, message: "Impossible de créer le produit de stock." };
+  }
+
+  if (parsed.data.barcode) {
+    const { error: barcodeError } = await supabase.from("product_barcodes").insert({
+      stock_item_id: item.id,
+      barcode: parsed.data.barcode,
+      is_primary: true,
+    });
+
+    if (barcodeError) {
+      await supabase.from("stock_items").delete().eq("id", item.id);
+      return {
+        success: false,
+        message:
+          barcodeError.code === "23505"
+            ? "Ce code-barres est déjà associé à un autre produit."
+            : "Impossible de créer le produit de stock.",
+      };
+    }
   }
 
   revalidatePath("/dashboard/stock");
@@ -121,21 +137,26 @@ export async function lookupBarcode(barcode: string): Promise<BarcodeLookupResul
 
   const supabase = createAdminClient();
   const { data: existing } = await supabase
-    .from("stock_items")
-    .select("id, name, unit, category, quantity_on_hand, image_url")
+    .from("product_barcodes")
+    .select("stock_items(id, name, unit, category, quantity_on_hand, image_url)")
     .eq("barcode", code)
     .maybeSingle();
 
-  if (existing) {
+  const item = existing?.stock_items as
+    | { id: string; name: string; unit: string; category: string | null; quantity_on_hand: number; image_url: string | null }
+    | null
+    | undefined;
+
+  if (item) {
     return {
       status: "existing",
       item: {
-        id: existing.id,
-        name: existing.name,
-        unit: existing.unit,
-        category: existing.category,
-        quantityOnHand: Number(existing.quantity_on_hand),
-        imageUrl: existing.image_url,
+        id: item.id,
+        name: item.name,
+        unit: item.unit,
+        category: item.category,
+        quantityOnHand: Number(item.quantity_on_hand),
+        imageUrl: item.image_url,
       },
     };
   }
@@ -223,6 +244,8 @@ export async function recordStockMovement(
     quantity: storedQuantity,
     reason: reason || null,
     created_by: employee.id,
+    quantity_before: current,
+    quantity_after: newQuantity,
   });
 
   if (moveError) return { success: false, message: "Impossible d'enregistrer le mouvement." };

@@ -15,6 +15,10 @@ import {
   Users,
   UserCircle,
   BarChart3,
+  PackageCheck,
+  CalendarClock,
+  History,
+  Truck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/lib/dashboard-nav";
@@ -29,6 +33,10 @@ const icons: Record<string, React.ElementType> = {
   "/dashboard/caisse": Wallet,
   "/dashboard/menu": UtensilsCrossed,
   "/dashboard/stock": Boxes,
+  "/dashboard/stock/receptions": PackageCheck,
+  "/dashboard/stock/lots": CalendarClock,
+  "/dashboard/stock/mouvements": History,
+  "/dashboard/fournisseurs": Truck,
   "/dashboard/personnel": Users,
   "/dashboard/rapports": BarChart3,
 };
