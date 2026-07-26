@@ -7,6 +7,7 @@ import { Menu, X, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { signOut } from "@/lib/actions/auth";
 import { roleLabels } from "@/lib/dashboard-nav";
+import { ClockWidget } from "./ClockWidget";
 import type { NavItem } from "@/lib/dashboard-nav";
 import type { EmployeeRole } from "@/lib/auth/session";
 
@@ -37,6 +38,7 @@ export function Topbar({
         <span className="font-display text-lg text-gradient-gold lg:hidden">Hope Of Life</span>
 
         <div className="ml-auto flex items-center gap-4">
+          <ClockWidget />
           <Link href="/dashboard/compte" className="text-right transition-colors hover:opacity-80">
             <p className="text-sm text-champagne">{employeeName}</p>
             <p className="text-xs text-muted">{roleLabels[role]}</p>

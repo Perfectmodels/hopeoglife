@@ -63,6 +63,14 @@ export const paymentMethodLabels: Record<string, string> = {
   offert: "Offert",
 };
 
+export const activityActionLabels: Record<string, string> = {
+  "auth.login": "Connexion (e-mail)",
+  "auth.pin_login": "Connexion (PIN)",
+  "auth.logout": "Déconnexion",
+  "reservation.status_update": "Statut de réservation modifié",
+  "order.transfer_table": "Transfert de table",
+};
+
 export function toOptions(config: Record<string, StatusConfig>) {
   return Object.entries(config).map(([value, { label }]) => ({ value, label }));
 }

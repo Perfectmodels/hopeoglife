@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { PinLoginForm } from "@/components/dashboard/PinLoginForm";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { isSupabaseConfigured } from "@/lib/supabase/env";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -7,7 +9,27 @@ export const metadata: Metadata = {
   description: "Espace personnel Hope Of Life.",
 };
 
-export default function ConnexionPage() {
+async function getStaffRoster() {
+  if (!isSupabaseConfigured) return [];
+
+  const admin = createAdminClient();
+  const { data } = await admin
+    .from("employees")
+    .select("id, first_name, last_name")
+    .eq("active", true)
+    .not("pin_hash", "is", null)
+    .order("first_name", { ascending: true });
+
+  return (data ?? []).map((e) => ({
+    id: e.id,
+    firstName: e.first_name,
+    lastName: e.last_name,
+  }));
+}
+
+export default async function ConnexionPage() {
+  const staff = await getStaffRoster();
+
   return (
     <div className="flex min-h-screen items-center justify-center px-6 py-16">
       <div className="w-full max-w-sm">
@@ -18,8 +40,7 @@ export default function ConnexionPage() {
           <p className="mt-2 text-sm text-muted">Espace personnel</p>
         </div>
         <div className="rounded-2xl border border-border-subtle bg-background-elevated p-8">
-          <p className="mb-6 text-center text-sm text-muted">Entrez votre code PIN</p>
-          <PinLoginForm />
+          <PinLoginForm staff={staff} />
         </div>
       </div>
     </div>

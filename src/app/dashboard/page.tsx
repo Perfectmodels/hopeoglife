@@ -24,6 +24,7 @@ export default async function DashboardHomePage() {
     { count: tablesOccupied },
     { count: tablesTotal },
     { data: recentReservations },
+    { data: onDuty },
   ] = await Promise.all([
     supabase
       .from("reservations")
@@ -54,6 +55,11 @@ export default async function DashboardHomePage() {
       .eq("reservation_date", today)
       .order("reservation_time", { ascending: true })
       .limit(6),
+    supabase
+      .from("attendance")
+      .select("id, clock_in, employees ( first_name, last_name )")
+      .eq("status", "ouvert")
+      .order("clock_in", { ascending: true }),
   ]);
 
   const revenueToday = (paidOrdersToday ?? []).reduce(
@@ -82,7 +88,34 @@ export default async function DashboardHomePage() {
         />
       </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+      <div className="mt-8 grid gap-6 lg:grid-cols-3">
+        <Card>
+          <p className="mb-4 font-display text-lg text-champagne">Personnel en service</p>
+          {onDuty && onDuty.length > 0 ? (
+            <ul className="space-y-3 text-sm">
+              {onDuty.map((a) => {
+                const emp = a.employees as unknown as { first_name: string; last_name: string } | null;
+                return (
+                  <li key={a.id} className="flex items-center justify-between">
+                    <span className="text-champagne">
+                      {emp ? `${emp.first_name} ${emp.last_name}` : "—"}
+                    </span>
+                    <span className="text-xs text-muted">
+                      depuis{" "}
+                      {new Date(a.clock_in).toLocaleTimeString("fr-FR", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <EmptyState message="Personne n'a encore pointé." />
+          )}
+        </Card>
+
         <Card>
           <div className="mb-4 flex items-center justify-between">
             <p className="font-display text-lg text-champagne">Réservations du jour</p>

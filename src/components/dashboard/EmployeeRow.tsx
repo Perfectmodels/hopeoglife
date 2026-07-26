@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useFormState } from "react-dom";
+import Link from "next/link";
 import { KeyRound } from "lucide-react";
 import { StatusSelect } from "./StatusSelect";
 import {
@@ -33,8 +34,13 @@ export function EmployeeRow({ employee }: { employee: Employee }) {
 
   return (
     <tr>
-      <td className="px-4 py-3 text-champagne">
-        {employee.first_name} {employee.last_name}
+      <td className="px-4 py-3">
+        <Link
+          href={`/dashboard/personnel/${employee.id}`}
+          className="text-champagne transition-colors hover:text-gold hover:underline"
+        >
+          {employee.first_name} {employee.last_name}
+        </Link>
       </td>
       <td className="px-4 py-3 text-muted">
         <p>{employee.phone || "—"}</p>

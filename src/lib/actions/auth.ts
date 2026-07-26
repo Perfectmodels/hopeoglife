@@ -27,7 +27,12 @@ export async function loginWithPin(
   _prev: ActionResult | null,
   formData: FormData
 ): Promise<ActionResult> {
+  const employeeId = String(formData.get("employeeId") ?? "");
   const pin = String(formData.get("pin") ?? "");
+
+  if (!employeeId) {
+    return { success: false, message: "Sélectionnez votre nom." };
+  }
   if (!/^\d{4,6}$/.test(pin)) {
     return { success: false, message: "Code PIN invalide." };
   }
@@ -54,17 +59,18 @@ export async function loginWithPin(
     };
   }
 
-  const { data: employees } = await admin
+  const { data: employee } = await admin
     .from("employees")
     .select("id, pin_hash")
+    .eq("id", employeeId)
     .eq("active", true)
-    .not("pin_hash", "is", null);
+    .maybeSingle();
 
-  const match = (employees ?? []).find((e) => e.pin_hash && verifyPin(pin, e.pin_hash));
+  const match = employee?.pin_hash && verifyPin(pin, employee.pin_hash) ? employee : null;
 
   if (!match) {
     await admin.rpc("record_login_attempt", { p_email: throttleKey, p_success: false });
-    return { success: false, message: "Code PIN non reconnu." };
+    return { success: false, message: "Code PIN incorrect." };
   }
 
   await admin.rpc("record_login_attempt", { p_email: throttleKey, p_success: true });
