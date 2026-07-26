@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ConnexionTabs } from "@/components/dashboard/ConnexionTabs";
+import { PinLoginForm } from "@/components/dashboard/PinLoginForm";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -18,7 +18,8 @@ export default function ConnexionPage() {
           <p className="mt-2 text-sm text-muted">Espace personnel</p>
         </div>
         <div className="rounded-2xl border border-border-subtle bg-background-elevated p-8">
-          <ConnexionTabs />
+          <p className="mb-6 text-center text-sm text-muted">Entrez votre code PIN</p>
+          <PinLoginForm />
         </div>
       </div>
     </div>

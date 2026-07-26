@@ -37,7 +37,9 @@ export async function updateSession(request: NextRequest) {
   const isAuthenticated = Boolean(user) || hasPinCookie;
 
   const isDashboardRoute = request.nextUrl.pathname.startsWith("/dashboard");
-  const isLoginRoute = request.nextUrl.pathname.startsWith("/connexion");
+  const isLoginRoute =
+    request.nextUrl.pathname.startsWith("/connexion") ||
+    request.nextUrl.pathname.startsWith("/admin/connexion");
 
   if (isDashboardRoute && !isAuthenticated) {
     const url = request.nextUrl.clone();

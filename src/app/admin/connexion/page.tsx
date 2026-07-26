@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ForgotPasswordForm } from "@/components/dashboard/ForgotPasswordForm";
+import { LoginForm } from "@/components/dashboard/LoginForm";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Mot de passe oublié",
+  title: "Connexion back-office",
+  description: "Espace direction Hope Of Life.",
 };
 
-export default function ForgotPasswordPage() {
+export default function AdminConnexionPage() {
   return (
     <div className="flex min-h-screen items-center justify-center px-6 py-16">
       <div className="w-full max-w-sm">
@@ -15,16 +15,11 @@ export default function ForgotPasswordPage() {
           <p className="font-display text-2xl font-semibold text-gradient-gold">
             {siteConfig.name}
           </p>
-          <p className="mt-2 text-sm text-muted">Réinitialiser votre mot de passe</p>
+          <p className="mt-2 text-sm text-muted">Espace direction</p>
         </div>
         <div className="rounded-2xl border border-border-subtle bg-background-elevated p-8">
-          <ForgotPasswordForm />
+          <LoginForm />
         </div>
-        <p className="mt-6 text-center text-xs text-muted">
-          <Link href="/admin/connexion" className="hover:text-gold">
-            ← Retour à la connexion
-          </Link>
-        </p>
       </div>
     </div>
   );
