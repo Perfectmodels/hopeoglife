@@ -4,9 +4,25 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { useFormState } from "react-dom";
 import Image from "next/image";
 import { BrowserMultiFormatReader, type IScannerControls } from "@zxing/browser";
-import { BarcodeFormat, DecodeHintType } from "@zxing/library";
-import { AlertCircle, CheckCircle2, Keyboard, PackageSearch, ScanLine, X } from "lucide-react";
-import { lookupBarcode, createStockItem, recordStockMovement } from "@/lib/actions/dashboard/stock";
+import {
+  BarcodeFormat,
+  DecodeHintType,
+} from "@zxing/library";
+import {
+  AlertCircle,
+  Camera,
+  CheckCircle2,
+  Keyboard,
+  PackageSearch,
+  ScanLine,
+  X,
+} from "lucide-react";
+import {
+  createStockItem,
+  decodeBarcodeCapture,
+  lookupBarcode,
+  recordStockMovement,
+} from "@/lib/actions/dashboard/stock";
 import type { BarcodeLookupResult } from "@/lib/actions/dashboard/stock";
 import { SubmitButton } from "@/components/site/SubmitButton";
 import { FormField, inputClasses } from "@/components/site/FormField";
@@ -14,57 +30,189 @@ import { cn } from "@/lib/utils";
 
 type Step =
   | { kind: "scanning" }
+  | { kind: "capturing" }
   | { kind: "manual" }
   | { kind: "loading" }
   | { kind: "result"; code: string; result: BarcodeLookupResult }
   | { kind: "done"; message: string };
 
+type NativeBarcodeDetector = {
+  detect: (source: ImageBitmapSource) => Promise<Array<{ rawValue: string }>>;
+};
+
+function isExpectedDecodeMiss(error: unknown) {
+  if (!error || typeof error !== "object") return false;
+
+  const candidate = error as {
+    name?: string;
+    constructor?: { name?: string };
+    getKind?: () => string;
+  };
+  let kind: string | undefined;
+
+  try {
+    kind = candidate.getKind?.();
+  } catch {
+    // Certaines versions de ZXing n'exposent pas getKind de façon fiable.
+  }
+
+  const names = [kind, candidate.name, candidate.constructor?.name];
+  return names.some(
+    (name) =>
+      name === "NotFoundException" ||
+      name === "ChecksumException" ||
+      name === "FormatException"
+  );
+}
+
 function useBarcodeScanner(active: boolean, onDetected: (code: string) => void) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (!active) return;
 
+    setError(null);
+    setIsReady(false);
     const hints = new Map();
     hints.set(DecodeHintType.POSSIBLE_FORMATS, [
+      BarcodeFormat.QR_CODE,
       BarcodeFormat.EAN_13,
       BarcodeFormat.EAN_8,
       BarcodeFormat.UPC_A,
       BarcodeFormat.UPC_E,
       BarcodeFormat.CODE_128,
+      BarcodeFormat.CODE_39,
+      BarcodeFormat.CODE_93,
+      BarcodeFormat.CODABAR,
+      BarcodeFormat.ITF,
+      BarcodeFormat.DATA_MATRIX,
+      BarcodeFormat.AZTEC,
+      BarcodeFormat.PDF_417,
     ]);
-    const reader = new BrowserMultiFormatReader(hints);
+    hints.set(DecodeHintType.TRY_HARDER, true);
+    const reader = new BrowserMultiFormatReader(hints, {
+      delayBetweenScanAttempts: 150,
+      delayBetweenScanSuccess: 500,
+    });
     let controls: IScannerControls | null = null;
+    let nativeScanTimer: ReturnType<typeof setInterval> | null = null;
+    let nativeScanPending = false;
     let stopped = false;
+
+    const finishScan = (code: string, scanControls?: IScannerControls) => {
+      if (stopped || !code.trim()) return;
+
+      stopped = true;
+      if (nativeScanTimer) clearInterval(nativeScanTimer);
+      if (scanControls) {
+        scanControls.stop();
+      } else {
+        controls?.stop();
+      }
+      onDetected(code.trim());
+    };
+
+    const startNativeDetector = () => {
+      const Detector = (
+        window as typeof window & {
+          BarcodeDetector?: new (options?: { formats?: string[] }) => NativeBarcodeDetector;
+        }
+      ).BarcodeDetector;
+      const video = videoRef.current;
+
+      if (!Detector || !video) return;
+
+      let detector: NativeBarcodeDetector;
+      try {
+        detector = new Detector({
+          formats: [
+            "qr_code",
+            "ean_13",
+            "ean_8",
+            "upc_a",
+            "upc_e",
+            "code_128",
+            "code_39",
+            "codabar",
+            "itf",
+            "data_matrix",
+          ],
+        });
+      } catch {
+        detector = new Detector();
+      }
+
+      nativeScanTimer = setInterval(async () => {
+        if (stopped || nativeScanPending || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+          return;
+        }
+
+        nativeScanPending = true;
+        try {
+          const [barcode] = await detector.detect(video);
+          if (barcode?.rawValue) finishScan(barcode.rawValue);
+        } catch {
+          // ZXing reste actif si le détecteur natif n'est pas utilisable sur cet appareil.
+        } finally {
+          nativeScanPending = false;
+        }
+      }, 200);
+    };
 
     reader
       .decodeFromConstraints(
-        { video: { facingMode: "environment" } },
+        {
+          video: {
+            facingMode: { ideal: "environment" },
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+          },
+        },
         videoRef.current!,
-        (result) => {
+        (result, scanError, scanControls) => {
           if (result && !stopped) {
-            stopped = true;
-            controls?.stop();
-            onDetected(result.getText());
+            finishScan(result.getText(), scanControls);
+            return;
+          }
+
+          if (scanError && !isExpectedDecodeMiss(scanError) && !stopped) {
+            setError("La lecture de l'image s'est arrêtée. Fermez puis rouvrez le scanner.");
           }
         }
       )
       .then((c) => {
         controls = c;
+        if (stopped) {
+          c.stop();
+        } else {
+          setIsReady(true);
+          startNativeDetector();
+        }
       })
-      .catch(() => {
-        setError("Impossible d'accéder à la caméra. Autorisez-la ou saisissez le code manuellement.");
+      .catch((cameraError: unknown) => {
+        if (!stopped) {
+          const errorName =
+            cameraError instanceof DOMException ? cameraError.name : "CameraError";
+          setError(
+            errorName === "NotAllowedError"
+              ? "Accès à la caméra refusé. Autorisez la caméra dans les réglages du navigateur."
+              : "Impossible de démarrer la caméra. Fermez les autres applications qui l'utilisent."
+          );
+        }
       });
 
     return () => {
       stopped = true;
+      setIsReady(false);
+      if (nativeScanTimer) clearInterval(nativeScanTimer);
       controls?.stop();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 
-  return { videoRef, error };
+  return { videoRef, error, isReady };
 }
 
 function ExistingItemForm({
@@ -200,9 +348,14 @@ function NewItemForm({
 export function ScanStockModal({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState<Step>({ kind: "scanning" });
   const [manualCode, setManualCode] = useState("");
+  const [captureError, setCaptureError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const { videoRef, error: cameraError } = useBarcodeScanner(step.kind === "scanning", (code) => {
+  const {
+    videoRef,
+    error: cameraError,
+    isReady: cameraReady,
+  } = useBarcodeScanner(step.kind === "scanning", (code) => {
     runLookup(code);
   });
 
@@ -214,9 +367,63 @@ export function ScanStockModal({ onClose }: { onClose: () => void }) {
     });
   }
 
+  async function captureAndDecode() {
+    const video = videoRef.current;
+    if (!video || video.videoWidth === 0 || video.videoHeight === 0) {
+      setCaptureError("La caméra n'est pas encore prête.");
+      return;
+    }
+
+    setCaptureError(null);
+
+    const sourceSize = Math.min(video.videoWidth, video.videoHeight);
+    const outputSize = Math.min(sourceSize, 1280);
+    const canvas = document.createElement("canvas");
+    canvas.width = outputSize;
+    canvas.height = outputSize;
+
+    const context = canvas.getContext("2d");
+    if (!context) {
+      setCaptureError("Impossible de préparer la capture.");
+      return;
+    }
+
+    context.drawImage(
+      video,
+      (video.videoWidth - sourceSize) / 2,
+      (video.videoHeight - sourceSize) / 2,
+      sourceSize,
+      sourceSize,
+      0,
+      0,
+      outputSize,
+      outputSize
+    );
+
+    const image = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob(resolve, "image/jpeg", 0.9)
+    );
+    if (!image) {
+      setCaptureError("Impossible d'enregistrer la capture.");
+      return;
+    }
+
+    setStep({ kind: "capturing" });
+    const formData = new FormData();
+    formData.set("image", image, "capture-code-produit.jpg");
+    const result = await decodeBarcodeCapture(formData);
+
+    if (result.success) {
+      runLookup(result.code);
+    } else {
+      setCaptureError(result.message);
+      setStep({ kind: "scanning" });
+    }
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
-      <div className="w-full max-w-sm rounded-2xl border border-border-subtle bg-background-elevated p-6">
+      <div className="max-h-[calc(100dvh-2rem)] w-full max-w-sm overflow-y-auto rounded-2xl border border-border-subtle bg-background-elevated p-4 sm:p-6">
         <div className="mb-4 flex items-center justify-between">
           <p className="font-display text-lg text-champagne">Scanner un produit</p>
           <button
@@ -231,13 +438,32 @@ export function ScanStockModal({ onClose }: { onClose: () => void }) {
 
         {step.kind === "scanning" ? (
           <div>
-            <div className="relative aspect-square overflow-hidden rounded-xl bg-black">
+            <div className="relative h-[min(52dvh,20rem)] min-h-40 overflow-hidden rounded-xl bg-black">
               <video ref={videoRef} className="h-full w-full object-cover" muted playsInline />
               <div className="pointer-events-none absolute inset-8 rounded-xl border-2 border-gold/60" />
+              <button
+                type="button"
+                disabled={!cameraReady}
+                onClick={captureAndDecode}
+                className="absolute bottom-4 left-1/2 z-10 flex min-h-11 -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-gold px-5 py-2.5 text-xs font-semibold text-background shadow-lg ring-4 ring-black/35 transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-60"
+                aria-label="Capturer le code et l'analyser"
+              >
+                <Camera size={15} /> Capturer
+              </button>
             </div>
             <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-muted">
-              <ScanLine size={13} /> Visez le code-barres du produit
+              <ScanLine size={13} /> Visez le QR code ou le code-barres du produit
             </p>
+            {cameraReady && !cameraError ? (
+              <p className="mt-1 text-center text-[11px] text-emerald-400">
+                Caméra prête — lecture en cours
+              </p>
+            ) : null}
+            {captureError ? (
+              <p className="mt-2 flex items-center gap-2 text-xs text-red-400">
+                <AlertCircle size={14} className="shrink-0" /> {captureError}
+              </p>
+            ) : null}
             {cameraError ? (
               <p className="mt-2 flex items-center gap-2 text-xs text-red-400">
                 <AlertCircle size={14} className="shrink-0" /> {cameraError}
@@ -253,9 +479,17 @@ export function ScanStockModal({ onClose }: { onClose: () => void }) {
           </div>
         ) : null}
 
+        {step.kind === "capturing" ? (
+          <div className="py-10 text-center">
+            <Camera size={28} className="mx-auto mb-3 animate-pulse text-gold" />
+            <p className="text-sm text-champagne">Analyse de la capture...</p>
+            <p className="mt-1 text-xs text-muted">ZXing recherche le code sur le serveur.</p>
+          </div>
+        ) : null}
+
         {step.kind === "manual" ? (
           <div className="space-y-3">
-            <FormField label="Code-barres" htmlFor="manual-barcode">
+            <FormField label="QR code ou code-barres" htmlFor="manual-barcode">
               <input
                 id="manual-barcode"
                 value={manualCode}

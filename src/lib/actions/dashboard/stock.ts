@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
 import type { ActionResult } from "@/lib/actions/types";
+import { decodeBarcodeImageBuffer } from "@/lib/barcode/decode-image";
 
 const itemSchema = z.object({
   name: z.string().trim().min(1, "Le nom est requis"),
@@ -76,6 +77,40 @@ export type BarcodeLookupResult =
     }
   | { status: "external"; name: string; imageUrl: string | null; brand: string | null }
   | { status: "not_found" };
+
+export type BarcodeCaptureResult =
+  | { success: true; code: string; format: string }
+  | { success: false; message: string };
+
+export async function decodeBarcodeCapture(formData: FormData): Promise<BarcodeCaptureResult> {
+  const employee = await getCurrentEmployee();
+  if (!employee) return { success: false, message: "Non autorisé." };
+
+  const image = formData.get("image");
+  if (!(image instanceof File) || image.size === 0) {
+    return { success: false, message: "La capture reçue est vide." };
+  }
+  if (image.size > 5 * 1024 * 1024) {
+    return { success: false, message: "La capture est trop volumineuse." };
+  }
+
+  try {
+    const decoded = await decodeBarcodeImageBuffer(Buffer.from(await image.arrayBuffer()));
+    if (!decoded) {
+      return {
+        success: false,
+        message: "Aucun code détecté. Rapprochez le produit, évitez les reflets puis réessayez.",
+      };
+    }
+
+    return { success: true, code: decoded.text, format: decoded.format };
+  } catch {
+    return {
+      success: false,
+      message: "Cette capture n'a pas pu être analysée. Veuillez réessayer.",
+    };
+  }
+}
 
 export async function lookupBarcode(barcode: string): Promise<BarcodeLookupResult> {
   const employee = await getCurrentEmployee();
