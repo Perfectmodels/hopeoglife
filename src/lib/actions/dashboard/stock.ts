@@ -12,6 +12,8 @@ const itemSchema = z.object({
   category: z.string().trim().optional(),
   quantityOnHand: z.coerce.number().nonnegative().default(0),
   lowStockThreshold: z.coerce.number().nonnegative().default(0),
+  barcode: z.string().trim().optional(),
+  imageUrl: z.string().trim().optional(),
 });
 
 export async function createStockItem(
@@ -27,6 +29,8 @@ export async function createStockItem(
     category: formData.get("category"),
     quantityOnHand: formData.get("quantityOnHand"),
     lowStockThreshold: formData.get("lowStockThreshold"),
+    barcode: formData.get("barcode"),
+    imageUrl: formData.get("imageUrl"),
   });
 
   if (!parsed.success) {
@@ -40,12 +44,92 @@ export async function createStockItem(
     category: parsed.data.category || null,
     quantity_on_hand: parsed.data.quantityOnHand,
     low_stock_threshold: parsed.data.lowStockThreshold,
+    barcode: parsed.data.barcode || null,
+    image_url: parsed.data.imageUrl || null,
   });
 
-  if (error) return { success: false, message: "Impossible de créer le produit de stock." };
+  if (error) {
+    return {
+      success: false,
+      message:
+        error.code === "23505"
+          ? "Ce code-barres est déjà associé à un autre produit."
+          : "Impossible de créer le produit de stock.",
+    };
+  }
 
   revalidatePath("/dashboard/stock");
   return { success: true, message: "Produit de stock ajouté." };
+}
+
+export type BarcodeLookupResult =
+  | {
+      status: "existing";
+      item: {
+        id: string;
+        name: string;
+        unit: string;
+        category: string | null;
+        quantityOnHand: number;
+        imageUrl: string | null;
+      };
+    }
+  | { status: "external"; name: string; imageUrl: string | null; brand: string | null }
+  | { status: "not_found" };
+
+export async function lookupBarcode(barcode: string): Promise<BarcodeLookupResult> {
+  const employee = await getCurrentEmployee();
+  if (!employee) return { status: "not_found" };
+
+  const code = barcode.trim();
+  if (!code) return { status: "not_found" };
+
+  const supabase = createAdminClient();
+  const { data: existing } = await supabase
+    .from("stock_items")
+    .select("id, name, unit, category, quantity_on_hand, image_url")
+    .eq("barcode", code)
+    .maybeSingle();
+
+  if (existing) {
+    return {
+      status: "existing",
+      item: {
+        id: existing.id,
+        name: existing.name,
+        unit: existing.unit,
+        category: existing.category,
+        quantityOnHand: Number(existing.quantity_on_hand),
+        imageUrl: existing.image_url,
+      },
+    };
+  }
+
+  try {
+    const res = await fetch(
+      `https://world.openfoodfacts.org/api/v2/product/${encodeURIComponent(code)}.json`,
+      { headers: { "User-Agent": "HopeOfLifeStock/1.0 (contact@hopeoflife-gabon.com)" } }
+    );
+
+    if (res.ok) {
+      const data = await res.json();
+      const product = data?.product;
+      const name: string | undefined = product?.product_name || product?.generic_name;
+
+      if (data?.status === 1 && product && name) {
+        return {
+          status: "external",
+          name,
+          imageUrl: product.image_front_url || product.image_url || null,
+          brand: product.brands || null,
+        };
+      }
+    }
+  } catch {
+    // Open Food Facts indisponible — la création manuelle reste possible.
+  }
+
+  return { status: "not_found" };
 }
 
 const movementSchema = z.object({
