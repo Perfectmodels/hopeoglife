@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PinLoginForm } from "@/components/dashboard/PinLoginForm";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
@@ -42,6 +43,11 @@ export default async function ConnexionPage() {
         <div className="rounded-2xl border border-border-subtle bg-background-elevated p-8">
           <PinLoginForm staff={staff} />
         </div>
+        <p className="mt-6 text-center">
+          <Link href="/admin/connexion" className="text-xs text-muted hover:text-gold">
+            Connexion back-office (e-mail)
+          </Link>
+        </p>
       </div>
     </div>
   );

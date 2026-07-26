@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "./Button";
@@ -19,6 +19,21 @@ const navLinks = [
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  // Ferme le menu à chaque changement de page (ex: retour navigateur) et
+  // empêche le fond de défiler pendant qu'il est ouvert.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border-subtle/80 bg-background/90 backdrop-blur">
@@ -61,49 +76,55 @@ export function Header() {
         <button
           type="button"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={open}
+          aria-controls="mobile-nav-panel"
           onClick={() => setOpen((v) => !v)}
-          className="relative h-6 w-6 text-champagne lg:hidden"
+          className="relative flex h-11 w-11 shrink-0 items-center justify-center text-champagne lg:hidden"
         >
           <Menu
             size={26}
             className={cn(
-              "absolute inset-0 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)]",
+              "absolute transition-all duration-300 [transition-timing-function:var(--ease-out-quart)]",
               open ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
             )}
           />
           <X
             size={26}
             className={cn(
-              "absolute inset-0 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)]",
+              "absolute transition-all duration-300 [transition-timing-function:var(--ease-out-quart)]",
               open ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
             )}
           />
         </button>
       </Container>
 
-      <div className={cn("collapse-panel lg:hidden", open && "is-open")}>
-        <div className="border-t border-border-subtle/80 bg-background">
-          <Container className="flex flex-col gap-1 py-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "rounded-lg px-3 py-3 text-sm text-muted transition-colors hover:bg-background-elevated hover:text-gold",
-                  pathname === link.href && "text-gold"
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="mt-2 px-3">
-              <ButtonLink href="/reservation" variant="primary" onClick={() => setOpen(false)}>
-                Réserver une table
-              </ButtonLink>
-            </div>
-          </Container>
-        </div>
+      <div
+        id="mobile-nav-panel"
+        className={cn(
+          "overflow-hidden border-t border-border-subtle/80 bg-background transition-[max-height,opacity] duration-300 [transition-timing-function:var(--ease-out-quart)] lg:hidden",
+          open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
+        <Container className="flex flex-col gap-1 py-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className={cn(
+                "rounded-lg px-3 py-3 text-sm text-muted transition-colors hover:bg-background-elevated hover:text-gold",
+                pathname === link.href && "text-gold"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <div className="mt-2 px-3">
+            <ButtonLink href="/reservation" variant="primary" onClick={() => setOpen(false)}>
+              Réserver une table
+            </ButtonLink>
+          </div>
+        </Container>
       </div>
     </header>
   );
