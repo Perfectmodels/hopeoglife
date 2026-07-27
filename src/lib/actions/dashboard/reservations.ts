@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
+import { canManageReservations } from "@/lib/auth/permissions";
 
 const RESERVATION_STATUSES = [
   "en_attente",
@@ -20,7 +21,7 @@ export async function updateReservationStatus(id: string, status: string) {
   }
 
   const employee = await getCurrentEmployee();
-  if (!employee) throw new Error("Non autorisé");
+  if (!employee || !canManageReservations(employee.role)) throw new Error("Non autorisé");
 
   const supabase = createAdminClient();
   const { data: previous } = await supabase
@@ -46,7 +47,7 @@ export async function updateReservationStatus(id: string, status: string) {
 
 export async function assignReservationTable(id: string, tableId: string | null) {
   const employee = await getCurrentEmployee();
-  if (!employee) throw new Error("Non autorisé");
+  if (!employee || !canManageReservations(employee.role)) throw new Error("Non autorisé");
 
   const supabase = createAdminClient();
   await supabase

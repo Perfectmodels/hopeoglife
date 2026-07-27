@@ -1,16 +1,13 @@
 "use server";
 
 import { z } from "zod";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 import type { ActionResult } from "./types";
 
 const cartItemSchema = z.object({
-  menuItemId: z.string().min(1),
-  name: z.string().min(1),
-  price: z.number().nonnegative(),
+  menuItemId: z.string().uuid(),
   quantity: z.number().int().min(1).max(50),
-  destination: z.enum(["cuisine", "bar"]),
 });
 
 const orderSchema = z.object({
@@ -65,7 +62,6 @@ export async function createOnlineOrder(
   }
 
   const data = parsed.data;
-  const totalAmount = data.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const orderNumber = generateOrderNumber();
 
   if (!isSupabaseConfigured) {
@@ -76,7 +72,54 @@ export async function createOnlineOrder(
   }
 
   try {
-    const supabase = await createClient();
+    const supabase = createAdminClient();
+    const productIds = [...new Set(data.cart.map((item) => item.menuItemId))];
+    const { data: products, error: productsError } = await supabase
+      .from("menu_items")
+      .select(
+        "id, name, price, promotional_price, destination, is_available, is_sellable, menu_categories ( kind )"
+      )
+      .in("id", productIds);
+
+    if (productsError || !products || products.length !== productIds.length) {
+      return {
+        success: false,
+        message: "Un ou plusieurs produits ne sont plus disponibles.",
+      };
+    }
+
+    const productById = new Map(products.map((product) => [product.id, product]));
+    const canonicalCart = data.cart.map((item) => {
+      const product = productById.get(item.menuItemId)!;
+      const category = Array.isArray(product.menu_categories)
+        ? product.menu_categories[0]
+        : product.menu_categories;
+      const promotionalPrice = Number(product.promotional_price);
+      return {
+        menuItemId: item.menuItemId,
+        quantity: item.quantity,
+        price: promotionalPrice > 0 ? promotionalPrice : Number(product.price),
+        destination:
+          product.destination === "cuisine" || product.destination === "bar"
+            ? product.destination
+            : category?.kind === "restaurant"
+              ? ("cuisine" as const)
+              : ("bar" as const),
+        available: product.is_available && product.is_sellable,
+      };
+    });
+
+    if (canonicalCart.some((item) => !item.available)) {
+      return {
+        success: false,
+        message: "Un produit du panier n’est plus disponible à la vente.",
+      };
+    }
+
+    const totalAmount = canonicalCart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
 
     let customerId: string | null = null;
     const { data: existingCustomer } = await supabase
@@ -126,7 +169,7 @@ export async function createOnlineOrder(
       };
     }
 
-    const orderItems = data.cart.map((item) => ({
+    const orderItems = canonicalCart.map((item) => ({
       order_id: order.id,
       menu_item_id: item.menuItemId,
       quantity: item.quantity,
@@ -138,6 +181,7 @@ export async function createOnlineOrder(
     const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
 
     if (itemsError) {
+      await supabase.from("orders").delete().eq("id", order.id);
       return {
         success: false,
         message: "Une erreur est survenue lors de l'enregistrement des articles.",

@@ -3,11 +3,12 @@
 import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
+import { canOperateCash } from "@/lib/auth/permissions";
 import type { ActionResult } from "@/lib/actions/types";
 
 export async function getOpenCashSession() {
   const employee = await getCurrentEmployee();
-  if (!employee) return null;
+  if (!employee || !canOperateCash(employee.role)) return null;
 
   const supabase = createAdminClient();
   const { data } = await supabase
@@ -25,9 +26,14 @@ export async function openCashSession(
   formData: FormData
 ): Promise<ActionResult> {
   const employee = await getCurrentEmployee();
-  if (!employee) return { success: false, message: "Non autorisé." };
+  if (!employee || !canOperateCash(employee.role)) {
+    return { success: false, message: "Non autorisé." };
+  }
 
   const openingAmount = Number(formData.get("openingAmount") ?? 0);
+  if (!Number.isFinite(openingAmount) || openingAmount < 0) {
+    return { success: false, message: "Fonds de caisse invalide." };
+  }
   const supabase = createAdminClient();
 
   const { data: existing } = await supabase
@@ -60,19 +66,29 @@ export async function closeCashSession(
   formData: FormData
 ): Promise<ActionResult> {
   const employee = await getCurrentEmployee();
-  if (!employee) return { success: false, message: "Non autorisé." };
+  if (!employee || !canOperateCash(employee.role)) {
+    return { success: false, message: "Non autorisé." };
+  }
 
   const sessionId = String(formData.get("sessionId") ?? "");
   const closingAmount = Number(formData.get("closingAmount") ?? 0);
+  if (!sessionId || !Number.isFinite(closingAmount) || closingAmount < 0) {
+    return { success: false, message: "Clôture invalide." };
+  }
   const supabase = createAdminClient();
 
   const { data: session } = await supabase
     .from("cash_sessions")
-    .select("id, opening_amount")
+    .select("id, opening_amount, cashier_id, status")
     .eq("id", sessionId)
     .maybeSingle();
 
-  if (!session) return { success: false, message: "Session introuvable." };
+  if (!session || session.status !== "ouverte") {
+    return { success: false, message: "Session ouverte introuvable." };
+  }
+  if (employee.role === "caissier" && session.cashier_id !== employee.id) {
+    return { success: false, message: "Vous ne pouvez clôturer que votre propre caisse." };
+  }
 
   const { data: movements } = await supabase
     .from("cash_movements")
@@ -97,11 +113,26 @@ export async function closeCashSession(
       variance,
       status: "cloturee",
     })
-    .eq("id", sessionId);
+    .eq("id", sessionId)
+    .eq("status", "ouverte");
 
   if (error) {
     return { success: false, message: "Impossible de clôturer la session." };
   }
+
+  await supabase.from("activity_logs").insert({
+    actor_id: employee.id,
+    action: "cash.close",
+    entity_type: "cash_session",
+    entity_id: sessionId,
+    old_values: { status: "ouverte" },
+    new_values: {
+      status: "cloturee",
+      expected_amount: expectedAmount,
+      closing_amount: closingAmount,
+      variance,
+    },
+  });
 
   revalidatePath("/dashboard/caisse");
   return {
@@ -115,28 +146,57 @@ export async function addCashMovement(
   formData: FormData
 ): Promise<ActionResult> {
   const employee = await getCurrentEmployee();
-  if (!employee) return { success: false, message: "Non autorisé." };
+  if (!employee || !canOperateCash(employee.role)) {
+    return { success: false, message: "Non autorisé." };
+  }
 
   const sessionId = String(formData.get("sessionId") ?? "");
   const type = String(formData.get("type") ?? "entree");
   const amount = Number(formData.get("amount") ?? 0);
   const reason = String(formData.get("reason") ?? "");
 
-  if (!["entree", "sortie", "ajustement"].includes(type) || amount <= 0) {
+  if (
+    !sessionId ||
+    !["entree", "sortie", "ajustement"].includes(type) ||
+    !Number.isFinite(amount) ||
+    amount <= 0 ||
+    reason.trim().length < 3
+  ) {
     return { success: false, message: "Mouvement invalide." };
   }
 
   const supabase = createAdminClient();
+  const { data: session } = await supabase
+    .from("cash_sessions")
+    .select("cashier_id, status")
+    .eq("id", sessionId)
+    .maybeSingle();
+  if (!session || session.status !== "ouverte") {
+    return { success: false, message: "Session ouverte introuvable." };
+  }
+  if (employee.role === "caissier" && session.cashier_id !== employee.id) {
+    return { success: false, message: "Vous ne pouvez modifier que votre propre caisse." };
+  }
+
   const { error } = await supabase.from("cash_movements").insert({
     cash_session_id: sessionId,
     type,
     amount,
-    reason: reason || null,
+    reason: reason.trim(),
   });
 
   if (error) {
     return { success: false, message: "Impossible d'enregistrer le mouvement." };
   }
+
+  await supabase.from("activity_logs").insert({
+    actor_id: employee.id,
+    action: "cash.movement",
+    entity_type: "cash_session",
+    entity_id: sessionId,
+    new_values: { type, amount, reason: reason.trim() },
+    reason: reason.trim(),
+  });
 
   revalidatePath("/dashboard/caisse");
   return { success: true, message: "Mouvement enregistré." };

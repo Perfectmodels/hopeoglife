@@ -86,8 +86,8 @@ export function CashMovementForm({ sessionId }: { sessionId: string }) {
           <input id="amount" name="amount" type="number" min={1} required className={inputClasses} />
         </FormField>
       </div>
-      <FormField label="Motif (optionnel)" htmlFor="reason">
-        <input id="reason" name="reason" className={inputClasses} />
+      <FormField label="Motif" htmlFor="reason">
+        <input id="reason" name="reason" minLength={3} required className={inputClasses} />
       </FormField>
       <SubmitButton label="Enregistrer le mouvement" pendingLabel="Enregistrement..." className="w-full" />
       <ResultMessage state={state} />

@@ -16,15 +16,15 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const items = navForRole(employee.role);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="dashboard-shell flex min-h-screen">
       <Sidebar items={items} />
-      <div className="flex flex-1 flex-col">
+      <div className="min-w-0 flex flex-1 flex-col">
         <Topbar
           items={items}
           employeeName={`${employee.firstName} ${employee.lastName}`}
           role={employee.role}
         />
-        <main className="flex-1 bg-background p-4 sm:p-6 lg:p-8">{children}</main>
+        <main className="flex-1 p-4 sm:p-6 lg:p-7 xl:p-8">{children}</main>
       </div>
     </div>
   );

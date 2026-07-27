@@ -4,6 +4,11 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
+import {
+  canHandlePayments,
+  canOperatePos,
+  canTransferOrders,
+} from "@/lib/auth/permissions";
 import type { ActionResult } from "@/lib/actions/types";
 
 const ORDER_STATUSES = [
@@ -21,6 +26,21 @@ const ORDER_STATUSES = [
 ] as const;
 
 const ORDER_ITEM_STATUSES = ["recu", "en_preparation", "pret", "servi", "indisponible"] as const;
+const PAYMENT_METHODS = [
+  "especes",
+  "carte",
+  "mobile_money",
+  "virement",
+  "en_ligne",
+  "mixte",
+  "offert",
+] as const;
+const SERVER_ORDER_STATUSES = [
+  "confirmee",
+  "transmise",
+  "servie",
+  "en_attente_paiement",
+] as const;
 
 function generateOrderNumber() {
   const now = new Date();
@@ -55,7 +75,9 @@ export async function createStaffOrder(
   formData: FormData
 ): Promise<ActionResult> {
   const employee = await getCurrentEmployee();
-  if (!employee) return { success: false, message: "Non autorisé." };
+  if (!employee || !canOperatePos(employee.role)) {
+    return { success: false, message: "Non autorisé." };
+  }
 
   let cartRaw: unknown;
   try {
@@ -183,7 +205,7 @@ export async function createStaffOrder(
 
 export async function transferOrderTable(orderId: string, newTableId: string) {
   const employee = await getCurrentEmployee();
-  if (!employee) throw new Error("Non autorisé");
+  if (!employee || !canTransferOrders(employee.role)) throw new Error("Non autorisé");
   if (!newTableId) throw new Error("Table invalide");
 
   const supabase = createAdminClient();
@@ -222,55 +244,121 @@ export async function transferOrderTable(orderId: string, newTableId: string) {
   return { success: true };
 }
 
-export async function updateOrderStatus(id: string, status: string) {
+export async function updateOrderStatus(
+  id: string,
+  status: string,
+  reason?: string
+): Promise<ActionResult> {
   if (!ORDER_STATUSES.includes(status as (typeof ORDER_STATUSES)[number])) {
-    throw new Error("Statut invalide");
+    return { success: false, message: "Statut invalide." };
   }
   const employee = await getCurrentEmployee();
-  if (!employee) throw new Error("Non autorisé");
+  if (!employee || !canTransferOrders(employee.role)) {
+    return { success: false, message: "Non autorisé." };
+  }
+
+  const isManager = employee.role === "admin" || employee.role === "manager";
+  if (
+    !isManager &&
+    !SERVER_ORDER_STATUSES.includes(status as (typeof SERVER_ORDER_STATUSES)[number])
+  ) {
+    return { success: false, message: "Ce changement de statut requiert un manager." };
+  }
+
+  const sensitive = status === "annulee" || status === "remboursee";
+  const normalizedReason = reason?.trim() ?? "";
+  if (sensitive && !isManager) {
+    return { success: false, message: "Une autorisation manager est requise." };
+  }
+  if (sensitive && normalizedReason.length < 3) {
+    return { success: false, message: "Un motif est obligatoire." };
+  }
 
   const supabase = createAdminClient();
-  await supabase.from("orders").update({ status }).eq("id", id);
+  const { data: previous } = await supabase
+    .from("orders")
+    .select("status")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (!previous) return { success: false, message: "Commande introuvable." };
+
+  const { error } = await supabase.from("orders").update({ status }).eq("id", id);
+  if (error) return { success: false, message: "Impossible de modifier la commande." };
+
+  await supabase.from("activity_logs").insert({
+    actor_id: employee.id,
+    action: sensitive ? `order.${status}` : "order.status_update",
+    entity_type: "order",
+    entity_id: id,
+    old_values: { status: previous.status },
+    new_values: { status },
+    reason: normalizedReason || null,
+  });
 
   revalidatePath("/dashboard/commandes");
   revalidatePath("/dashboard");
 
-  return { success: true };
+  return { success: true, message: "Statut mis à jour." };
 }
 
-export async function updateOrderItemStatus(id: string, status: string) {
+export async function updateOrderItemStatus(id: string, status: string): Promise<ActionResult> {
   if (!ORDER_ITEM_STATUSES.includes(status as (typeof ORDER_ITEM_STATUSES)[number])) {
-    throw new Error("Statut invalide");
+    return { success: false, message: "Statut invalide." };
   }
   const employee = await getCurrentEmployee();
-  if (!employee) throw new Error("Non autorisé");
+  if (!employee) return { success: false, message: "Non autorisé." };
 
   const supabase = createAdminClient();
-  await supabase.from("order_items").update({ status }).eq("id", id);
+  const { data: item } = await supabase
+    .from("order_items")
+    .select("destination")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (!item) return { success: false, message: "Article introuvable." };
+
+  const allowed =
+    employee.role === "admin" ||
+    employee.role === "manager" ||
+    employee.role === item.destination;
+  if (!allowed) return { success: false, message: "Non autorisé pour ce poste de préparation." };
+
+  const { error } = await supabase.from("order_items").update({ status }).eq("id", id);
+  if (error) return { success: false, message: "Impossible de modifier la préparation." };
 
   revalidatePath("/dashboard/cuisine");
   revalidatePath("/dashboard/bar");
   revalidatePath("/dashboard/commandes");
 
-  return { success: true };
+  return { success: true, message: "Préparation mise à jour." };
 }
+
+const paymentSchema = z.object({
+  orderId: z.string().uuid(),
+  method: z.enum(PAYMENT_METHODS),
+  amount: z.coerce.number().positive(),
+  tip: z.coerce.number().nonnegative().default(0),
+});
 
 export async function recordPayment(
   _prev: ActionResult | null,
   formData: FormData
 ): Promise<ActionResult> {
   const employee = await getCurrentEmployee();
-  if (!employee) return { success: false, message: "Non autorisé." };
-
-  const orderId = String(formData.get("orderId") ?? "");
-  const method = String(formData.get("method") ?? "especes");
-  const amount = Number(formData.get("amount") ?? 0);
-  const tip = Number(formData.get("tip") ?? 0) || 0;
-
-  if (!orderId || amount <= 0) {
-    return { success: false, message: "Paiement invalide." };
+  if (!employee || !canHandlePayments(employee.role)) {
+    return { success: false, message: "Non autorisé." };
   }
 
+  const parsed = paymentSchema.safeParse({
+    orderId: formData.get("orderId"),
+    method: formData.get("method"),
+    amount: formData.get("amount"),
+    tip: formData.get("tip") || 0,
+  });
+  if (!parsed.success) return { success: false, message: "Paiement invalide." };
+
+  const { orderId, method, amount, tip } = parsed.data;
   const supabase = createAdminClient();
 
   const { data: order } = await supabase
@@ -330,6 +418,14 @@ export async function recordPayment(
   if (fullyPaid && order.table_id) {
     await supabase.from("dining_tables").update({ status: "a_nettoyer" }).eq("id", order.table_id);
   }
+
+  await supabase.from("activity_logs").insert({
+    actor_id: employee.id,
+    action: "payment.record",
+    entity_type: "order",
+    entity_id: orderId,
+    new_values: { method, amount, tip, fully_paid: fullyPaid },
+  });
 
   revalidatePath("/dashboard/commandes");
   revalidatePath("/dashboard/caisse");

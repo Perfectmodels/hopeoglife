@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 import type { ActionResult } from "./types";
 
@@ -72,7 +72,7 @@ export async function createPrivatizationRequest(
   }
 
   try {
-    const supabase = await createClient();
+    const supabase = createAdminClient();
     const { error } = await supabase.from("privatization_requests").insert({
       occasion: data.occasion,
       requested_date: data.requestedDate,

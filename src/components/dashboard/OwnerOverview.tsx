@@ -1,48 +1,144 @@
 import Link from "next/link";
-import { AlertTriangle, Info, OctagonAlert } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowUpRight,
+  Banknote,
+  ClipboardList,
+  Clock3,
+  Info,
+  OctagonAlert,
+  TriangleAlert,
+  UsersRound,
+} from "lucide-react";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { PageHeader } from "@/components/dashboard/PageHeader";
-import { StatTile, Card, EmptyState } from "@/components/dashboard/Card";
-import { paymentMethodLabels } from "@/lib/statuses";
-import { formatXAF, cn } from "@/lib/utils";
+import { Card, EmptyState, StatTile } from "@/components/dashboard/Card";
+import { DashboardFloorPlan, type FloorArea } from "@/components/dashboard/DashboardFloorPlan";
+import { RevenueChart } from "@/components/dashboard/RevenueChart";
+import { StatusBadge } from "@/components/dashboard/StatusBadge";
+import { orderStatuses, paymentMethodLabels } from "@/lib/statuses";
+import { cn, formatXAF } from "@/lib/utils";
 
 const LATE_ORDER_MINUTES = 30;
 const CASH_VARIANCE_ALERT = 2000;
+const GABON_UTC_OFFSET_MS = 60 * 60 * 1000;
+const DAY_MS = 24 * 60 * 60 * 1000;
+const ACTIVE_ORDER_STATUSES = [
+  "confirmee",
+  "transmise",
+  "en_preparation",
+  "partiellement_prete",
+  "prete",
+  "servie",
+  "en_attente_paiement",
+];
+const OCCUPIED_TABLE_STATUSES = new Set([
+  "reservee",
+  "occupee",
+  "commande_en_cours",
+  "commande_prete",
+  "paiement_demande",
+]);
 
-function dateRange(daysAgo: number) {
+function operationalRange(daysAgo: number) {
   const now = new Date();
-  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate() - daysAgo);
-  const end = new Date(now.getFullYear(), now.getMonth(), now.getDate() - daysAgo + 1);
-  return { start: start.toISOString(), end: end.toISOString() };
+  const localNow = new Date(now.getTime() + GABON_UTC_OFFSET_MS);
+  let startMs =
+    Date.UTC(localNow.getUTCFullYear(), localNow.getUTCMonth(), localNow.getUTCDate(), 5) -
+    GABON_UTC_OFFSET_MS;
+
+  if (now.getTime() < startMs) startMs -= DAY_MS;
+  startMs -= daysAgo * DAY_MS;
+
+  const start = new Date(startMs);
+  const end = new Date(startMs + DAY_MS);
+  const localServiceDate = new Date(startMs + GABON_UTC_OFFSET_MS).toISOString().slice(0, 10);
+  return { start: start.toISOString(), end: end.toISOString(), localServiceDate };
 }
 
-function formatDelta(current: number, previous: number): { text: string; tone: "positive" | "negative" | "neutral" } {
+function formatDelta(
+  current: number,
+  previous: number
+): { text: string; tone: "positive" | "negative" | "neutral" } {
   if (previous === 0) {
-    if (current === 0) return { text: "Stable vs hier", tone: "neutral" };
-    return { text: "Nouveau vs hier", tone: "positive" };
+    if (current === 0) return { text: "Stable vs service précédent", tone: "neutral" };
+    return { text: "Nouveau vs service précédent", tone: "positive" };
   }
-  const pct = Math.round(((current - previous) / previous) * 1000) / 10;
-  if (pct === 0) return { text: "Stable vs hier", tone: "neutral" };
-  const sign = pct > 0 ? "+" : "";
+
+  const percentage = Math.round(((current - previous) / previous) * 1000) / 10;
+  if (percentage === 0) return { text: "Stable vs service précédent", tone: "neutral" };
   return {
-    text: `${sign}${pct.toLocaleString("fr-FR")} % vs hier`,
-    tone: pct > 0 ? "positive" : "negative",
+    text: `${percentage > 0 ? "+" : ""}${percentage.toLocaleString("fr-FR")} % vs précédent`,
+    tone: percentage > 0 ? "positive" : "negative",
   };
 }
 
-type Alert = { level: "critique" | "important" | "info"; message: string; href?: string };
+function localHour(iso: string) {
+  return (new Date(iso).getUTCHours() + 1) % 24;
+}
 
-const alertStyles: Record<Alert["level"], { icon: typeof OctagonAlert; className: string }> = {
-  critique: { icon: OctagonAlert, className: "border-red-500/30 bg-red-500/5 text-red-300" },
-  important: { icon: AlertTriangle, className: "border-amber-500/30 bg-amber-500/5 text-amber-300" },
-  info: { icon: Info, className: "border-sky-500/30 bg-sky-500/5 text-sky-300" },
+function buildRevenuePoints(rows: { total_amount: number | string; updated_at: string }[]) {
+  const slots = [
+    { hour: 12, label: "12h" },
+    { hour: 14, label: "14h" },
+    { hour: 16, label: "16h" },
+    { hour: 18, label: "18h" },
+    { hour: 20, label: "20h" },
+    { hour: 22, label: "22h" },
+    { hour: 24, label: "00h" },
+    { hour: 26, label: "02h" },
+  ];
+  const totals = slots.map(() => 0);
+
+  for (const row of rows) {
+    const hour = localHour(row.updated_at);
+    const adjustedHour = hour < 5 ? hour + 24 : hour;
+    let slotIndex = -1;
+    for (let index = slots.length - 1; index >= 0; index -= 1) {
+      if (adjustedHour >= slots[index].hour) {
+        slotIndex = index;
+        break;
+      }
+    }
+    if (slotIndex >= 0) totals[slotIndex] += Number(row.total_amount);
+  }
+
+  return slots.map((slot, index) => ({ label: slot.label, value: totals[index] }));
+}
+
+function elapsedMinutes(createdAt: string) {
+  return Math.max(0, Math.round((Date.now() - new Date(createdAt).getTime()) / 60000));
+}
+
+type DashboardAlert = {
+  level: "critique" | "important" | "info";
+  message: string;
+  href?: string;
+};
+
+const alertStyles: Record<
+  DashboardAlert["level"],
+  { icon: typeof OctagonAlert; className: string }
+> = {
+  critique: {
+    icon: OctagonAlert,
+    className: "border-red-500/30 bg-red-500/[0.06] text-red-300",
+  },
+  important: {
+    icon: AlertTriangle,
+    className: "border-amber-500/30 bg-amber-500/[0.06] text-amber-200",
+  },
+  info: {
+    icon: Info,
+    className: "border-sky-500/30 bg-sky-500/[0.06] text-sky-200",
+  },
 };
 
 export async function OwnerOverview() {
   const supabase = createAdminClient();
-  const today = dateRange(0);
-  const yesterday = dateRange(1);
-  const todayISO = today.start.slice(0, 10);
+  const today = operationalRange(0);
+  const yesterday = operationalRange(1);
+  const todayISO = today.localServiceDate;
 
   const [
     { count: reservationsToday },
@@ -52,14 +148,14 @@ export async function OwnerOverview() {
     { data: ordersCreatedToday },
     { count: ordersCreatedYesterdayCount },
     { data: stockItems },
-    { count: tablesOccupied },
-    { count: tablesTotal },
+    { data: diningAreas },
     { data: recentReservations },
     { data: unconfirmedReservations },
     { data: onDuty },
     { data: openCashSessions },
     { data: closedCashSessionsToday },
     { data: paymentsToday },
+    { data: liveOrders },
   ] = await Promise.all([
     supabase
       .from("reservations")
@@ -68,22 +164,24 @@ export async function OwnerOverview() {
     supabase
       .from("orders")
       .select("id", { count: "exact", head: true })
-      .in("status", ["confirmee", "transmise", "en_preparation", "partiellement_prete", "prete", "servie", "en_attente_paiement"]),
+      .in("status", ACTIVE_ORDER_STATUSES),
     supabase
       .from("orders")
-      .select("total_amount")
+      .select("total_amount, updated_at")
       .eq("status", "payee")
       .gte("updated_at", today.start)
       .lt("updated_at", today.end),
     supabase
       .from("orders")
-      .select("total_amount")
+      .select("total_amount, updated_at")
       .eq("status", "payee")
       .gte("updated_at", yesterday.start)
       .lt("updated_at", yesterday.end),
     supabase
       .from("orders")
-      .select("id, status, service_type, total_amount, created_at")
+      .select(
+        "id, status, service_type, total_amount, created_at, order_items ( quantity, unit_price, destination )"
+      )
       .gte("created_at", today.start)
       .lt("created_at", today.end),
     supabase
@@ -93,10 +191,11 @@ export async function OwnerOverview() {
       .lt("created_at", yesterday.end),
     supabase.from("stock_items").select("id, name, quantity_on_hand, low_stock_threshold"),
     supabase
-      .from("dining_tables")
-      .select("id", { count: "exact", head: true })
-      .neq("status", "libre"),
-    supabase.from("dining_tables").select("id", { count: "exact", head: true }),
+      .from("dining_areas")
+      .select(
+        "id, name, is_vip, sort_order, dining_tables ( id, label, capacity, status, pos_x, pos_y )"
+      )
+      .order("sort_order", { ascending: true }),
     supabase
       .from("reservations")
       .select("id, first_name, last_name, party_size, reservation_time, status")
@@ -125,143 +224,370 @@ export async function OwnerOverview() {
       .select("amount, tip_amount, method")
       .gte("created_at", today.start)
       .lt("created_at", today.end),
+    supabase
+      .from("orders")
+      .select(
+        "id, order_number, status, total_amount, created_at, table_id, service_type, dining_tables ( label )"
+      )
+      .in("status", ACTIVE_ORDER_STATUSES)
+      .order("created_at", { ascending: false })
+      .limit(6),
   ]);
 
-  const activeOrdersToday = (ordersCreatedToday ?? []).filter((o) => o.status !== "annulee");
-  const cancelledOrdersToday = (ordersCreatedToday ?? []).filter((o) => o.status === "annulee");
-  const lateOrders = (ordersCreatedToday ?? []).filter(
-    (o) =>
-      ["confirmee", "transmise", "en_preparation", "partiellement_prete"].includes(o.status) &&
-      Date.now() - new Date(o.created_at).getTime() > LATE_ORDER_MINUTES * 60000
+  const paidToday = paidOrdersToday ?? [];
+  const paidYesterday = paidOrdersYesterday ?? [];
+  const ordersToday = ordersCreatedToday ?? [];
+  const activeOrdersToday = ordersToday.filter((order) => order.status !== "annulee");
+  const cancelledOrdersToday = ordersToday.filter((order) => order.status === "annulee");
+  const lateOrders = (liveOrders ?? []).filter(
+    (order) =>
+      ["confirmee", "transmise", "en_preparation", "partiellement_prete"].includes(order.status) &&
+      elapsedMinutes(order.created_at) > LATE_ORDER_MINUTES
   );
 
-  const revenueToday = (paidOrdersToday ?? []).reduce((sum, o) => sum + Number(o.total_amount), 0);
-  const revenueYesterday = (paidOrdersYesterday ?? []).reduce(
-    (sum, o) => sum + Number(o.total_amount),
+  const revenueToday = paidToday.reduce((sum, order) => sum + Number(order.total_amount), 0);
+  const revenueYesterday = paidYesterday.reduce(
+    (sum, order) => sum + Number(order.total_amount),
     0
   );
-  const ticketMoyenToday =
-    (paidOrdersToday ?? []).length > 0 ? revenueToday / (paidOrdersToday ?? []).length : 0;
-  const ticketMoyenYesterday =
-    (paidOrdersYesterday ?? []).length > 0
-      ? revenueYesterday / (paidOrdersYesterday ?? []).length
-      : 0;
-
+  const averageTicketToday = paidToday.length > 0 ? revenueToday / paidToday.length : 0;
   const revenueDelta = formatDelta(revenueToday, revenueYesterday);
   const ordersDelta = formatDelta(activeOrdersToday.length, ordersCreatedYesterdayCount ?? 0);
-  const ticketDelta = formatDelta(ticketMoyenToday, ticketMoyenYesterday);
 
-  const bySerivceType = new Map<string, number>();
-  for (const o of activeOrdersToday) {
-    bySerivceType.set(o.service_type, (bySerivceType.get(o.service_type) ?? 0) + Number(o.total_amount));
-  }
-  const serviceTypeLabels: Record<string, string> = {
-    sur_place: "Sur place",
-    a_emporter: "À emporter",
-    livraison: "Livraison",
-  };
-
-  const orderIdsToday = activeOrdersToday.map((o) => o.id);
-  const { data: orderItemsToday } = orderIdsToday.length
-    ? await supabase.from("order_items").select("quantity, unit_price, destination").in("order_id", orderIdsToday)
-    : { data: [] as { quantity: number; unit_price: number; destination: string }[] };
-
-  const byDestination = { cuisine: 0, bar: 0 } as Record<string, number>;
-  for (const item of orderItemsToday ?? []) {
-    byDestination[item.destination] =
-      (byDestination[item.destination] ?? 0) + Number(item.unit_price) * item.quantity;
-  }
-
-  const outOfStock = (stockItems ?? []).filter((s) => Number(s.quantity_on_hand) <= 0);
+  const outOfStock = (stockItems ?? []).filter((item) => Number(item.quantity_on_hand) <= 0);
   const lowStock = (stockItems ?? []).filter(
-    (s) => Number(s.quantity_on_hand) > 0 && Number(s.quantity_on_hand) <= Number(s.low_stock_threshold)
+    (item) =>
+      Number(item.quantity_on_hand) > 0 &&
+      Number(item.quantity_on_hand) <= Number(item.low_stock_threshold)
   );
 
+  const floorAreas: FloorArea[] = (diningAreas ?? []).map((area) => {
+    const tables = (area.dining_tables ?? []) as {
+      id: string;
+      label: string;
+      capacity: number;
+      status: string;
+    }[];
+    const activeOrdersByTable = new Map<string, { amount: number; openedMinutes: number }>();
+    for (const order of liveOrders ?? []) {
+      if (!order.table_id) continue;
+      const current = activeOrdersByTable.get(order.table_id);
+      activeOrdersByTable.set(order.table_id, {
+        amount: (current?.amount ?? 0) + Number(order.total_amount),
+        openedMinutes: Math.max(current?.openedMinutes ?? 0, elapsedMinutes(order.created_at)),
+      });
+    }
+    return {
+      id: area.id,
+      name: area.name,
+      isVip: Boolean(area.is_vip),
+      tables: tables.map((table) => {
+        const activity = activeOrdersByTable.get(table.id);
+        return {
+          id: table.id,
+          label: table.label,
+          capacity: table.capacity,
+          status: table.status,
+          orderAmount: activity?.amount,
+          openedMinutes: activity?.openedMinutes,
+        };
+      }),
+    };
+  });
+  const allTables = floorAreas.flatMap((area) => area.tables);
+  const occupiedTableCount = allTables.filter((table) =>
+    OCCUPIED_TABLE_STATUSES.has(table.status)
+  ).length;
+  const occupancyRate =
+    allTables.length > 0 ? Math.round((occupiedTableCount / allTables.length) * 100) : 0;
+
+  const byDestination: Record<string, number> = { cuisine: 0, bar: 0 };
+  const byServiceType = new Map<string, number>();
+  for (const order of activeOrdersToday) {
+    byServiceType.set(
+      order.service_type,
+      (byServiceType.get(order.service_type) ?? 0) + Number(order.total_amount)
+    );
+    const items = (order.order_items ?? []) as {
+      quantity: number;
+      unit_price: number;
+      destination: string;
+    }[];
+    for (const item of items) {
+      byDestination[item.destination] =
+        (byDestination[item.destination] ?? 0) + Number(item.unit_price) * item.quantity;
+    }
+  }
+
   const cashVarianceToday = (closedCashSessionsToday ?? []).reduce(
-    (sum, s) => sum + Number(s.variance ?? 0),
+    (sum, session) => sum + Number(session.variance ?? 0),
     0
   );
   const bigVarianceSessions = (closedCashSessionsToday ?? []).filter(
-    (s) => Math.abs(Number(s.variance ?? 0)) >= CASH_VARIANCE_ALERT
+    (session) => Math.abs(Number(session.variance ?? 0)) >= CASH_VARIANCE_ALERT
   );
-  const cashOnHand = (openCashSessions ?? []).reduce((sum, s) => sum + Number(s.opening_amount), 0);
+  const cashOnHand = (openCashSessions ?? []).reduce(
+    (sum, session) => sum + Number(session.opening_amount),
+    0
+  );
   const paymentsByMethod = new Map<string, number>();
   let tipsToday = 0;
-  for (const p of paymentsToday ?? []) {
-    paymentsByMethod.set(p.method, (paymentsByMethod.get(p.method) ?? 0) + Number(p.amount));
-    tipsToday += Number(p.tip_amount ?? 0);
+  for (const payment of paymentsToday ?? []) {
+    paymentsByMethod.set(
+      payment.method,
+      (paymentsByMethod.get(payment.method) ?? 0) + Number(payment.amount)
+    );
+    tipsToday += Number(payment.tip_amount ?? 0);
   }
   const cashPayments = paymentsByMethod.get("especes") ?? 0;
   const electronicPayments = [...paymentsByMethod.entries()]
     .filter(([method]) => method !== "especes")
     .reduce((sum, [, amount]) => sum + amount, 0);
 
-  const alerts: Alert[] = [];
+  const alerts: DashboardAlert[] = [];
   for (const item of outOfStock) {
-    alerts.push({ level: "critique", message: `Rupture de stock : ${item.name}`, href: "/dashboard/stock" });
-  }
-  for (const s of bigVarianceSessions) {
     alerts.push({
       level: "critique",
-      message: `Écart de caisse important : ${formatXAF(Number(s.variance))}`,
+      message: `Rupture de stock : ${item.name}`,
+      href: "/dashboard/stock",
+    });
+  }
+  for (const session of bigVarianceSessions) {
+    alerts.push({
+      level: "critique",
+      message: `Écart de caisse important : ${formatXAF(Number(session.variance))}`,
       href: "/dashboard/caisse",
     });
   }
-  for (const o of lateOrders) {
-    alerts.push({ level: "important", message: `Commande en retard (#${o.id.slice(0, 8)})`, href: "/dashboard/commandes" });
+  for (const order of lateOrders) {
+    alerts.push({
+      level: "important",
+      message: `Commande en retard : ${order.order_number}`,
+      href: "/dashboard/commandes",
+    });
   }
   for (const item of lowStock) {
-    alerts.push({ level: "important", message: `Stock faible : ${item.name}`, href: "/dashboard/stock" });
+    alerts.push({
+      level: "important",
+      message: `Stock faible : ${item.name}`,
+      href: "/dashboard/stock",
+    });
   }
   if ((unconfirmedReservations ?? []).length > 0) {
     alerts.push({
       level: "info",
-      message: `${unconfirmedReservations!.length} réservation(s) non confirmée(s) aujourd'hui`,
+      message: `${unconfirmedReservations!.length} réservation(s) à confirmer aujourd'hui`,
       href: "/dashboard/reservations",
     });
   }
-  const levelOrder: Record<Alert["level"], number> = { critique: 0, important: 1, info: 2 };
-  alerts.sort((a, b) => levelOrder[a.level] - levelOrder[b.level]);
+  const alertPriority: Record<DashboardAlert["level"], number> = {
+    critique: 0,
+    important: 1,
+    info: 2,
+  };
+  alerts.sort((a, b) => alertPriority[a.level] - alertPriority[b.level]);
+
+  const revenuePoints = buildRevenuePoints(paidToday);
+  const serviceTypeLabels: Record<string, string> = {
+    sur_place: "Sur place",
+    a_emporter: "À emporter",
+    livraison: "Livraison",
+  };
 
   return (
     <div>
       <PageHeader
-        title="Tableau de bord"
-        description={`Vue d'ensemble du ${new Date().toLocaleDateString("fr-FR", {
+        title="Vue d’ensemble"
+        description={new Date().toLocaleDateString("fr-FR", {
+          timeZone: "Africa/Libreville",
           weekday: "long",
           day: "2-digit",
           month: "long",
-        })}`}
+          year: "numeric",
+        })}
+        action={
+          <Link
+            href="/dashboard/commandes/nouvelle"
+            className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-gold px-4 py-2 text-sm font-bold text-[#16120a] transition-colors hover:bg-gold-soft"
+          >
+            Nouvelle commande <ArrowUpRight size={16} />
+          </Link>
+        }
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatTile
-          label="Chiffre d'affaires du jour"
+          label="CA du service"
           value={formatXAF(revenueToday)}
           hint={revenueDelta.text}
           hintTone={revenueDelta.tone}
+          icon={Banknote}
         />
         <StatTile
-          label="Commandes du jour"
+          label="Commandes"
           value={String(activeOrdersToday.length)}
           hint={ordersDelta.text}
           hintTone={ordersDelta.tone}
+          icon={ClipboardList}
         />
         <StatTile
-          label="Ticket moyen"
-          value={formatXAF(Math.round(ticketMoyenToday))}
-          hint={ticketDelta.text}
-          hintTone={ticketDelta.tone}
+          label="Tables occupées"
+          value={`${occupiedTableCount} / ${allTables.length}`}
+          hint={`${occupancyRate} % d'occupation`}
+          icon={UsersRound}
         />
-        <StatTile label="Tables occupées" value={`${tablesOccupied ?? 0} / ${tablesTotal ?? 0}`} />
+        <StatTile
+          label="Alertes stock"
+          value={String(outOfStock.length + lowStock.length)}
+          hint={`${outOfStock.length} critique${outOfStock.length > 1 ? "s" : ""}`}
+          hintTone={outOfStock.length > 0 ? "negative" : "neutral"}
+          icon={TriangleAlert}
+        />
       </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+      <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1.62fr)_minmax(21rem,0.88fr)]">
+        <Card className="min-w-0 overflow-hidden p-0">
+          <div className="flex flex-wrap items-start justify-between gap-3 border-b border-border-subtle px-5 py-4 sm:px-6">
+            <div>
+              <h2 className="text-base font-semibold text-foreground">Chiffre d’affaires</h2>
+              <p className="mt-1 text-xs text-muted">Service 12h–04h · encaissements confirmés</p>
+            </div>
+            <div className="text-right">
+              <p className="text-lg font-semibold text-gold-soft">{formatXAF(revenueToday)}</p>
+              <p className="text-[0.68rem] text-muted">
+                Ticket moyen {formatXAF(Math.round(averageTicketToday))}
+              </p>
+            </div>
+          </div>
+          <div className="dashboard-scrollbar overflow-x-auto px-2 pb-2 pt-3 sm:px-4">
+            <RevenueChart points={revenuePoints} />
+          </div>
+          <div className="grid border-t border-border-subtle sm:grid-cols-3">
+            <div className="px-5 py-3">
+              <p className="text-[0.65rem] uppercase tracking-wider text-muted">Restaurant</p>
+              <p className="mt-1 text-sm font-semibold text-foreground">
+                {formatXAF(byDestination.cuisine ?? 0)}
+              </p>
+            </div>
+            <div className="border-border-subtle px-5 py-3 sm:border-l">
+              <p className="text-[0.65rem] uppercase tracking-wider text-muted">Bar</p>
+              <p className="mt-1 text-sm font-semibold text-foreground">
+                {formatXAF(byDestination.bar ?? 0)}
+              </p>
+            </div>
+            <div className="border-border-subtle px-5 py-3 sm:border-l">
+              <p className="text-[0.65rem] uppercase tracking-wider text-muted">Sur place</p>
+              <p className="mt-1 text-sm font-semibold text-foreground">
+                {formatXAF(byServiceType.get("sur_place") ?? 0)}
+              </p>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="overflow-hidden p-0">
+          <div className="flex items-center justify-between border-b border-border-subtle px-5 py-4">
+            <div>
+              <h2 className="text-base font-semibold text-foreground">Commandes en direct</h2>
+              <p className="mt-1 text-xs text-muted">{ordersInProgress ?? 0} en cours</p>
+            </div>
+            <span className="rounded-full border border-gold/35 bg-gold/[0.08] px-2.5 py-1 text-xs font-bold text-gold">
+              {liveOrders?.length ?? 0}
+            </span>
+          </div>
+          {liveOrders && liveOrders.length > 0 ? (
+            <ul className="divide-y divide-border-subtle">
+              {liveOrders.map((order) => {
+                const table = order.dining_tables as unknown as { label: string } | null;
+                const status = orderStatuses[order.status] ?? {
+                  label: order.status,
+                  tone: "neutral" as const,
+                };
+                return (
+                  <li key={order.id}>
+                    <Link
+                      href="/dashboard/commandes"
+                      className="group grid grid-cols-[1fr_auto] gap-3 px-5 py-3.5 transition-colors hover:bg-surface-raised"
+                    >
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="truncate text-sm font-semibold text-foreground">
+                            {order.order_number}
+                          </span>
+                          <span className="text-xs text-muted">
+                            {table?.label ??
+                              (order.service_type === "livraison"
+                                ? "Livraison"
+                                : order.service_type === "a_emporter"
+                                  ? "À emporter"
+                                  : "Comptoir")}
+                          </span>
+                        </div>
+                        <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                          <StatusBadge label={status.label} tone={status.tone} />
+                          <span
+                            className={cn(
+                              "flex items-center gap-1 text-[0.68rem]",
+                              elapsedMinutes(order.created_at) > LATE_ORDER_MINUTES
+                                ? "text-red-300"
+                                : "text-muted"
+                            )}
+                          >
+                            <Clock3 size={11} /> {elapsedMinutes(order.created_at)} min
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1 text-right">
+                        <span className="text-xs font-semibold text-gold-soft">
+                          {formatXAF(Number(order.total_amount))}
+                        </span>
+                        <ArrowUpRight
+                          size={14}
+                          className="text-muted transition-colors group-hover:text-gold"
+                        />
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <div className="p-5">
+              <EmptyState message="Aucune commande en cours." />
+            </div>
+          )}
+          <Link
+            href="/dashboard/commandes"
+            className="flex min-h-11 items-center justify-center border-t border-border-subtle text-xs font-semibold text-gold transition-colors hover:bg-gold/[0.05] hover:text-gold-soft"
+          >
+            Voir toutes les commandes
+          </Link>
+        </Card>
+      </div>
+
+      <Card className="mt-5">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-base font-semibold text-foreground">Plan de salle</h2>
+            <p className="mt-1 text-xs text-muted">Occupation et activité des tables en temps réel</p>
+          </div>
+          <p className="text-xs text-muted">
+            {occupiedTableCount} occupée{occupiedTableCount > 1 ? "s" : ""} ·{" "}
+            {Math.max(0, allTables.length - occupiedTableCount)} disponible
+            {allTables.length - occupiedTableCount > 1 ? "s" : ""}
+          </p>
+        </div>
+        <DashboardFloorPlan areas={floorAreas} />
+      </Card>
+
+      <div className="mt-5 grid gap-5 lg:grid-cols-2 2xl:grid-cols-4">
         <Card>
-          <p className="mb-4 font-display text-lg text-champagne">Alertes prioritaires</p>
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-foreground">Alertes prioritaires</h2>
+            <span className="text-xs text-muted">{alerts.length}</span>
+          </div>
           {alerts.length > 0 ? (
             <ul className="space-y-2">
-              {alerts.map((alert, i) => {
+              {alerts.slice(0, 5).map((alert) => {
                 const style = alertStyles[alert.level];
                 const Icon = style.icon;
                 const content = (
@@ -276,7 +602,7 @@ export async function OwnerOverview() {
                   </div>
                 );
                 return (
-                  <li key={i}>
+                  <li key={`${alert.level}-${alert.message}`}>
                     {alert.href ? <Link href={alert.href}>{content}</Link> : content}
                   </li>
                 );
@@ -288,86 +614,71 @@ export async function OwnerOverview() {
         </Card>
 
         <Card>
-          <p className="mb-4 font-display text-lg text-champagne">Répartition du chiffre d&apos;affaires</p>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-muted">Restaurant</span>
-              <span className="text-gold">{formatXAF(byDestination.cuisine ?? 0)}</span>
+          <h2 className="mb-4 text-sm font-semibold text-foreground">Résumé de caisse</h2>
+          <dl className="space-y-2.5 text-xs">
+            <div className="flex justify-between gap-3">
+              <dt className="text-muted">Sessions ouvertes</dt>
+              <dd className="font-semibold text-foreground">{openCashSessions?.length ?? 0}</dd>
             </div>
-            <div className="flex justify-between">
-              <span className="text-muted">Bar</span>
-              <span className="text-gold">{formatXAF(byDestination.bar ?? 0)}</span>
+            <div className="flex justify-between gap-3">
+              <dt className="text-muted">Fonds en cours</dt>
+              <dd className="font-semibold text-foreground">{formatXAF(cashOnHand)}</dd>
             </div>
-          </div>
-          <div className="mt-5 space-y-2 border-t border-border-subtle/70 pt-4 text-sm">
-            {Object.entries(serviceTypeLabels).map(([key, label]) => (
-              <div key={key} className="flex justify-between">
-                <span className="text-muted">{label}</span>
-                <span className="text-champagne">{formatXAF(bySerivceType.get(key) ?? 0)}</span>
-              </div>
-            ))}
-          </div>
-        </Card>
-
-        <Card>
-          <p className="mb-4 font-display text-lg text-champagne">Résumé de caisse</p>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-muted">Sessions ouvertes</span>
-              <span className="text-champagne">{openCashSessions?.length ?? 0}</span>
+            <div className="flex justify-between gap-3">
+              <dt className="text-muted">Espèces</dt>
+              <dd className="font-semibold text-gold-soft">{formatXAF(cashPayments)}</dd>
             </div>
-            <div className="flex justify-between">
-              <span className="text-muted">Fonds de caisse en cours</span>
-              <span className="text-champagne">{formatXAF(cashOnHand)}</span>
+            <div className="flex justify-between gap-3">
+              <dt className="text-muted">Paiements électroniques</dt>
+              <dd className="font-semibold text-gold-soft">{formatXAF(electronicPayments)}</dd>
             </div>
-            <div className="flex justify-between">
-              <span className="text-muted">Encaissé en espèces</span>
-              <span className="text-gold">{formatXAF(cashPayments)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted">Encaissé électronique</span>
-              <span className="text-gold">{formatXAF(electronicPayments)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted">Pourboires</span>
-              <span className="text-champagne">{formatXAF(tipsToday)}</span>
-            </div>
-            <div className="flex justify-between border-t border-border-subtle/70 pt-2">
-              <span className="text-muted">Écart de caisse (sessions clôturées)</span>
-              <span className={cashVarianceToday !== 0 ? "text-red-400" : "text-emerald-400"}>
+            <div className="flex justify-between gap-3 border-t border-border-subtle pt-2.5">
+              <dt className="text-muted">Écart clôturé</dt>
+              <dd className={cashVarianceToday === 0 ? "text-emerald-400" : "text-red-300"}>
                 {cashVarianceToday >= 0 ? "+" : ""}
                 {formatXAF(cashVarianceToday)}
-              </span>
+              </dd>
             </div>
-          </div>
+          </dl>
           {paymentsByMethod.size > 0 ? (
             <div className="mt-4 flex flex-wrap gap-1.5">
               {[...paymentsByMethod.entries()].map(([method, amount]) => (
                 <span
                   key={method}
-                  className="rounded-full border border-border-subtle px-2.5 py-1 text-[11px] text-muted"
+                  className="rounded-full border border-border-subtle px-2 py-1 text-[0.62rem] text-muted"
                 >
                   {paymentMethodLabels[method] ?? method} · {formatXAF(amount)}
                 </span>
               ))}
             </div>
           ) : null}
+          {tipsToday > 0 ? (
+            <p className="mt-3 text-[0.68rem] text-muted">Pourboires : {formatXAF(tipsToday)}</p>
+          ) : null}
         </Card>
 
         <Card>
-          <p className="mb-4 font-display text-lg text-champagne">Personnel en service</p>
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-foreground">Personnel en service</h2>
+            <Link href="/dashboard/personnel" className="text-xs text-gold hover:text-gold-soft">
+              Gérer
+            </Link>
+          </div>
           {onDuty && onDuty.length > 0 ? (
-            <ul className="space-y-3 text-sm">
-              {onDuty.map((a) => {
-                const emp = a.employees as unknown as { first_name: string; last_name: string } | null;
+            <ul className="space-y-3 text-xs">
+              {onDuty.slice(0, 6).map((attendance) => {
+                const employee = attendance.employees as unknown as {
+                  first_name: string;
+                  last_name: string;
+                } | null;
                 return (
-                  <li key={a.id} className="flex items-center justify-between">
-                    <span className="text-champagne">
-                      {emp ? `${emp.first_name} ${emp.last_name}` : "—"}
+                  <li key={attendance.id} className="flex items-center justify-between gap-3">
+                    <span className="truncate font-medium text-foreground">
+                      {employee ? `${employee.first_name} ${employee.last_name}` : "—"}
                     </span>
-                    <span className="text-xs text-muted">
-                      depuis{" "}
-                      {new Date(a.clock_in).toLocaleTimeString("fr-FR", {
+                    <span className="shrink-0 text-muted">
+                      {new Date(attendance.clock_in).toLocaleTimeString("fr-FR", {
+                        timeZone: "Africa/Libreville",
                         hour: "2-digit",
                         minute: "2-digit",
                       })}
@@ -383,20 +694,18 @@ export async function OwnerOverview() {
 
         <Card>
           <div className="mb-4 flex items-center justify-between">
-            <p className="font-display text-lg text-champagne">Réservations du jour</p>
-            <Link href="/dashboard/reservations" className="text-xs text-gold hover:underline">
-              Tout voir
-            </Link>
+            <h2 className="text-sm font-semibold text-foreground">Réservations du jour</h2>
+            <span className="text-xs text-muted">{reservationsToday ?? 0}</span>
           </div>
           {recentReservations && recentReservations.length > 0 ? (
-            <ul className="space-y-3">
-              {recentReservations.map((r) => (
-                <li key={r.id} className="flex items-center justify-between text-sm">
-                  <span className="text-champagne">
-                    {r.first_name} {r.last_name}
+            <ul className="space-y-3 text-xs">
+              {recentReservations.map((reservation) => (
+                <li key={reservation.id} className="flex items-center justify-between gap-3">
+                  <span className="truncate font-medium text-foreground">
+                    {reservation.first_name} {reservation.last_name}
                   </span>
-                  <span className="text-muted">
-                    {r.reservation_time?.slice(0, 5)} · {r.party_size} pers.
+                  <span className="shrink-0 text-muted">
+                    {reservation.reservation_time?.slice(0, 5)} · {reservation.party_size} pers.
                   </span>
                 </li>
               ))}
@@ -404,28 +713,23 @@ export async function OwnerOverview() {
           ) : (
             <EmptyState message="Aucune réservation aujourd'hui." />
           )}
-        </Card>
-
-        <Card>
-          <p className="mb-4 font-display text-lg text-champagne">Commandes du jour</p>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-muted">En cours</span>
-              <span className="text-champagne">{ordersInProgress ?? 0}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted">En retard (+{LATE_ORDER_MINUTES} min)</span>
-              <span className={lateOrders.length > 0 ? "text-red-400" : "text-champagne"}>
-                {lateOrders.length}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted">Annulées aujourd&apos;hui</span>
-              <span className="text-champagne">{cancelledOrdersToday.length}</span>
-            </div>
+          <div className="mt-4 border-t border-border-subtle pt-3">
+            <Link
+              href="/dashboard/reservations"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-gold hover:text-gold-soft"
+            >
+              Calendrier des réservations <ArrowUpRight size={13} />
+            </Link>
           </div>
         </Card>
       </div>
+
+      <p className="mt-5 text-right text-[0.65rem] text-muted">
+        {cancelledOrdersToday.length} commande(s) annulée(s) ·{" "}
+        {formatXAF(byServiceType.get("a_emporter") ?? 0)} à emporter ·{" "}
+        {formatXAF(byServiceType.get("livraison") ?? 0)} en livraison ·{" "}
+        {serviceTypeLabels.sur_place} actif
+      </p>
     </div>
   );
 }

@@ -20,7 +20,7 @@ type OrderRowData = {
 };
 
 export default async function CommandesPage() {
-  await requireRole("/dashboard/commandes");
+  const employee = await requireRole("/dashboard/commandes");
 
   const supabase = createAdminClient();
   const [{ data: orders }, { data: tables }] = await Promise.all([
@@ -61,7 +61,7 @@ export default async function CommandesPage() {
             </thead>
             <tbody className="divide-y divide-border-subtle">
               {orders.map((o) => (
-                <OrderRow key={o.id} order={o} tables={tables ?? []} />
+                <OrderRow key={o.id} order={o} tables={tables ?? []} role={employee.role} />
               ))}
             </tbody>
           </table>
