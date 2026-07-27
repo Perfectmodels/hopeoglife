@@ -167,7 +167,7 @@ export default async function EmployeeDetailPage({
           <p className="mb-4 font-display text-lg text-champagne">Pointage</p>
           {attendance && attendance.length > 0 ? (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[560px] text-left text-sm">
+              <table className="table-responsive w-full text-left text-sm lg:min-w-[560px]">
                 <thead className="text-xs uppercase tracking-wider text-muted">
                   <tr>
                     <th className="py-2 pr-4">Arrivée</th>
@@ -185,13 +185,13 @@ export default async function EmployeeDetailPage({
                       : null;
                     return (
                       <tr key={a.id}>
-                        <td className="py-3 pr-4 text-champagne">
+                        <td className="py-3 pr-4 text-champagne" data-label="Arrivée">
                           {clockInDate.toLocaleString("fr-FR", {
                             dateStyle: "short",
                             timeStyle: "short",
                           })}
                         </td>
-                        <td className="py-3 pr-4 text-muted">
+                        <td className="py-3 pr-4 text-muted" data-label="Départ">
                           {clockOutDate
                             ? clockOutDate.toLocaleString("fr-FR", {
                                 dateStyle: "short",
@@ -199,12 +199,12 @@ export default async function EmployeeDetailPage({
                               })
                             : "En cours"}
                         </td>
-                        <td className="py-3 pr-4 text-muted">
+                        <td className="py-3 pr-4 text-muted" data-label="Durée">
                           {durationMin !== null
                             ? `${Math.floor(durationMin / 60)}h${String(durationMin % 60).padStart(2, "0")}`
                             : "—"}
                         </td>
-                        <td className="py-3 pr-4 text-muted">
+                        <td className="py-3 pr-4 text-muted" data-label="Distance à l'arrivée">
                           {Math.round(Number(a.clock_in_distance_m))} m
                         </td>
                       </tr>

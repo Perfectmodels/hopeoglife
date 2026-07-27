@@ -47,7 +47,7 @@ export default async function CommandesPage() {
 
       {orders && orders.length > 0 ? (
         <div className="overflow-x-auto rounded-2xl border border-border-subtle">
-          <table className="w-full min-w-[900px] text-left text-sm">
+          <table className="table-responsive w-full text-left text-sm lg:min-w-[900px]">
             <thead className="bg-background-elevated text-xs uppercase tracking-wider text-muted">
               <tr>
                 <th className="px-4 py-3">N°</th>

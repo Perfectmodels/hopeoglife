@@ -27,7 +27,7 @@ export default async function FournisseursPage() {
         <Card>
           {suppliers && suppliers.length > 0 ? (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[560px] text-left text-sm">
+              <table className="table-responsive w-full text-left text-sm lg:min-w-[560px]">
                 <thead className="text-xs uppercase tracking-wider text-muted">
                   <tr>
                     <th className="py-2 pr-4">Nom</th>
@@ -39,7 +39,7 @@ export default async function FournisseursPage() {
                 <tbody className="divide-y divide-border-subtle">
                   {suppliers.map((s) => (
                     <tr key={s.id}>
-                      <td className="py-3 pr-4">
+                      <td className="py-3 pr-4" data-label="Nom">
                         <div className="flex items-center gap-3">
                           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-background-elevated text-muted">
                             <Truck size={14} />
@@ -47,9 +47,9 @@ export default async function FournisseursPage() {
                           <span className="text-champagne">{s.name}</span>
                         </div>
                       </td>
-                      <td className="py-3 pr-4 text-muted">{s.contact_name || "—"}</td>
-                      <td className="py-3 pr-4 text-muted">{s.phone || "—"}</td>
-                      <td className="py-3 pr-4 text-muted">{s.email || "—"}</td>
+                      <td className="py-3 pr-4 text-muted" data-label="Contact">{s.contact_name || "—"}</td>
+                      <td className="py-3 pr-4 text-muted" data-label="Téléphone">{s.phone || "—"}</td>
+                      <td className="py-3 pr-4 text-muted" data-label="E-mail">{s.email || "—"}</td>
                     </tr>
                   ))}
                 </tbody>

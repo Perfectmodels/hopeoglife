@@ -41,7 +41,7 @@ export default async function MouvementsPage() {
       <Card>
         {movements && movements.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[860px] text-left text-sm">
+            <table className="table-responsive w-full text-left text-sm lg:min-w-[860px]">
               <thead className="text-xs uppercase tracking-wider text-muted">
                 <tr>
                   <th className="py-2 pr-4">Date</th>
@@ -51,7 +51,7 @@ export default async function MouvementsPage() {
                   <th className="py-2 pr-4">Ancien → Nouveau</th>
                   <th className="py-2 pr-4">Emplacement</th>
                   <th className="py-2 pr-4">Employé</th>
-                  {canCorrect ? <th className="py-2 pr-4" /> : null}
+                  {canCorrect ? <th className="py-2 pr-4">Correction</th> : null}
                 </tr>
               </thead>
               <tbody className="divide-y divide-border-subtle">
@@ -64,28 +64,28 @@ export default async function MouvementsPage() {
 
                   return (
                     <tr key={m.id}>
-                      <td className="py-3 pr-4 text-muted">
+                      <td className="py-3 pr-4 text-muted" data-label="Date">
                         {new Date(m.created_at).toLocaleString("fr-FR")}
                       </td>
-                      <td className="py-3 pr-4 text-champagne">{item?.name ?? "—"}</td>
-                      <td className="py-3 pr-4">
+                      <td className="py-3 pr-4 text-champagne" data-label="Produit">{item?.name ?? "—"}</td>
+                      <td className="py-3 pr-4" data-label="Type">
                         <StatusBadge label={type.label} tone={type.tone} />
                       </td>
-                      <td className="py-3 pr-4 text-muted">
+                      <td className="py-3 pr-4 text-muted" data-label="Quantité">
                         {m.quantity > 0 ? "+" : ""}
                         {m.quantity} {item?.unit ?? ""}
                       </td>
-                      <td className="py-3 pr-4 text-muted">
+                      <td className="py-3 pr-4 text-muted" data-label="Ancien → Nouveau">
                         {m.quantity_before !== null && m.quantity_after !== null
                           ? `${m.quantity_before} → ${m.quantity_after}`
                           : "—"}
                       </td>
-                      <td className="py-3 pr-4 text-muted">{location?.name || "—"}</td>
-                      <td className="py-3 pr-4 text-muted">
+                      <td className="py-3 pr-4 text-muted" data-label="Emplacement">{location?.name || "—"}</td>
+                      <td className="py-3 pr-4 text-muted" data-label="Employé">
                         {creator ? `${creator.first_name} ${creator.last_name}` : "—"}
                       </td>
                       {canCorrect ? (
-                        <td className="py-3 pr-4">
+                        <td className="py-3 pr-4" data-label="Correction">
                           {canCorrectThisRow ? (
                             <CorrectMovementForm
                               receiptItemId={m.receipt_item_id as string}

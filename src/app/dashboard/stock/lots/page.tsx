@@ -32,7 +32,7 @@ export default async function LotsPage() {
       <Card>
         {batches && batches.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[720px] text-left text-sm">
+            <table className="table-responsive w-full text-left text-sm lg:min-w-[720px]">
               <thead className="text-xs uppercase tracking-wider text-muted">
                 <tr>
                   <th className="py-2 pr-4">Produit</th>
@@ -63,21 +63,21 @@ export default async function LotsPage() {
                         soon && !expired && "bg-amber-500/5"
                       )}
                     >
-                      <td className="py-3 pr-4 text-champagne">{item?.name ?? "—"}</td>
-                      <td className="py-3 pr-4 text-muted">{b.batch_number}</td>
-                      <td className="py-3 pr-4 text-muted">
+                      <td className="py-3 pr-4 text-champagne" data-label="Produit">{item?.name ?? "—"}</td>
+                      <td className="py-3 pr-4 text-muted" data-label="N° de lot">{b.batch_number}</td>
+                      <td className="py-3 pr-4 text-muted" data-label="Quantité">
                         {b.quantity} {item?.unit ?? ""}
                       </td>
-                      <td className="py-3 pr-4 text-muted">{supplier?.name || "—"}</td>
-                      <td className="py-3 pr-4 text-muted">
+                      <td className="py-3 pr-4 text-muted" data-label="Fournisseur">{supplier?.name || "—"}</td>
+                      <td className="py-3 pr-4 text-muted" data-label="Fabrication">
                         {b.manufacturing_date
                           ? new Date(b.manufacturing_date).toLocaleDateString("fr-FR")
                           : "—"}
                       </td>
-                      <td className="py-3 pr-4 text-muted">
+                      <td className="py-3 pr-4 text-muted" data-label="Expiration">
                         {expiration ? expiration.toLocaleDateString("fr-FR") : "—"}
                       </td>
-                      <td className="py-3 pr-4">
+                      <td className="py-3 pr-4" data-label="Statut">
                         {expired ? (
                           <StatusBadge label="Expiré" tone="danger" />
                         ) : soon ? (

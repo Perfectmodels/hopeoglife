@@ -31,22 +31,22 @@ export function ReservationRow({
 
   return (
     <tr className="align-top">
-      <td className="px-4 py-3 text-champagne">{reservation.reservation_time?.slice(0, 5)}</td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3 text-champagne" data-label="Heure">{reservation.reservation_time?.slice(0, 5)}</td>
+      <td className="px-4 py-3" data-label="Client">
         <p className="text-champagne">
           {reservation.first_name} {reservation.last_name}
         </p>
         {reservation.special_requests ? (
-          <p className="mt-1 max-w-xs text-xs text-muted">{reservation.special_requests}</p>
+          <p className="mt-1 max-w-xs text-left text-xs text-muted">{reservation.special_requests}</p>
         ) : null}
       </td>
-      <td className="px-4 py-3 text-muted">
+      <td className="px-4 py-3 text-muted" data-label="Contact">
         <p>{reservation.phone}</p>
         {reservation.email ? <p className="text-xs">{reservation.email}</p> : null}
       </td>
-      <td className="px-4 py-3 text-muted">{reservation.party_size}</td>
-      <td className="px-4 py-3 text-muted">{reservation.occasion || "—"}</td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3 text-muted" data-label="Pers.">{reservation.party_size}</td>
+      <td className="px-4 py-3 text-muted" data-label="Occasion">{reservation.occasion || "—"}</td>
+      <td className="px-4 py-3" data-label="Table">
         <select
           defaultValue={reservation.table_id ?? ""}
           disabled={isPending}
@@ -66,7 +66,7 @@ export function ReservationRow({
           ))}
         </select>
       </td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3" data-label="Statut">
         <StatusSelect
           value={reservation.status}
           options={statusOptions}

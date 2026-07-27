@@ -45,7 +45,7 @@ export default async function ReceptionsPage() {
       <Card>
         {receipts && receipts.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px] text-left text-sm">
+            <table className="table-responsive w-full text-left text-sm lg:min-w-[640px]">
               <thead className="text-xs uppercase tracking-wider text-muted">
                 <tr>
                   <th className="py-2 pr-4">N°</th>
@@ -64,18 +64,18 @@ export default async function ReceptionsPage() {
                   const status = STATUS_LABELS[r.status] ?? STATUS_LABELS.brouillon;
                   return (
                     <tr key={r.id}>
-                      <td className="py-3 pr-4">
+                      <td className="py-3 pr-4" data-label="N°">
                         <Link href={`/dashboard/stock/receptions/${r.id}`} className="text-champagne hover:text-gold">
                           {r.receipt_number}
                         </Link>
                       </td>
-                      <td className="py-3 pr-4 text-muted">{supplier?.name || "—"}</td>
-                      <td className="py-3 pr-4 text-muted">
+                      <td className="py-3 pr-4 text-muted" data-label="Fournisseur">{supplier?.name || "—"}</td>
+                      <td className="py-3 pr-4 text-muted" data-label="Date">
                         {new Date(r.created_at).toLocaleDateString("fr-FR")}
                       </td>
-                      <td className="py-3 pr-4 text-muted">{items.length}</td>
-                      <td className="py-3 pr-4 text-muted">{formatXAF(total)}</td>
-                      <td className="py-3 pr-4">
+                      <td className="py-3 pr-4 text-muted" data-label="Articles">{items.length}</td>
+                      <td className="py-3 pr-4 text-muted" data-label="Total">{formatXAF(total)}</td>
+                      <td className="py-3 pr-4" data-label="Statut">
                         <StatusBadge label={status.label} tone={status.tone} />
                       </td>
                     </tr>

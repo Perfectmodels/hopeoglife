@@ -34,7 +34,7 @@ export function EmployeeRow({ employee }: { employee: Employee }) {
 
   return (
     <tr>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3" data-label="Nom">
         <Link
           href={`/dashboard/personnel/${employee.id}`}
           className="text-champagne transition-colors hover:text-gold hover:underline"
@@ -42,18 +42,18 @@ export function EmployeeRow({ employee }: { employee: Employee }) {
           {employee.first_name} {employee.last_name}
         </Link>
       </td>
-      <td className="px-4 py-3 text-muted">
+      <td className="px-4 py-3 text-muted" data-label="Contact">
         <p>{employee.phone || "—"}</p>
         {employee.email ? <p className="text-xs">{employee.email}</p> : null}
       </td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3" data-label="Rôle">
         <StatusSelect
           value={employee.role}
           options={roleOptions}
           onChange={(role) => updateEmployeeRole(employee.id, role)}
         />
       </td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3" data-label="Statut">
         <button
           type="button"
           disabled={isPending}
@@ -68,7 +68,7 @@ export function EmployeeRow({ employee }: { employee: Employee }) {
           {employee.active ? "Actif" : "Inactif"}
         </button>
       </td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3" data-label="PIN">
         <button
           type="button"
           onClick={() => setPinOpen((v) => !v)}

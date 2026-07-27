@@ -45,12 +45,12 @@ export function OrderRow({
 
   return (
     <tr className="align-top">
-      <td className="px-4 py-3 text-champagne">{order.order_number}</td>
-      <td className="px-4 py-3 text-muted capitalize">{order.source.replace("_", " ")}</td>
-      <td className="px-4 py-3 text-muted">
+      <td className="px-4 py-3 text-champagne" data-label="N°">{order.order_number}</td>
+      <td className="px-4 py-3 text-muted capitalize" data-label="Origine">{order.source.replace("_", " ")}</td>
+      <td className="px-4 py-3 text-muted" data-label="Heure">
         {new Date(order.created_at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}
       </td>
-      <td className="px-4 py-3 text-gold">
+      <td className="px-4 py-3 text-gold" data-label="Total">
         {formatXAF(Number(order.total_amount))}
         {paidSoFar > 0 && remaining > 0 ? (
           <p className="text-[11px] font-normal text-muted">
@@ -58,14 +58,14 @@ export function OrderRow({
           </p>
         ) : null}
       </td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3" data-label="Statut">
         <StatusSelect
           value={order.status}
           options={toOptions(orderStatuses)}
           onChange={(status) => updateOrderStatus(order.id, status)}
         />
       </td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3" data-label="Paiement">
         {canPay ? (
           <>
             <button
@@ -126,7 +126,7 @@ export function OrderRow({
           <span className="text-xs text-muted">—</span>
         )}
       </td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3" data-label="Table">
         <p className="text-muted">{order.dining_tables?.label ?? "—"}</p>
         {!closed ? (
           <>

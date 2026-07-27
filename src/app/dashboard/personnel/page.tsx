@@ -24,7 +24,7 @@ export default async function PersonnelPage() {
         <Card>
           {employees && employees.length > 0 ? (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[640px] text-left text-sm">
+              <table className="table-responsive w-full text-left text-sm lg:min-w-[640px]">
                 <thead className="text-xs uppercase tracking-wider text-muted">
                   <tr>
                     <th className="px-4 py-2">Nom</th>

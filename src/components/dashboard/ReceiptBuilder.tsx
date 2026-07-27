@@ -352,7 +352,7 @@ export function ReceiptBuilder({
 
       <div className="overflow-x-auto rounded-2xl border border-border-subtle bg-background-elevated p-6">
         {lines.length > 0 ? (
-          <table className="w-full min-w-[720px] text-left text-sm">
+          <table className="table-responsive w-full text-left text-sm lg:min-w-[720px]">
             <thead className="text-xs uppercase tracking-wider text-muted">
               <tr>
                 <th className="py-2 pr-4">Produit</th>
@@ -361,24 +361,24 @@ export function ReceiptBuilder({
                 <th className="py-2 pr-4">Lot</th>
                 <th className="py-2 pr-4">Expiration</th>
                 <th className="py-2 pr-4">État</th>
-                {!readonly ? <th className="py-2 pr-4" /> : null}
+                {!readonly ? <th className="py-2 pr-4">Actions</th> : null}
               </tr>
             </thead>
             <tbody className="divide-y divide-border-subtle">
               {lines.map((line, index) => (
                 <tr key={index}>
-                  <td className="py-3 pr-4 text-champagne">{line.name}</td>
-                  <td className="py-3 pr-4 text-muted">
+                  <td className="py-3 pr-4 text-champagne" data-label="Produit">{line.name}</td>
+                  <td className="py-3 pr-4 text-muted" data-label="Quantité">
                     {line.quantityReceived} {line.unit}
                   </td>
-                  <td className="py-3 pr-4 text-muted">
+                  <td className="py-3 pr-4 text-muted" data-label="Prix">
                     {line.unitCost ? formatXAF(line.unitCost) : "—"}
                   </td>
-                  <td className="py-3 pr-4 text-muted">{line.batchNumber || "—"}</td>
-                  <td className="py-3 pr-4 text-muted">{line.expirationDate || "—"}</td>
-                  <td className="py-3 pr-4 text-muted capitalize">{line.condition ?? "—"}</td>
+                  <td className="py-3 pr-4 text-muted" data-label="Lot">{line.batchNumber || "—"}</td>
+                  <td className="py-3 pr-4 text-muted" data-label="Expiration">{line.expirationDate || "—"}</td>
+                  <td className="py-3 pr-4 text-muted capitalize" data-label="État">{line.condition ?? "—"}</td>
                   {!readonly ? (
-                    <td className="py-3 pr-4">
+                    <td className="py-3 pr-4" data-label="Actions">
                       <button
                         type="button"
                         onClick={() => removeLine(index)}
