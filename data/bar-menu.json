@@ -1,0 +1,311 @@
+{
+  "title": "Carte boissons Hope Of Life",
+  "currency": "XAF",
+  "source": "Carte physique transmise le 28 juillet 2026",
+  "categories": [
+    {
+      "slug": "cocktails",
+      "name": "Cocktails",
+      "service": "Verre",
+      "items": [
+        {
+          "name": "Bassé Drink",
+          "price": 9000,
+          "description": "Campari, Suze, Red Bull et iboga."
+        },
+        {
+          "name": "Dibal",
+          "price": 9000,
+          "description": "Martini blanc, gin et sucre de canne."
+        },
+        {
+          "name": "Ditengu Drink",
+          "price": 9000,
+          "description": "Iboga, miel, tonic et gin."
+        },
+        {
+          "name": "HL",
+          "price": 10000,
+          "description": "Rhum brun, Campari, citron, Suze et crème fraîche."
+        },
+        {
+          "name": "Okassi",
+          "price": 9000,
+          "description": "Noix de coco, sucre de canne, crème fraîche, ananas, rhum brun et iboga."
+        },
+        {
+          "name": "Chantaco",
+          "price": 7000,
+          "description": "Jus d’orange, jus de pamplemousse, sirop de grenadine et crème fraîche."
+        },
+        {
+          "name": "Hope of Life",
+          "price": 7000,
+          "description": "Gingembre, jus d’ananas, Red Bull, sirop de coco et grenadine."
+        },
+        {
+          "name": "Les Îles Variétés",
+          "price": 7000,
+          "description": "Gingembre, passion, fraise, miel et coco exotique."
+        },
+        {
+          "name": "Mojito fruit",
+          "price": 8000,
+          "description": "Feuilles de menthe, citron, sucre de canne et Sprite."
+        },
+        {
+          "name": "Mojito fruit rouge",
+          "price": 8000,
+          "description": "Feuilles de menthe, fraise, citron, passion, sucre de canne et Sprite."
+        },
+        {
+          "name": "Paloma Sky",
+          "price": 7000,
+          "description": "Sirop de pêche, jus de citron, jus d’ananas, sirop d’orgeat, crème fraîche et grenadine."
+        },
+        {
+          "name": "Blue Lagon Exotic",
+          "price": 7000,
+          "description": "Curaçao bleu, jus d’ananas, eau gazeuse et orange."
+        },
+        {
+          "name": "Flamant rose",
+          "price": 7000,
+          "description": "Crème fraîche, jus d’orange, sirop de grenadine, sucre de canne et jus de passion."
+        },
+        {
+          "name": "Rainbow (Arc-en-ciel)",
+          "price": 6000,
+          "description": "Curaçao bleu, jus de mangue et sirop de grenadine."
+        },
+        {
+          "name": "Mojito passion",
+          "price": 7000,
+          "description": "Feuilles de menthe, fruits de la passion, citron, sucre de canne et Sprite."
+        },
+        {
+          "name": "Mojito orange",
+          "price": 8000,
+          "description": "Feuilles de menthe, jus d’orange nature, citron et sucre de canne."
+        },
+        {
+          "name": "Bora Bora",
+          "price": 6000,
+          "description": "Jus de passion, fruit de la passion, jus d’ananas et sirop de grenadine."
+        }
+      ]
+    },
+    {
+      "slug": "vins-blancs-roses",
+      "name": "Vins blancs & rosés",
+      "service": "Bouteille",
+      "items": [
+        { "name": "Exhib", "price": 30000 },
+        { "name": "Rose et Or", "price": 36000 },
+        { "name": "Chenet", "price": 23000 },
+        { "name": "Monbazillac Rousseau", "price": 40000 }
+      ]
+    },
+    {
+      "slug": "vins-blancs-moelleux",
+      "name": "Vins blancs moelleux",
+      "service": "Bouteille",
+      "items": [
+        { "name": "Calvé Classic", "price": 30000 },
+        { "name": "Marquis des Loges", "price": 25000 },
+        { "name": "Domaine de Touche", "price": 30000 }
+      ]
+    },
+    {
+      "slug": "vins-blancs-secs",
+      "name": "Vins blancs secs",
+      "service": "Bouteille",
+      "items": [
+        { "name": "Riesling", "price": 50000 },
+        { "name": "Domaine des Tourelles", "price": 45000 },
+        { "name": "Domaine de Touche", "price": 35000 },
+        { "name": "Chablis Louis Jadot", "price": 80000 },
+        { "name": "Chablis Mouillard", "price": 70000 },
+        { "name": "Calvet Sauternes", "price": 35000 },
+        { "name": "Calvet Sauvignon", "price": 35000 }
+      ]
+    },
+    {
+      "slug": "champagnes",
+      "name": "Champagnes",
+      "service": "Bouteille",
+      "items": [
+        { "name": "Elexium", "price": 75000 },
+        { "name": "Moët & Chandon", "price": 130000 },
+        { "name": "Trouillard Brut", "price": 60000 },
+        { "name": "Laurent Perrier Rosé", "price": 190000 },
+        { "name": "Louis Roederer", "price": 150000 },
+        { "name": "Veuve Clicquot", "price": 130000 },
+        { "name": "Veuve Clicquot Rich", "price": 150000 },
+        { "name": "Veuve Clicquot Grande Dame", "price": 450000 },
+        { "name": "Cristal Louis Roederer", "price": 415000 },
+        { "name": "Dom Pérignon", "price": 410000 },
+        { "name": "Moët Chandon Rosé", "price": 150000 },
+        { "name": "Bottega Gold", "price": 100000 },
+        { "name": "Bottega Millesimato", "price": 80000 },
+        { "name": "Bottega 2021", "price": 80000 },
+        { "name": "Ruinart", "price": 290000 },
+        { "name": "Blanc des Blancs", "price": 190000 },
+        { "name": "Ruinart Millésimé", "price": 180000 },
+        { "name": "Elexium Rosé Brillant", "price": 60000 }
+      ]
+    },
+    {
+      "slug": "vodkas",
+      "name": "Vodkas",
+      "service": "Verre",
+      "items": [
+        { "name": "Absolut Lime", "price": 5000 },
+        { "name": "Absolut Citron", "price": 5000 },
+        { "name": "Absolut Vodka", "price": 5000 },
+        { "name": "Belvédère", "price": 70000, "service": "Bouteille" },
+        { "name": "Shot Vodka Danzka", "price": 8000, "service": "Shot" }
+      ]
+    },
+    {
+      "slug": "tequila",
+      "name": "Tequila",
+      "service": "Shot",
+      "items": [
+        { "name": "Tequila Silver", "price": 1000 }
+      ]
+    },
+    {
+      "slug": "cognacs",
+      "name": "Cognacs",
+      "service": "Verre",
+      "items": [
+        { "name": "Hennessy", "price": 9000 },
+        { "name": "Very Spécial", "price": 20000 },
+        { "name": "Camus Intensely", "price": 20000 },
+        { "name": "XO Aromatic", "price": 20000 },
+        { "name": "Martell XO", "price": 20000 },
+        { "name": "Rémy Martin XO", "price": 20000 },
+        { "name": "BERD Feldy 12", "price": 30000 }
+      ]
+    },
+    {
+      "slug": "bourbons",
+      "name": "Bourbons",
+      "service": "Verre",
+      "items": [
+        { "name": "Jack Daniel’s", "price": 5000 },
+        { "name": "Jack Honey", "price": 5000 },
+        { "name": "Jack Fire", "price": 5000 },
+        { "name": "Jack Apple", "price": 5000 },
+        { "name": "Jack Single Barrel", "price": 12000 }
+      ]
+    },
+    {
+      "slug": "whiskies",
+      "name": "Whiskies",
+      "service": "Verre",
+      "items": [
+        { "name": "White Horse", "price": 5000 },
+        { "name": "J&B", "price": 5000 },
+        { "name": "Red Label", "price": 7000 },
+        { "name": "Black Label", "price": 9000 },
+        { "name": "Double Label", "price": 12000 },
+        { "name": "The Glenlivet", "price": 12000 },
+        { "name": "Grant’s", "price": 7000 },
+        { "name": "Glenfiddich 18", "price": 20000 },
+        { "name": "Glenfiddich 15", "price": 15000 },
+        { "name": "Glenfiddich 12", "price": 9000 },
+        { "name": "Chivas Regal", "price": 9000 }
+      ]
+    },
+    {
+      "slug": "vins-rouges",
+      "name": "Vins rouges",
+      "service": "Bouteille",
+      "items": [
+        { "name": "Seriously Old Dirt", "price": 70000 },
+        { "name": "Pascal Jolivet", "price": 60000 },
+        { "name": "Warwick", "price": 40000 },
+        { "name": "Château de Remandine", "price": 35000 },
+        { "name": "Château Pontet Fumet", "price": 40000 },
+        { "name": "Margaux Brio", "price": 80000 },
+        { "name": "Tour de Ségur", "price": 60000 },
+        { "name": "Château Grand Meynau", "price": 65000 },
+        { "name": "Château Gravet Renaissance", "price": 45000 },
+        { "name": "Château Fernande Grattes", "price": 65000 },
+        { "name": "Marquis de Loges", "price": 30000 },
+        { "name": "Le Lièvre", "price": 40000 },
+        { "name": "Mission du Pape", "price": 30000 },
+        { "name": "Château Talbot", "price": 150000 },
+        { "name": "La Fiole de Pape", "price": 60000 },
+        { "name": "Château Vieux Guinot", "price": 50000 },
+        { "name": "Bourgogne Pinot Noir", "price": 65000 },
+        { "name": "La Sirène de Giscours", "price": 65000 },
+        { "name": "Le Palatin", "price": 60000 },
+        { "name": "Domaine de Baume", "price": 30000 },
+        { "name": "Côte-Rôtie", "price": 70000 },
+        { "name": "Hartenberg", "price": 30000 },
+        { "name": "L’Hospitalet", "price": 60000 },
+        { "name": "Château Vieux Fort", "price": 30000 },
+        { "name": "Château La Croix de Chéreau", "price": 77000 },
+        { "name": "Château de Seguin", "price": 60000 }
+      ]
+    },
+    {
+      "slug": "whiskies-japonais",
+      "name": "Whiskies japonais",
+      "service": "Verre",
+      "items": [
+        { "name": "Togouchi", "price": 30000 },
+        { "name": "Akashi", "price": 30000 },
+        { "name": "Ibiki", "price": 30000 },
+        { "name": "Nikka Days", "price": 30000 },
+        { "name": "Koshi No Shinobo", "price": 30000 },
+        { "name": "Nikka Coffey", "price": 30000 },
+        { "name": "Suntory Tory", "price": 25000 },
+        { "name": "Kamiki", "price": 30000 }
+      ]
+    },
+    {
+      "slug": "rhums",
+      "name": "Rhums",
+      "service": "Verre",
+      "items": [
+        { "name": "Mangoustans", "price": 8000 },
+        { "name": "Black Tears", "price": 12000 },
+        { "name": "Ron Perla", "price": 8000 },
+        { "name": "Havana Édition Professionnelle", "price": 9000 },
+        { "name": "Ritual", "price": 25000 },
+        { "name": "Diplomatico", "price": 20000 },
+        { "name": "Havana Club Smuky", "price": 1200 },
+        { "name": "Havana Réserva", "price": 9000 },
+        { "name": "Malibu", "price": 6000 },
+        { "name": "Plantation XO", "price": 25000 }
+      ]
+    },
+    {
+      "slug": "liqueurs",
+      "name": "Liqueurs",
+      "service": "Verre",
+      "items": [
+        { "name": "Get 27", "price": 5000 },
+        { "name": "Martini Rouge", "price": 5000 },
+        { "name": "Martini Blanc", "price": 5000 },
+        { "name": "Amarula Ethiopian", "price": 8000 },
+        { "name": "Amarula Cream", "price": 8000 },
+        { "name": "Baileys", "price": 5000 },
+        { "name": "Cointreau", "price": 7000 },
+        { "name": "Suze", "price": 5000 },
+        { "name": "Campari", "price": 5000 },
+        { "name": "Bottega Limoncino", "price": 7000 },
+        { "name": "Bottega Fior di Latte", "price": 7000 },
+        { "name": "Bottega Gianduia", "price": 7000 },
+        { "name": "Richard", "price": 5000 },
+        { "name": "Anisette", "price": 7000 },
+        { "name": "Porto", "price": 5000 },
+        { "name": "Sheridans", "price": 8000 }
+      ]
+    }
+  ]
+}

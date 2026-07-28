@@ -14,6 +14,7 @@ type Item = {
   price: number;
   image_url: string | null;
   is_available: boolean;
+  is_sellable: boolean;
   is_daily_special: boolean;
 };
 type Category = { id: string; name: string; kind: string; menu_items: Item[] };
@@ -25,12 +26,22 @@ export default async function MenuAdminPage() {
   const { data: categories } = await supabase
     .from("menu_categories")
     .select(
-      "id, name, kind, menu_items ( id, name, description, price, image_url, is_available, is_daily_special )"
+      "id, name, kind, menu_items ( id, name, description, price, image_url, is_available, is_sellable, is_daily_special )"
     )
     .order("sort_order", { ascending: true })
     .returns<Category[]>();
 
-  const allCategories = (categories ?? []).map((c) => ({ id: c.id, name: c.name }));
+  const visibleCategories = (categories ?? [])
+    .map((category) => ({
+      ...category,
+      menu_items:
+        category.kind === "bar"
+          ? (category.menu_items ?? []).filter((item) => item.is_sellable)
+          : category.menu_items ?? [],
+    }))
+    .filter((category) => category.kind !== "bar" || category.menu_items.length > 0);
+
+  const allCategories = visibleCategories.map((c) => ({ id: c.id, name: c.name }));
 
   return (
     <div>
@@ -38,8 +49,8 @@ export default async function MenuAdminPage() {
 
       <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-8">
-          {categories && categories.length > 0 ? (
-            categories.map((category) => (
+          {visibleCategories.length > 0 ? (
+            visibleCategories.map((category) => (
               <Card key={category.id}>
                 <div className="mb-3 flex items-center justify-between">
                   <p className="font-display text-lg text-gold-soft">{category.name}</p>

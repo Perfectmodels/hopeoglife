@@ -1,5 +1,9 @@
 Voici une liste structurée de produits à intégrer au site et au POS, classée par catégories pour le **bar**, le **restaurant** et le **lounge**.
 
+> **Source actuelle du bar :** la carte réelle Hope Of Life est maintenue dans
+> `data/bar-menu.json`. Les anciennes sections bar de ce document restent
+> uniquement comme historique et ne sont plus importées dans le catalogue.
+
 # Catalogue des produits du bar et du restaurant
 
 ## 1. Boissons gazeuses

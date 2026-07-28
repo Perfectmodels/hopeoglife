@@ -40,8 +40,21 @@ for (const category of menuCategories) {
 
 const { data: existingMenuItems, error: itemReadError } = await supabase
   .from("menu_items")
-  .select("id,name,category_id");
+  .select("id,name,category_id,internal_reference");
 if (itemReadError) throw itemReadError;
+
+const barCategoryIds = existingCategories
+  .filter((category) => category.kind === "bar")
+  .map((category) => category.id);
+if (barCategoryIds.length > 0) {
+  const { error: deactivateBarError } = await supabase
+    .from("menu_items")
+    .update({ is_available: false, is_sellable: false })
+    .in("category_id", barCategoryIds)
+    .not("internal_reference", "like", "HOL-BAR-REAL-%");
+  if (deactivateBarError) throw deactivateBarError;
+}
+
 const existingMenuKeys = new Set(
   existingMenuItems.map((item) => `${item.category_id}:${item.name}`)
 );

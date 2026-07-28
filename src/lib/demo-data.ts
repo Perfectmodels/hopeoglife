@@ -1,7 +1,9 @@
-// Données de démonstration affichées tant que Supabase n'est pas connecté
+import barMenuCatalog from "../../data/bar-menu.json";
+
+// Données affichées tant que Supabase n'est pas connecté
 // (voir isSupabaseConfigured dans lib/supabase/env.ts) ou que les tables
-// sont encore vides. À remplacer par le vrai menu / les vrais événements
-// une fois saisis dans le tableau de bord.
+// sont encore vides. La carte du bar ci-dessous provient de la carte
+// physique Hope Of Life transmise le 28 juillet 2026.
 
 export type DemoMenuItem = {
   id: string;
@@ -11,6 +13,7 @@ export type DemoMenuItem = {
   imageUrl?: string;
   allergens?: string[];
   isDailySpecial?: boolean;
+  isOrderable?: boolean;
 };
 
 export type DemoMenuCategory = {
@@ -89,50 +92,37 @@ export const demoRestaurantMenu: DemoMenuCategory[] = [
   },
 ];
 
-export const demoBarMenu: DemoMenuCategory[] = [
-  {
-    id: "cocktails",
-    name: "Cocktails signature",
-    items: [
-      {
-        id: "c1",
-        name: "Hope Sunset",
-        description: "Rhum ambré, passion, gingembre, citron vert",
-        price: 7500,
-        imageUrl: "/menu/c1.jpg",
-        isDailySpecial: true,
-      },
-      {
-        id: "c2",
-        name: "Lounge Gold",
-        description: "Gin, champagne, sirop de fleur d'oranger, feuille d'or",
-        price: 9000,
-        imageUrl: "/menu/c2.jpg",
-      },
-    ],
-  },
-  {
-    id: "champagnes",
-    name: "Champagnes & Vins",
-    items: [
-      { id: "v1", name: "Champagne Moët & Chandon", description: "Bouteille 75cl", price: 85000, imageUrl: "/menu/v1.jpg" },
-      { id: "v2", name: "Vin rouge, sélection Hope Of Life", description: "Verre", price: 5500, imageUrl: "/menu/v2.jpg" },
-    ],
-  },
-  {
-    id: "mocktails",
-    name: "Mocktails",
-    items: [
-      {
-        id: "m1",
-        name: "Garden Fresh",
-        description: "Concombre, menthe, citron vert, eau pétillante",
-        price: 4500,
-        imageUrl: "/menu/m1.jpg",
-      },
-    ],
-  },
-];
+function stableCatalogUuid(scope: "category" | "item", index: number) {
+  const prefix = scope === "category" ? "ba100000" : "ba200000";
+  return `${prefix}-0000-4000-8000-${String(index).padStart(12, "0")}`;
+}
+
+let barItemIndex = 0;
+
+export const demoBarMenu: DemoMenuCategory[] = barMenuCatalog.categories.map(
+  (category, categoryIndex) => ({
+    id: stableCatalogUuid("category", categoryIndex + 1),
+    name: category.name,
+    items: category.items.map((item) => {
+      barItemIndex += 1;
+      const service = "service" in item ? item.service : category.service;
+      return {
+        id: stableCatalogUuid("item", barItemIndex),
+        name: item.name,
+        description:
+          "description" in item
+            ? item.description
+            : service === "Bouteille"
+              ? "Bouteille."
+              : service === "Shot"
+                ? "Shot."
+                : "Servi au verre.",
+        price: item.price,
+        isOrderable: false,
+      };
+    }),
+  })
+);
 
 export type DemoEvent = {
   id: string;

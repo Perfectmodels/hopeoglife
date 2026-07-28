@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "bar-menu:migration": "node scripts-build-bar-menu-migration.mjs",
     "catalog:build": "node scripts-build-product-catalog.mjs",
     "catalog:images": "node scripts-fetch-product-images.mjs",
     "catalog:import": "node scripts-import-products.mjs"

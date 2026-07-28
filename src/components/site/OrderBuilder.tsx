@@ -37,7 +37,13 @@ export function OrderBuilder({
     [cartLines]
   );
 
-  function addToCart(item: { id: string; name: string; price: number }) {
+  function addToCart(item: {
+    id: string;
+    name: string;
+    price: number;
+    isOrderable?: boolean;
+  }) {
+    if (item.isOrderable === false) return;
     setCart((prev) => {
       const existing = prev[item.id];
       return {
@@ -117,9 +123,10 @@ export function OrderBuilder({
                     <button
                       type="button"
                       onClick={() => addToCart(item)}
-                      className="shrink-0 rounded-full border border-gold/50 px-4 py-2 text-xs uppercase tracking-wider text-gold transition-colors hover:bg-gold/10"
+                      disabled={item.isOrderable === false}
+                      className="shrink-0 rounded-full border border-gold/50 px-4 py-2 text-xs uppercase tracking-wider text-gold transition-colors hover:bg-gold/10 disabled:cursor-not-allowed disabled:border-border-subtle disabled:text-muted disabled:hover:bg-transparent"
                     >
-                      Ajouter
+                      {item.isOrderable === false ? "Sur place" : "Ajouter"}
                     </button>
                   </div>
                 ))}

@@ -42,6 +42,12 @@ export async function getMenuByKind(kind: "restaurant" | "bar"): Promise<DemoMen
       return fallback;
     }
 
+    // Tant que la migration de la vraie carte n'est pas appliquée, ne pas
+    // réafficher l'ancien catalogue bar estimatif encore présent en base.
+    if (kind === "bar" && !data.some((category) => category.id === demoBarMenu[0]?.id)) {
+      return fallback;
+    }
+
     const categories = data
       .map((category) => ({
         id: category.id,

@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const sourcePath = path.join(process.cwd(), "data", "product-catalog-source.md");
+const barMenuPath = path.join(process.cwd(), "data", "bar-menu.json");
 const outputPath = path.join(process.cwd(), "data", "product-catalog.json");
 
 const menuBasePrices = {
@@ -114,6 +115,7 @@ function descriptionFor(kind, categoryName, name) {
 }
 
 const source = await fs.readFile(sourcePath, "utf8");
+const barMenu = JSON.parse(await fs.readFile(barMenuPath, "utf8"));
 const catalogEnd = source.indexOf("# Informations à enregistrer");
 const catalogText = catalogEnd >= 0 ? source.slice(0, catalogEnd) : source;
 const sectionPattern = /^##\s+(\d+)\.\s+(.+)$/gm;
@@ -129,6 +131,7 @@ for (let index = 0; index < matches.length; index += 1) {
   const end = matches[index + 1]?.index ?? catalogText.length;
   const items = [...catalogText.slice(start, end).matchAll(/^\*\s+(.+)$/gm)].map((item) => item[1].trim());
   const kind = number <= 26 || number === 49 ? "bar" : number <= 50 ? "restaurant" : "stock";
+  if (kind === "bar") continue;
   const categorySlug = `${String(number).padStart(2, "0")}-${slugify(categoryName)}`;
 
   categories.push({ number, name: categoryName, slug: categorySlug, kind });
@@ -164,6 +167,56 @@ for (let index = 0; index < matches.length; index += 1) {
     });
   });
 }
+
+let realBarItemIndex = 0;
+const realBarCategories = [];
+const realBarProducts = [];
+barMenu.categories.forEach((category, categoryIndex) => {
+  const number = categoryIndex + 1;
+  const categorySlug = `bar-reel-${String(number).padStart(2, "0")}-${category.slug}`;
+  realBarCategories.push({
+    number,
+    name: category.name,
+    slug: categorySlug,
+    kind: "bar",
+  });
+
+  category.items.forEach((item, itemIndex) => {
+    realBarItemIndex += 1;
+    const service = item.service ?? category.service;
+    const description =
+      item.description ??
+      (service === "Bouteille"
+        ? "Bouteille."
+        : service === "Shot"
+          ? "Shot."
+          : "Servi au verre.");
+
+    realBarProducts.push({
+      slug: `${categorySlug}-${String(itemIndex + 1).padStart(2, "0")}-${slugify(item.name)}`,
+      name: item.name,
+      categoryNumber: number,
+      category: category.name,
+      kind: "bar",
+      description,
+      imagePath: null,
+      internalReference: `HOL-BAR-REAL-${String(realBarItemIndex).padStart(3, "0")}`,
+      unit: service === "Bouteille" ? "bouteille" : service === "Shot" ? "shot" : "verre",
+      purchasePrice: null,
+      salePrice: Number(item.price),
+      promotionalPrice: null,
+      quantityAvailable: 0,
+      minimumStock: 0,
+      taxRate: 18,
+      active: true,
+      sellable: true,
+      destination: "bar",
+      sortOrder: itemIndex,
+    });
+  });
+});
+categories.unshift(...realBarCategories);
+products.unshift(...realBarProducts);
 
 await fs.writeFile(outputPath, `${JSON.stringify({ categories, products }, null, 2)}\n`, "utf8");
 console.log(`Catalogue généré : ${products.length} produits dans ${categories.length} catégories.`);
