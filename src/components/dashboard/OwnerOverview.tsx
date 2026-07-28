@@ -459,7 +459,7 @@ export async function OwnerOverview() {
               </p>
             </div>
           </div>
-          <div className="dashboard-scrollbar overflow-x-auto px-2 pb-2 pt-3 sm:px-4">
+          <div className="overflow-hidden px-2 pb-2 pt-3 sm:px-4">
             <RevenueChart points={revenuePoints} />
           </div>
           <div className="grid border-t border-border-subtle sm:grid-cols-3">

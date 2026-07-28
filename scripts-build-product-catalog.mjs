@@ -3,6 +3,7 @@ import path from "node:path";
 
 const sourcePath = path.join(process.cwd(), "data", "product-catalog-source.md");
 const barMenuPath = path.join(process.cwd(), "data", "bar-menu.json");
+const realBarImageSourcesPath = path.join(process.cwd(), "data", "product-image-sources.json");
 const outputPath = path.join(process.cwd(), "data", "product-catalog.json");
 
 const menuBasePrices = {
@@ -116,6 +117,9 @@ function descriptionFor(kind, categoryName, name) {
 
 const source = await fs.readFile(sourcePath, "utf8");
 const barMenu = JSON.parse(await fs.readFile(barMenuPath, "utf8"));
+const realBarImageSources = JSON.parse(
+  await fs.readFile(realBarImageSourcesPath, "utf8").catch(() => "{}")
+);
 const catalogEnd = source.indexOf("# Informations à enregistrer");
 const catalogText = catalogEnd >= 0 ? source.slice(0, catalogEnd) : source;
 const sectionPattern = /^##\s+(\d+)\.\s+(.+)$/gm;
@@ -192,14 +196,18 @@ barMenu.categories.forEach((category, categoryIndex) => {
           ? "Shot."
           : "Servi au verre.");
 
+    const slug = `${categorySlug}-${String(itemIndex + 1).padStart(2, "0")}-${slugify(item.name)}`;
     realBarProducts.push({
-      slug: `${categorySlug}-${String(itemIndex + 1).padStart(2, "0")}-${slugify(item.name)}`,
+      slug,
       name: item.name,
       categoryNumber: number,
       category: category.name,
       kind: "bar",
       description,
-      imagePath: null,
+      imagePath: realBarImageSources[slug]
+        ? `/products/bar/${slug}.webp`
+        : null,
+      imageSourceUrl: realBarImageSources[slug]?.sourceUrl ?? null,
       internalReference: `HOL-BAR-REAL-${String(realBarItemIndex).padStart(3, "0")}`,
       unit: service === "Bouteille" ? "bouteille" : service === "Shot" ? "shot" : "verre",
       purchasePrice: null,

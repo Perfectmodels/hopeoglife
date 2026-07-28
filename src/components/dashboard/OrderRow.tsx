@@ -100,7 +100,7 @@ export function OrderRow({
             />
             {pendingSensitiveStatus ? (
               <form
-                className="mt-2 w-52 space-y-2 rounded-lg border border-red-500/30 bg-red-500/[0.04] p-3"
+                className="mt-2 w-full max-w-52 space-y-2 rounded-lg border border-red-500/30 bg-red-500/[0.04] p-3"
                 onSubmit={(event) => {
                   event.preventDefault();
                   startTransition(async () => {
@@ -169,7 +169,7 @@ export function OrderRow({
             </button>
             <div className={cn("collapse-panel", payOpen && "is-open")}>
               <div>
-                <form action={formAction} className="mt-2 space-y-2 rounded-lg border border-border-subtle bg-background p-3">
+                <form action={formAction} className="mt-2 w-full max-w-56 space-y-2 rounded-lg border border-border-subtle bg-background p-3">
                   <input type="hidden" name="orderId" value={order.id} />
                   <select name="method" className={inputClasses} defaultValue="especes">
                     <option value="especes">Espèces</option>
@@ -232,7 +232,7 @@ export function OrderRow({
             <div className={cn("collapse-panel", transferOpen && "is-open")}>
               <div>
                 <form
-                  className="mt-2 flex items-center gap-1.5"
+                  className="mt-2 flex w-full max-w-60 flex-wrap items-center gap-1.5"
                   onSubmit={(e) => {
                     e.preventDefault();
                     const select = e.currentTarget.elements.namedItem("tableId") as HTMLSelectElement;

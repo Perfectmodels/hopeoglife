@@ -166,8 +166,8 @@ export default async function EmployeeDetailPage({
         <Card className="lg:col-span-2">
           <p className="mb-4 font-display text-lg text-champagne">Pointage</p>
           {attendance && attendance.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="table-responsive w-full text-left text-sm lg:min-w-[560px]">
+            <div className="overflow-hidden">
+              <table className="table-responsive w-full text-left text-sm">
                 <thead className="text-xs uppercase tracking-wider text-muted">
                   <tr>
                     <th className="py-2 pr-4">Arrivée</th>

@@ -67,8 +67,8 @@ export default async function ReservationsPage({
       />
 
       {reservations && reservations.length > 0 ? (
-        <div className="overflow-x-auto rounded-2xl border border-border-subtle">
-          <table className="table-responsive w-full text-left text-sm lg:min-w-[900px]">
+        <div className="overflow-hidden rounded-2xl border border-border-subtle">
+          <table className="table-responsive w-full text-left text-sm">
             <thead className="bg-background-elevated text-xs uppercase tracking-wider text-muted">
               <tr>
                 <th className="px-4 py-3">Heure</th>

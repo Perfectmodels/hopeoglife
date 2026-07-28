@@ -350,9 +350,9 @@ export function ReceiptBuilder({
         </div>
       ) : null}
 
-      <div className="overflow-x-auto rounded-2xl border border-border-subtle bg-background-elevated p-6">
+      <div className="overflow-hidden rounded-2xl border border-border-subtle bg-background-elevated p-4 sm:p-6">
         {lines.length > 0 ? (
-          <table className="table-responsive w-full text-left text-sm lg:min-w-[720px]">
+          <table className="table-responsive w-full text-left text-sm">
             <thead className="text-xs uppercase tracking-wider text-muted">
               <tr>
                 <th className="py-2 pr-4">Produit</th>

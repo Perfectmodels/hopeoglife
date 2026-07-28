@@ -4,6 +4,7 @@ import { Container } from "@/components/site/Container";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { ContactForm } from "@/components/site/ContactForm";
 import { siteConfig } from "@/lib/site-config";
+import { LuxuryHero } from "@/components/site/LuxuryHero";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -12,8 +13,16 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <section className="py-24">
-      <Container className="grid gap-16 lg:grid-cols-[1.2fr_1fr]">
+    <>
+      <LuxuryHero
+        image="/hero/hero-gallery-1.jpg"
+        alt="Intérieur Hope Of Life"
+        eyebrow="Contact"
+        title="Parlons de votre prochaine soirée"
+        description="Une réservation spéciale, une privatisation ou une simple question : notre équipe est à votre écoute."
+      />
+      <section className="py-16 sm:py-20">
+      <Container className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.9fr)]">
         <div>
           <SectionHeading
             eyebrow="Contact"
@@ -26,7 +35,7 @@ export default function ContactPage() {
         </div>
 
         <aside className="space-y-6">
-          <div className="rounded-2xl border border-border-subtle bg-background-elevated p-8">
+          <div className="onyx-panel rounded-2xl p-6 sm:p-8">
             <p className="font-display text-lg text-champagne">Coordonnées</p>
             <ul className="mt-6 space-y-4 text-sm text-muted">
               <li className="flex items-start gap-3">
@@ -82,6 +91,7 @@ export default function ContactPage() {
           </div>
         </aside>
       </Container>
-    </section>
+      </section>
+    </>
   );
 }

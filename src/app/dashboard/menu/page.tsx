@@ -1,9 +1,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { requireRole } from "@/lib/auth/guard";
 import { PageHeader } from "@/components/dashboard/PageHeader";
-import { Card, EmptyState } from "@/components/dashboard/Card";
-import { MenuItemRow } from "@/components/dashboard/MenuItemRow";
-import { NewCategoryForm, NewItemForm } from "@/components/dashboard/MenuForms";
+import { CatalogManager } from "@/components/dashboard/CatalogManager";
 
 export const metadata = { title: "Gestion du menu" };
 
@@ -41,52 +39,10 @@ export default async function MenuAdminPage() {
     }))
     .filter((category) => category.kind !== "bar" || category.menu_items.length > 0);
 
-  const allCategories = visibleCategories.map((c) => ({ id: c.id, name: c.name }));
-
   return (
     <div>
       <PageHeader title="Gestion du menu" description="Ajoutez, tarifez et activez les produits du restaurant et du bar." />
-
-      <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-        <div className="space-y-8">
-          {visibleCategories.length > 0 ? (
-            visibleCategories.map((category) => (
-              <Card key={category.id}>
-                <div className="mb-3 flex items-center justify-between">
-                  <p className="font-display text-lg text-gold-soft">{category.name}</p>
-                  <span className="text-xs uppercase tracking-widest text-muted">
-                    {category.kind === "restaurant" ? "Restaurant" : "Bar"}
-                  </span>
-                </div>
-                {category.menu_items && category.menu_items.length > 0 ? (
-                  <div>
-                    {category.menu_items.map((item) => (
-                      <MenuItemRow key={item.id} item={item} />
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-sm text-muted">Aucun produit dans cette catégorie.</p>
-                )}
-              </Card>
-            ))
-          ) : (
-            <EmptyState message="Aucune catégorie. Créez-en une pour commencer." />
-          )}
-        </div>
-
-        <div className="space-y-6">
-          <Card>
-            <p className="mb-4 font-display text-base text-champagne">Nouvelle catégorie</p>
-            <NewCategoryForm />
-          </Card>
-          {allCategories.length > 0 ? (
-            <Card>
-              <p className="mb-4 font-display text-base text-champagne">Nouveau produit</p>
-              <NewItemForm categories={allCategories} />
-            </Card>
-          ) : null}
-        </div>
-      </div>
+      <CatalogManager categories={visibleCategories} />
     </div>
   );
 }

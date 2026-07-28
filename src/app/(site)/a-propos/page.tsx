@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { ButtonLink } from "@/components/site/Button";
 import { PrivatizationForm } from "@/components/site/PrivatizationForm";
 import { siteConfig } from "@/lib/site-config";
+import { LuxuryHero } from "@/components/site/LuxuryHero";
 
 export const metadata: Metadata = {
   title: "À propos",
@@ -46,38 +47,15 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      {/* Hero bannière */}
-      <div className="relative overflow-hidden bg-background">
-        <Image
-          src="/hero/hero-gallery-2.jpg"
-          alt="Ambiance lounge Hope Of Life"
-          width={1920}
-          height={600}
-          className="h-56 w-full object-cover sm:h-72 lg:h-96"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Container className="flex flex-col items-center text-center">
-            <Image
-              src="/Logo.png"
-              alt="Hope Of Life"
-              width={100}
-              height={113}
-              priority
-              className="mb-6 h-20 w-auto opacity-90 sm:h-24"
-            />
-            <SectionHeading
-              eyebrow="Notre histoire"
-              title={`${siteConfig.name}, l'art de recevoir`}
-              description={`Situé à ${siteConfig.location}, ${siteConfig.name} est né de la volonté de créer un lieu unique à Libreville : un restaurant gastronomique et un bar lounge réunis dans un même écrin, où chaque détail est pensé pour offrir une expérience haut de gamme.`}
-              align="center"
-            />
-          </Container>
-        </div>
-      </div>
+      <LuxuryHero
+        image="/hero/hero-gallery-2.jpg"
+        alt="Ambiance lounge Hope Of Life"
+        eyebrow="Notre histoire"
+        title={`${siteConfig.name}, l’art de recevoir`}
+        description={`À ${siteConfig.location}, restaurant, bar et lounge se rencontrent dans un écrin Onyx & Or où chaque détail compose une expérience singulière.`}
+      />
 
-      <section className="border-t border-border-subtle/70 bg-background-elevated py-24">
+      <section className="border-t border-gold/15 py-16 sm:py-20">
         <Container className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <SectionHeading
             eyebrow="Notre vision"
@@ -120,7 +98,7 @@ export default function AboutPage() {
             {values.map((value) => (
               <div
                 key={value.title}
-                className="rounded-2xl border border-border-subtle bg-background-elevated p-6 text-center"
+                className="onyx-panel rounded-2xl p-6 text-center"
               >
                 <p className="font-display text-lg text-gold-soft">{value.title}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{value.description}</p>
@@ -130,7 +108,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section id="privatisation" className="scroll-mt-24 border-t border-border-subtle/70 bg-background-elevated py-24">
+      <section id="privatisation" className="scroll-mt-28 border-t border-gold/15 bg-black/15 py-16 sm:py-20">
         <Container className="grid gap-16 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <SectionHeading

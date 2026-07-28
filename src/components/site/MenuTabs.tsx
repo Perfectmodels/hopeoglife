@@ -1,9 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MenuList } from "./MenuList";
+import { inputClasses } from "./FormField";
 import type { DemoMenuCategory } from "@/lib/demo-data";
+
+const ITEMS_PER_PAGE = 12;
 
 export function MenuTabs({
   restaurant,
@@ -18,14 +22,34 @@ export function MenuTabs({
   const [activeCategoryId, setActiveCategoryId] = useState(
     (initialTab === "restaurant" ? restaurant : bar)[0]?.id ?? ""
   );
+  const [page, setPage] = useState(1);
   const categories = tab === "restaurant" ? restaurant : bar;
   const activeCategory =
     categories.find((category) => category.id === activeCategoryId) ?? categories[0];
+  const totalPages = Math.max(
+    1,
+    Math.ceil((activeCategory?.items.length ?? 0) / ITEMS_PER_PAGE)
+  );
+  const visibleCategory = activeCategory
+    ? {
+        ...activeCategory,
+        items: activeCategory.items.slice(
+          (page - 1) * ITEMS_PER_PAGE,
+          page * ITEMS_PER_PAGE
+        ),
+      }
+    : null;
 
   function selectTab(nextTab: "restaurant" | "bar") {
     const nextCategories = nextTab === "restaurant" ? restaurant : bar;
     setTab(nextTab);
     setActiveCategoryId(nextCategories[0]?.id ?? "");
+    setPage(1);
+  }
+
+  function selectCategory(id: string) {
+    setActiveCategoryId(id);
+    setPage(1);
   }
 
   return (
@@ -53,31 +77,67 @@ export function MenuTabs({
         ))}
       </div>
 
-      <div
-        key={`chips-${tab}`}
-        className="site-fade-in -mx-4 mt-8 flex snap-x gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0"
-        aria-label="Catégories du menu"
-      >
-        {categories.map((c) => (
-          <button
-            key={c.id}
-            type="button"
-            onClick={() => setActiveCategoryId(c.id)}
-            aria-pressed={activeCategory?.id === c.id}
-            className={cn(
-              "min-h-11 shrink-0 snap-start rounded-full border px-4 py-2 text-xs uppercase tracking-widest transition-colors",
-              activeCategory?.id === c.id
-                ? "border-gold bg-gold/10 text-gold"
-                : "border-border-subtle text-muted hover:border-gold hover:text-gold"
-            )}
-          >
-            {c.name}
-          </button>
-        ))}
+      <div key={`chips-${tab}`} className="site-fade-in mt-8" aria-label="Catégories du menu">
+        <label className="sr-only" htmlFor={`menu-category-${tab}`}>
+          Catégorie
+        </label>
+        <select
+          id={`menu-category-${tab}`}
+          value={activeCategory?.id}
+          onChange={(event) => selectCategory(event.target.value)}
+          className={cn(inputClasses, "sm:hidden")}
+        >
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name} ({category.items.length})
+            </option>
+          ))}
+        </select>
+        <div className="hidden flex-wrap gap-2 sm:flex">
+          {categories.map((c) => (
+            <button
+              key={c.id}
+              type="button"
+              onClick={() => selectCategory(c.id)}
+              aria-pressed={activeCategory?.id === c.id}
+              className={cn(
+                "min-h-10 rounded-full border px-4 py-2 text-xs uppercase tracking-widest transition-colors",
+                activeCategory?.id === c.id
+                  ? "border-gold bg-gold/10 text-gold"
+                  : "border-border-subtle text-muted hover:border-gold hover:text-gold"
+              )}
+            >
+              {c.name}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div key={`${tab}-${activeCategory?.id}`} className="site-fade-in mt-12">
-        <MenuList categories={activeCategory ? [activeCategory] : []} />
+        <MenuList categories={visibleCategory ? [visibleCategory] : []} />
+        {totalPages > 1 ? (
+          <div className="mt-8 flex items-center justify-between gap-3 border-t border-border-subtle pt-5">
+            <button
+              type="button"
+              onClick={() => setPage((current) => Math.max(1, current - 1))}
+              disabled={page === 1}
+              className="inline-flex min-h-11 items-center gap-1 rounded-full border border-border-subtle px-4 text-xs text-muted hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35"
+            >
+              <ChevronLeft size={14} /> Précédent
+            </button>
+            <span className="text-xs text-muted">
+              {page} / {totalPages}
+            </span>
+            <button
+              type="button"
+              onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+              disabled={page === totalPages}
+              className="inline-flex min-h-11 items-center gap-1 rounded-full border border-border-subtle px-4 text-xs text-muted hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35"
+            >
+              Suivant <ChevronRight size={14} />
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

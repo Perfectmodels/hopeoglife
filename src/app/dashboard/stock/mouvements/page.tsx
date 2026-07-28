@@ -40,8 +40,8 @@ export default async function MouvementsPage() {
 
       <Card>
         {movements && movements.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="table-responsive w-full text-left text-sm lg:min-w-[860px]">
+          <div className="overflow-hidden">
+            <table className="table-responsive w-full text-left text-sm">
               <thead className="text-xs uppercase tracking-wider text-muted">
                 <tr>
                   <th className="py-2 pr-4">Date</th>

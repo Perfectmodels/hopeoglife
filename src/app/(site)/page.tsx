@@ -32,8 +32,10 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex min-h-[85vh] items-center overflow-hidden">
+      <section className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-center overflow-hidden border-b border-gold/20 py-16 sm:min-h-[calc(100svh-6.5rem)] sm:py-20">
         <HeroCarousel slides={heroSlides} />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,3,4,.96)_0%,rgba(3,3,4,.72)_52%,rgba(3,3,4,.3)_100%)]" />
+        <div className="luxury-grid absolute inset-0 opacity-20" />
         {heroSlides.length === 1 && !heroSlides[0].imageUrl ? (
           <Image
             src="/Logo.png"
@@ -45,42 +47,74 @@ export default async function HomePage() {
             className="pointer-events-none absolute -right-24 top-1/2 hidden -translate-y-1/2 opacity-[0.08] lg:block xl:-right-10"
           />
         ) : null}
-        <Container className="relative">
-          <p
-            className="hero-rise mb-5 text-xs font-medium uppercase tracking-[0.4em] text-gold"
-            style={{ "--hero-delay": "100ms" } as React.CSSProperties}
-          >
-            {siteConfig.location}
-          </p>
-          <h1
-            className="hero-rise max-w-3xl font-display text-5xl font-semibold leading-tight text-foreground sm:text-6xl"
-            style={{ "--hero-delay": "250ms" } as React.CSSProperties}
-          >
-            Une expérience <span className="text-gradient-gold">lounge</span> et gastronomique
-            d&apos;exception
-          </h1>
-          <p
-            className="hero-rise mt-6 max-w-xl text-lg leading-relaxed text-muted"
-            style={{ "--hero-delay": "400ms" } as React.CSSProperties}
-          >
-            {siteConfig.description}
-          </p>
-          <div
-            className="hero-rise mt-10 flex flex-wrap gap-4"
-            style={{ "--hero-delay": "550ms" } as React.CSSProperties}
-          >
-            <ButtonLink href="/reservation">
-              Réserver une table <ArrowRight size={16} />
-            </ButtonLink>
-            <ButtonLink href="/commande" variant="outline">
-              Commander en ligne
-            </ButtonLink>
+        <Container className="relative grid items-end gap-12 xl:grid-cols-[minmax(0,1fr)_19rem]">
+          <div>
+            <p
+              className="hero-rise luxury-kicker"
+              style={{ "--hero-delay": "100ms" } as React.CSSProperties}
+            >
+              Restaurant · Bar · Lounge
+            </p>
+            <h1
+              className="hero-rise mt-5 max-w-4xl font-display text-5xl font-semibold leading-[0.92] tracking-[-0.045em] text-champagne sm:text-7xl lg:text-8xl"
+              style={{ "--hero-delay": "250ms" } as React.CSSProperties}
+            >
+              L&apos;élégance <span className="text-gradient-gold">Onyx & Or</span>, jusque dans
+              l&apos;assiette.
+            </h1>
+            <p
+              className="hero-rise mt-6 max-w-2xl text-base leading-7 text-champagne/70 sm:text-lg"
+              style={{ "--hero-delay": "400ms" } as React.CSSProperties}
+            >
+              {siteConfig.description} Une adresse pensée pour dîner, célébrer et prolonger la nuit.
+            </p>
+            <div
+              className="hero-rise mt-8 flex flex-wrap gap-3"
+              style={{ "--hero-delay": "550ms" } as React.CSSProperties}
+            >
+              <ButtonLink href="/reservation">
+                Réserver une table <ArrowRight size={16} />
+              </ButtonLink>
+              <ButtonLink href="/menu?tab=bar" variant="outline">
+                Découvrir la carte
+              </ButtonLink>
+            </div>
           </div>
+
+          <aside
+            className="onyx-panel gold-frame hero-rise hidden rounded-2xl p-6 xl:block"
+            style={{ "--hero-delay": "650ms" } as React.CSSProperties}
+          >
+            <Image
+              src="/Logo.png"
+              alt=""
+              aria-hidden
+              width={72}
+              height={81}
+              className="h-16 w-auto"
+            />
+            <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-gold">
+              Votre soirée
+            </p>
+            <p className="mt-3 font-display text-2xl leading-tight text-champagne">
+              Un service attentif dans un cadre confidentiel.
+            </p>
+            <div className="mt-6 space-y-3 border-t border-gold/15 pt-5 text-xs text-muted">
+              <p className="flex items-center justify-between gap-3">
+                <span>Adresse</span>
+                <span className="text-right text-champagne">{siteConfig.location}</span>
+              </p>
+              <p className="flex items-center justify-between gap-3">
+                <span>Réservation</span>
+                <span className="text-champagne">{siteConfig.phone}</span>
+              </p>
+            </div>
+          </aside>
         </Container>
       </section>
 
       {/* Intro */}
-      <section className="py-24">
+      <section className="py-16 sm:py-20">
         <Container className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <SectionHeading
@@ -97,7 +131,7 @@ export default async function HomePage() {
               { label: "Soirées à thème", value: "Événements réguliers" },
             ].map((item, i) => (
               <Reveal key={item.label} delay={i * 90}>
-                <div className="rounded-2xl border border-border-subtle bg-background-elevated p-6">
+                <div className="onyx-panel rounded-2xl p-5 sm:p-6">
                   <p className="font-display text-lg text-gold-soft">{item.value}</p>
                   <p className="mt-1 text-sm text-muted">{item.label}</p>
                 </div>
@@ -109,7 +143,7 @@ export default async function HomePage() {
 
       {/* Spécialités */}
       {specialties.length > 0 ? (
-        <section className="border-t border-border-subtle/70 bg-background-elevated py-24">
+        <section className="border-t border-gold/15 bg-black/15 py-16 sm:py-20">
           <Container>
             <Reveal>
               <SectionHeading
@@ -121,7 +155,7 @@ export default async function HomePage() {
             <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {specialties.concat(signatureCocktails.slice(0, 1)).map((item, i) => (
                 <Reveal key={item.id} delay={i * 100}>
-                  <div className="group rounded-2xl border border-border-subtle bg-background p-6 transition-colors hover:border-gold/50">
+                  <div className="onyx-panel group rounded-2xl p-5 transition-colors hover:border-gold/50">
                     {item.imageUrl ? (
                       <Image
                         src={item.imageUrl}
@@ -153,7 +187,7 @@ export default async function HomePage() {
       ) : null}
 
       {/* Événements */}
-      <section className="py-24">
+      <section className="py-16 sm:py-20">
         <Container>
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -166,7 +200,7 @@ export default async function HomePage() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {events.slice(0, 2).map((event, i) => (
               <Reveal key={event.id} delay={i * 100}>
-                <div className="rounded-2xl border border-border-subtle bg-background-elevated p-8">
+                <div className="onyx-panel rounded-2xl p-6 sm:p-8">
                   <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold">
                     {new Date(event.date).toLocaleDateString("fr-FR", {
                       day: "2-digit",
@@ -185,7 +219,7 @@ export default async function HomePage() {
       </section>
 
       {/* Galerie preview */}
-      <section className="border-t border-border-subtle/70 bg-background-elevated py-24">
+      <section className="border-t border-gold/15 bg-black/15 py-16 sm:py-20">
         <Container>
           <Reveal>
             <SectionHeading eyebrow="Ambiance" title="Un aperçu du lieu" align="center" />
@@ -224,7 +258,7 @@ export default async function HomePage() {
       </section>
 
       {/* Infos pratiques */}
-      <section className="py-24">
+      <section className="py-16 sm:py-20">
         <Container className="grid gap-8 sm:grid-cols-3">
           <Reveal className="flex items-start gap-4">
             <Clock className="mt-1 shrink-0 text-gold" size={22} />

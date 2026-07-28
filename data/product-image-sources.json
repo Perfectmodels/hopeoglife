@@ -1,0 +1,842 @@
+{
+  "bar-reel-01-cocktails-01-basse-drink": {
+    "name": "Bassé Drink",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Bassé Drink",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-02-dibal": {
+    "name": "Dibal",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Dibal",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-03-ditengu-drink": {
+    "name": "Ditengu Drink",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Ditengu Drink",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-04-hl": {
+    "name": "HL",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette HL",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-05-okassi": {
+    "name": "Okassi",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Okassi",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-06-chantaco": {
+    "name": "Chantaco",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Chantaco",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-07-hope-of-life": {
+    "name": "Hope of Life",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Hope of Life",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-08-les-iles-varietes": {
+    "name": "Les Îles Variétés",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Les Îles Variétés",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-09-mojito-fruit": {
+    "name": "Mojito fruit",
+    "category": "Cocktails",
+    "sourceUrl": "https://jeffreys-at-home.com/en/products/blonde-bombshell",
+    "sourceTitle": "Blonde Bombshell - Long Drink - Refreshing – Jeffrey's at home"
+  },
+  "bar-reel-01-cocktails-10-mojito-fruit-rouge": {
+    "name": "Mojito fruit rouge",
+    "category": "Cocktails",
+    "sourceUrl": "https://watchciwork.com/strawberry-mojito-mocktail/",
+    "sourceTitle": "The BEST Strawberry Mojito Mocktail - CookWithCi"
+  },
+  "bar-reel-01-cocktails-11-paloma-sky": {
+    "name": "Paloma Sky",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Paloma Sky",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-12-blue-lagon-exotic": {
+    "name": "Blue Lagon Exotic",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Blue Lagon Exotic",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-13-flamant-rose": {
+    "name": "Flamant rose",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Flamant rose",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-14-rainbow-arc-en-ciel": {
+    "name": "Rainbow (Arc-en-ciel)",
+    "category": "Cocktails",
+    "sourceUrl": null,
+    "sourceTitle": "Visualisation de la recette Rainbow (Arc-en-ciel)",
+    "assetType": "AI-generated recipe visual"
+  },
+  "bar-reel-01-cocktails-15-mojito-passion": {
+    "name": "Mojito passion",
+    "category": "Cocktails",
+    "sourceUrl": "https://www.anvar.kz/stock/advertising/recepty/tropikaly-mokhito-kokteyli-osvezhayushchiy-kokteyl-tropicheskiy-mokhito/",
+    "sourceTitle": "«Тропикалық мохито» коктейлі / Освежающий коктейль «Тропический мохито» - anvar.kz"
+  },
+  "bar-reel-01-cocktails-16-mojito-orange": {
+    "name": "Mojito orange",
+    "category": "Cocktails",
+    "sourceUrl": "https://casajada.dk/blogs/drinks-opskrifter/mojito-naranja",
+    "sourceTitle": "Mojito orange"
+  },
+  "bar-reel-01-cocktails-17-bora-bora": {
+    "name": "Bora Bora",
+    "category": "Cocktails",
+    "sourceUrl": "https://chtoby-pomnili.net/articles/recette-cocktail-bora-bora-avec-alcool.html",
+    "sourceTitle": "Recette Cocktail Bora Bora Avec Alcool | Chtoby Pomnili"
+  },
+  "bar-reel-02-vins-blancs-roses-01-exhib": {
+    "name": "Exhib",
+    "category": "Vins blancs & rosés",
+    "sourceUrl": "https://www.lautarul.shop/ro/reserve/3444-recas-ex-1447-explicit-sauvignon-blanc-5942084509398.html",
+    "sourceTitle": "Exhib — photo produit"
+  },
+  "bar-reel-02-vins-blancs-roses-02-rose-et-or": {
+    "name": "Rose et Or",
+    "category": "Vins blancs & rosés",
+    "sourceUrl": "https://shop.frankfurt-airport.com/en-US/product/chateau-minuty-rose-et-or-cotes-de-provence-aoc-dry-rose_76fea488aec60ac9",
+    "sourceTitle": "Château Minuty, Rosé et Or, Côtes de Provence, AOC, dry, rosé | Frankfurt Airport Online Shopping"
+  },
+  "bar-reel-02-vins-blancs-roses-03-chenet": {
+    "name": "Chenet",
+    "category": "Vins blancs & rosés",
+    "sourceUrl": "https://potravinydomov.itesco.sk/groceries/en-SK/products/2002121227090",
+    "sourceTitle": "Chenet — photo produit"
+  },
+  "bar-reel-02-vins-blancs-roses-04-monbazillac-rousseau": {
+    "name": "Monbazillac Rousseau",
+    "category": "Vins blancs & rosés",
+    "sourceUrl": "https://www.vivinto.net/shop/vins/vin-de-france/ch-rousseau-monbazillac-vin-blanc-moelleux-75-cl/",
+    "sourceTitle": "Monbazillac Rousseau — photo produit"
+  },
+  "bar-reel-03-vins-blancs-moelleux-01-calve-classic": {
+    "name": "Calvé Classic",
+    "category": "Vins blancs moelleux",
+    "sourceUrl": "https://drinks2cash.com/wino-calvet-conversation-moelleux-bordeaux-11-biale-polslodkie-750-ml",
+    "sourceTitle": "Wino Calvet Conversation Moelleux Bordeaux 11% białe półsłodkie 750 ml"
+  },
+  "bar-reel-03-vins-blancs-moelleux-02-marquis-des-loges": {
+    "name": "Marquis des Loges",
+    "category": "Vins blancs moelleux",
+    "sourceUrl": "https://www.toulemarket.com/uploads/66b0ad0e3a8a311729",
+    "sourceTitle": "Marquis des Loges Bordeaux — packshot produit"
+  },
+  "bar-reel-03-vins-blancs-moelleux-03-domaine-de-touche": {
+    "name": "Domaine de Touche",
+    "category": "Vins blancs moelleux",
+    "sourceUrl": "https://www.drinkfinder.co.uk/products/domaine-du-touch-gros-manseng-moelleux-75cl",
+    "sourceTitle": "Domaine du Touch Gros Manseng Moelleux Côtes de Gascogne 75cl | French Sweet White | Drink Finder"
+  },
+  "bar-reel-04-vins-blancs-secs-01-riesling": {
+    "name": "Riesling",
+    "category": "Vins blancs secs",
+    "sourceUrl": "https://www.viniou.fr/vins/pays/france/88_alsace/1554_riesling/258727_domaine-wach-andlau-2023",
+    "sourceTitle": "Vins Riesling Domaine Wach - Andlau - 2023 - Avis, conseil, vieillissement et prix."
+  },
+  "bar-reel-04-vins-blancs-secs-02-domaine-des-tourelles": {
+    "name": "Domaine des Tourelles",
+    "category": "Vins blancs secs",
+    "sourceUrl": "https://domainewinesandspirits.com.au/products/domaine-des-tourelles-white",
+    "sourceTitle": "Domaine des Tourelles White 2019"
+  },
+  "bar-reel-04-vins-blancs-secs-03-domaine-de-touche": {
+    "name": "Domaine de Touche",
+    "category": "Vins blancs secs",
+    "sourceUrl": "https://www.houra.fr/sauvignon-blanc-igp-domaine-de-la-touche-75cl/1387106/",
+    "sourceTitle": "Achat / Vente Promotion Sauvignon Blanc IGP Domaine de la Touche, 75cl"
+  },
+  "bar-reel-04-vins-blancs-secs-04-chablis-louis-jadot": {
+    "name": "Chablis Louis Jadot",
+    "category": "Vins blancs secs",
+    "sourceUrl": "https://www.denisperret.fr/en/louis-jadot-wines/68-wine-chablis-louis-jadot.html",
+    "sourceTitle": "Chablis Louis Jadot — photo produit"
+  },
+  "bar-reel-04-vins-blancs-secs-05-chablis-mouillard": {
+    "name": "Chablis Mouillard",
+    "category": "Vins blancs secs",
+    "sourceUrl": "https://www.saq.com/fr/14042973",
+    "sourceTitle": "Moillard Chablis Coquillage | Vin blanc | SAQ.COM"
+  },
+  "bar-reel-04-vins-blancs-secs-06-calvet-sauternes": {
+    "name": "Calvet Sauternes",
+    "category": "Vins blancs secs",
+    "sourceUrl": "https://sanhruou.com/calvet-sauternes.html",
+    "sourceTitle": "Calvet Sauternes - Sành Rượu"
+  },
+  "bar-reel-04-vins-blancs-secs-07-calvet-sauvignon": {
+    "name": "Calvet Sauvignon",
+    "category": "Vins blancs secs",
+    "sourceUrl": "https://gbottleshop.com/products/calvet-sauvignon-blanc-75cl-france",
+    "sourceTitle": "Calvet Sauvignon — photo produit"
+  },
+  "bar-reel-05-champagnes-01-elexium": {
+    "name": "Elexium",
+    "category": "Champagnes",
+    "sourceUrl": "https://www.vivino.com/fr/trouillard-cuvee-elexium-brut-brillant-champagne/w/1194462",
+    "sourceTitle": "Elexium — photo produit"
+  },
+  "bar-reel-05-champagnes-02-moet-chandon": {
+    "name": "Moët & Chandon",
+    "category": "Champagnes",
+    "sourceUrl": "https://www.woolworths.co.za/prod/_/A-3185370001233?srsltid=AfmBOoqs2b2h7crLVq0zfSM4U6CRycHADyJKhNa3SOr5Unwh9LIeKCV8",
+    "sourceTitle": "Moët & Chandon Impérial French Champagne 750 ml | Woolworths.co.za"
+  },
+  "bar-reel-05-champagnes-03-trouillard-brut": {
+    "name": "Trouillard Brut",
+    "category": "Champagnes",
+    "sourceUrl": "https://www.vivino.com/nl/trouillard-chardonnay-brut-champagne/w/1764684",
+    "sourceTitle": "Trouillard Chardonnay Brut Champagne | Vivino Nederlands"
+  },
+  "bar-reel-05-champagnes-04-laurent-perrier-rose": {
+    "name": "Laurent Perrier Rosé",
+    "category": "Champagnes",
+    "sourceUrl": "https://woodstockliquors.co.za/product/laurent-perrier-cuvee-rose-750ml/",
+    "sourceTitle": "Laurent-Perrier Cuvée Rosé 750ml | Woodstock Liquors"
+  },
+  "bar-reel-05-champagnes-05-louis-roederer": {
+    "name": "Louis Roederer",
+    "category": "Champagnes",
+    "sourceUrl": "https://winesimple.com.au/products/louis-roederer-collection-244-nv-champagne",
+    "sourceTitle": "Louis Roederer Collection 244 NV Champagne | Buy Champagne online"
+  },
+  "bar-reel-05-champagnes-06-veuve-clicquot": {
+    "name": "Veuve Clicquot",
+    "category": "Champagnes",
+    "sourceUrl": "https://spiritsnetwork.com/veuve-cliquot-yellow-label-champagne/",
+    "sourceTitle": "Veuve Cliquot Yellow Label Champagne"
+  },
+  "bar-reel-05-champagnes-07-veuve-clicquot-rich": {
+    "name": "Veuve Clicquot Rich",
+    "category": "Champagnes",
+    "sourceUrl": "https://www.veuveclicquot.com/on/demandware.static/-/Sites-mh-master/default/dwf15ae361/images/large/veuve_clicquot/packshots/rich-nobackground.png?im=Resize,width=1200,height=1600",
+    "sourceTitle": "Veuve Clicquot Rich — packshot officiel"
+  },
+  "bar-reel-05-champagnes-08-veuve-clicquot-grande-dame": {
+    "name": "Veuve Clicquot Grande Dame",
+    "category": "Champagnes",
+    "sourceUrl": "https://loja.familiascopel.com.br/produto/champagne-la-grande-dame-brut-c-estojo-750ml",
+    "sourceTitle": "Champagne La Grande Dame Brut c/ Estojo 750ml - Família Scopel Delivery"
+  },
+  "bar-reel-05-champagnes-09-cristal-louis-roederer": {
+    "name": "Cristal Louis Roederer",
+    "category": "Champagnes",
+    "sourceUrl": "https://www.luxuryformen.com/fr/champagne-louis-roederer-cristal-covi-louisroedcris",
+    "sourceTitle": "Champagne Louis Roederer Cristal"
+  },
+  "bar-reel-05-champagnes-10-dom-perignon": {
+    "name": "Dom Pérignon",
+    "category": "Champagnes",
+    "sourceUrl": "https://woodencork.com/cdn/shop/files/2010_dom_perignon_gift_box.jpg?v=1731966480",
+    "sourceTitle": "Dom Pérignon Vintage — bouteille et coffret"
+  },
+  "bar-reel-05-champagnes-11-moet-chandon-rose": {
+    "name": "Moët Chandon Rosé",
+    "category": "Champagnes",
+    "sourceUrl": "https://lacavegillet.com/producto/moet-chandon-brut-rose/",
+    "sourceTitle": "Moët & Chandon Brut Rosé Impérial 75cl. - La Cave Gillet"
+  },
+  "bar-reel-05-champagnes-12-bottega-gold": {
+    "name": "Bottega Gold",
+    "category": "Champagnes",
+    "sourceUrl": "https://www.pngitem.com/middle/hmoRxJi_gold-bottle-png-bottega-gold-transparent-png/",
+    "sourceTitle": "Bottega Gold — photo produit"
+  },
+  "bar-reel-05-champagnes-13-bottega-millesimato": {
+    "name": "Bottega Millesimato",
+    "category": "Champagnes",
+    "sourceUrl": "https://citydrinks.com/p/bottega---millesimato-brut-1492?srsltid=AfmBOoriE4QOv1lw-FSEDZ8omPhxb9AYT4A56Hyi6n0J12TxJE1dOYT3",
+    "sourceTitle": "Bottega Millesimato — photo produit"
+  },
+  "bar-reel-05-champagnes-14-bottega-2021": {
+    "name": "Bottega 2021",
+    "category": "Champagnes",
+    "sourceUrl": "https://www.pngitem.com/middle/hmoRxJi_gold-bottle-png-bottega-gold-transparent-png/",
+    "sourceTitle": "Bottega 2021 — photo produit"
+  },
+  "bar-reel-05-champagnes-15-ruinart": {
+    "name": "Ruinart",
+    "category": "Champagnes",
+    "sourceUrl": "https://di-vine.com/products/ruinart-brut-nv",
+    "sourceTitle": "Ruinart"
+  },
+  "bar-reel-05-champagnes-16-blanc-des-blancs": {
+    "name": "Blanc des Blancs",
+    "category": "Champagnes",
+    "sourceUrl": "https://di-vine.com/products/ruinart-blanc-de-blancs",
+    "sourceTitle": "Blanc des Blancs"
+  },
+  "bar-reel-05-champagnes-17-ruinart-millesime": {
+    "name": "Ruinart Millésimé",
+    "category": "Champagnes",
+    "sourceUrl": "https://www.davidscellars.com/product-page/ruinart-blanc-de-blanc-750ml-abv",
+    "sourceTitle": "Ruinart Millésimé — photo produit"
+  },
+  "bar-reel-05-champagnes-18-elexium-rose-brillant": {
+    "name": "Elexium Rosé Brillant",
+    "category": "Champagnes",
+    "sourceUrl": "https://www.odyssee-vins.com/champagne-trouillard-elexium-brut-rose-75cl.html",
+    "sourceTitle": "À vendre Champagne Trouillard Brut - Odyssee-vins"
+  },
+  "bar-reel-06-vodkas-01-absolut-lime": {
+    "name": "Absolut Lime",
+    "category": "Vodkas",
+    "sourceUrl": "https://basicos.mayoreoenlinea.mx/products/vodka-absolut-limon-750-mll",
+    "sourceTitle": "Absolut Lime"
+  },
+  "bar-reel-06-vodkas-02-absolut-citron": {
+    "name": "Absolut Citron",
+    "category": "Vodkas",
+    "sourceUrl": "https://lovescotch.com/collections/lemon/products/absolut-citron-vodka-liter",
+    "sourceTitle": "Absolut Citron Vodka Liter | LoveScotch.com"
+  },
+  "bar-reel-06-vodkas-03-absolut-vodka": {
+    "name": "Absolut Vodka",
+    "category": "Vodkas",
+    "sourceUrl": "https://www.pernod-ricard.com/sites/default/files/styles/packshot_desktop_and_mobile_640_height_/public/2022-03/absolut_vodka_700ml_front_standard_transparent_background.png.jpg?itok=3Zcfvrg4",
+    "sourceTitle": "Absolut Vodka — packshot officiel"
+  },
+  "bar-reel-06-vodkas-04-belvedere": {
+    "name": "Belvédère",
+    "category": "Vodkas",
+    "sourceUrl": "https://www.woolworths.co.za/prod/_/A-5901041003539",
+    "sourceTitle": "Belvedere Vodka 750 ml | Woolworths.co.za"
+  },
+  "bar-reel-06-vodkas-05-shot-vodka-danzka": {
+    "name": "Shot Vodka Danzka",
+    "category": "Vodkas",
+    "sourceUrl": "https://www.rimi.lv/e-veikals/en/products/alcoholic-beverages/vodkas/unflavoured-vodka/degvins-danzka-vodka-40-0-7l/p/140777",
+    "sourceTitle": "Degvīns Danzka Vodka 40% 0,7l"
+  },
+  "bar-reel-07-tequila-01-tequila-silver": {
+    "name": "Tequila Silver",
+    "category": "Tequila",
+    "sourceUrl": "https://eluenheng.luenheng.com/product/jose-cuervo-especial-silver/",
+    "sourceTitle": "Tequila Silver — packshot vérifié"
+  },
+  "bar-reel-08-cognacs-01-hennessy": {
+    "name": "Hennessy",
+    "category": "Cognacs",
+    "sourceUrl": "https://www.mocannella.gr/hennessy-vs-koniak-700ml",
+    "sourceTitle": "Hennessy — packshot vérifié"
+  },
+  "bar-reel-08-cognacs-02-very-special": {
+    "name": "Very Spécial",
+    "category": "Cognacs",
+    "sourceUrl": "https://jamesfox.ie/products/hennessy-vsop",
+    "sourceTitle": "Very Spécial — packshot vérifié"
+  },
+  "bar-reel-08-cognacs-03-camus-intensely": {
+    "name": "Camus Intensely",
+    "category": "Cognacs",
+    "sourceUrl": "https://whiskeyd.com/products/camus-intensely-aromatic-vs-cognac",
+    "sourceTitle": "Camus Intensely Aromatic Vs Cognac Online Delivery – WhiskeyD"
+  },
+  "bar-reel-08-cognacs-04-xo-aromatic": {
+    "name": "XO Aromatic",
+    "category": "Cognacs",
+    "sourceUrl": "https://zyn.ca/products/hennessy-xo-1",
+    "sourceTitle": "Hennessy XO - ZYN THE WINE MARKET LTD."
+  },
+  "bar-reel-08-cognacs-05-martell-xo": {
+    "name": "Martell XO",
+    "category": "Cognacs",
+    "sourceUrl": "https://premiumcellars.ae/products/martell-xo-cognac-700ml",
+    "sourceTitle": "Martell XO Cognac 700ml - Buy Online at Best Price | Premium Cellars Dubai and RAK"
+  },
+  "bar-reel-08-cognacs-06-remy-martin-xo": {
+    "name": "Rémy Martin XO",
+    "category": "Cognacs",
+    "sourceUrl": "https://executiveretailshops.com/products/remy-martin-xo",
+    "sourceTitle": "Rémy Martin XO — photo produit"
+  },
+  "bar-reel-08-cognacs-07-berd-feldy-12": {
+    "name": "BERD Feldy 12",
+    "category": "Cognacs",
+    "sourceUrl": "https://www.cognac-expert.com/fr/cognac-xo/abk6-collection-12-year-old-cognac?srsltid=AfmBOor3rUNi8JUlUyPB7ESwQgim6E-wnkSy2TRGrjjCiGGWTkrYTwIo",
+    "sourceTitle": "BERD Feldy 12 — photo produit"
+  },
+  "bar-reel-09-bourbons-01-jack-daniel-s": {
+    "name": "Jack Daniel’s",
+    "category": "Bourbons",
+    "sourceUrl": "https://uk.pinterest.com/pin/jack-daniels_91351_na--822469950741039646/",
+    "sourceTitle": "Jack Daniel’s — packshot vérifié"
+  },
+  "bar-reel-09-bourbons-02-jack-honey": {
+    "name": "Jack Honey",
+    "category": "Bourbons",
+    "sourceUrl": "https://fattalonline.com/products/jack-daniels-tennessee-whiskey-honey-75cl",
+    "sourceTitle": "Fattal Online - Buy Jack Daniel's Tennessee Whiskey Honey 75cl in Lebanon"
+  },
+  "bar-reel-09-bourbons-03-jack-fire": {
+    "name": "Jack Fire",
+    "category": "Bourbons",
+    "sourceUrl": "https://www.tipple.com.my/jack-daniels-tennessee-fire-whiskey-1000ml/",
+    "sourceTitle": "Jack Daniel's Tennessee Fire Whiskey [1000ml]"
+  },
+  "bar-reel-09-bourbons-04-jack-apple": {
+    "name": "Jack Apple",
+    "category": "Bourbons",
+    "sourceUrl": "https://www.whiskytwins.co.za/product-page/jack-daniel-s-original-recipe-tennessee-apple",
+    "sourceTitle": "Jack Apple — photo produit"
+  },
+  "bar-reel-09-bourbons-05-jack-single-barrel": {
+    "name": "Jack Single Barrel",
+    "category": "Bourbons",
+    "sourceUrl": "https://www.labigboutique.com/jack-daniel-s/68046-whisky-jack-daniel-s-single-barrel-select-70cl-45-tennessee-whiskey-3099873045864.html",
+    "sourceTitle": "WHISKY JACK DANIEL'S SINGLE BARREL SELECT 70cl 45°, Tennessee Whiskey"
+  },
+  "bar-reel-10-whiskies-01-white-horse": {
+    "name": "White Horse",
+    "category": "Whiskies",
+    "sourceUrl": "https://iber.uy/shop/product/727-whisky-escoces-white-horse-1-litro-5724?category=15",
+    "sourceTitle": "WHISKY ESCOCES WHITE HORSE 1 LITRO | Iber"
+  },
+  "bar-reel-10-whiskies-02-j-b": {
+    "name": "J&B",
+    "category": "Whiskies",
+    "sourceUrl": "https://www.alfadrink.ro/produse/single-malt-scotch-whisky/jb-jet-12-ani-07l",
+    "sourceTitle": "J&B — photo produit"
+  },
+  "bar-reel-10-whiskies-03-red-label": {
+    "name": "Red Label",
+    "category": "Whiskies",
+    "sourceUrl": "https://www.larebajavirtual.com/johnnie-walker-red-label-whisky-escoces-36484/p",
+    "sourceTitle": "Red Label"
+  },
+  "bar-reel-10-whiskies-04-black-label": {
+    "name": "Black Label",
+    "category": "Whiskies",
+    "sourceUrl": "https://newyorkstore.com.co/product/whisky-johnnie-walker-black-label-375-ml/",
+    "sourceTitle": "Whisky Johnnie Walker Black Label 375 ml – New York Store"
+  },
+  "bar-reel-10-whiskies-05-double-label": {
+    "name": "Double Label",
+    "category": "Whiskies",
+    "sourceUrl": "https://citydrinks.com/p/johnnie-walker-double-black-1039?srsltid=AfmBOoq1UYm974LxteFkNOZWaECyPEpNGbapRETkHG9J6sslH4kOJimh",
+    "sourceTitle": "Buy Johnnie Walker Double Black | Delivery Dubai/AUH - CityDrinks"
+  },
+  "bar-reel-10-whiskies-06-the-glenlivet": {
+    "name": "The Glenlivet",
+    "category": "Whiskies",
+    "sourceUrl": "https://www.masterofmalt.com/whiskies/the-glenlivet/the-glenlivet-triple-cask-matured-distillers-reserve-whisky/?srsltid=AfmBOorzd0m9-ZmPkZNxdDrndrKCG5roJ8p758YY587ykn6iD1iNKz9p",
+    "sourceTitle": "The Glenlivet Triple Cask Matured Distiller's Reserve 100cl Whisky | Master Of Malt"
+  },
+  "bar-reel-10-whiskies-07-grant-s": {
+    "name": "Grant’s",
+    "category": "Whiskies",
+    "sourceUrl": "https://bevmo.com/products/23032?srsltid=AfmBOoris10PkxC-WakzTXN8wLu61H9X9zE8XGrIYbR_r1TMw5k_BfRg",
+    "sourceTitle": "Grant’s — photo produit"
+  },
+  "bar-reel-10-whiskies-08-glenfiddich-18": {
+    "name": "Glenfiddich 18",
+    "category": "Whiskies",
+    "sourceUrl": "https://www.whiskybrother.com/products/glenfiddich-18-year-old-scotch-whisky",
+    "sourceTitle": "Glenfiddich 18 Year Old Scotch Whisky | Buy Online"
+  },
+  "bar-reel-10-whiskies-09-glenfiddich-15": {
+    "name": "Glenfiddich 15",
+    "category": "Whiskies",
+    "sourceUrl": "https://kentstreetcellars.com.au/products/glenfiddich-15-year-single-malt-scotch-whisky",
+    "sourceTitle": "Glenfiddich 15 Year Old Single Malt | Kent Street Cellars"
+  },
+  "bar-reel-10-whiskies-10-glenfiddich-12": {
+    "name": "Glenfiddich 12",
+    "category": "Whiskies",
+    "sourceUrl": "https://winepalacegoa.com/glenfiddich-12-yo/?srsltid=AfmBOorV2H4oyBpv1-KqGw0jZ2MeezygB1QlZKy9QdfATXsh7IeMXa9s",
+    "sourceTitle": "Bot Verification"
+  },
+  "bar-reel-10-whiskies-11-chivas-regal": {
+    "name": "Chivas Regal",
+    "category": "Whiskies",
+    "sourceUrl": "https://baronbottle.com/product/chivas-regal-12-years-old-75cl/",
+    "sourceTitle": "Chivas Regal 12 Years Old-75cl – Baron Bottle"
+  },
+  "bar-reel-11-vins-rouges-01-seriously-old-dirt": {
+    "name": "Seriously Old Dirt",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.lavernewines.co.za/buywine/vilafonte-seriously-old-dirt-2021/",
+    "sourceTitle": "Vilafonté Seriously Old Dirt 2021 | La Verne Wine Boutique"
+  },
+  "bar-reel-11-vins-rouges-02-pascal-jolivet": {
+    "name": "Pascal Jolivet",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.vivalavino.co.zw/products/pascal-jolivet-sancerre-rouge",
+    "sourceTitle": "Pascal Jolivet Sancerre Rouge | Viva la Vino"
+  },
+  "bar-reel-11-vins-rouges-03-warwick": {
+    "name": "Warwick",
+    "category": "Vins rouges",
+    "sourceUrl": "https://wineinthewarehouse.co.za/cdn/shop/products/WarwickTheTrilogy_0c2b1f59-502e-4d6b-b2e2-d0b540a7494e_700x700.jpg?v=1678795691",
+    "sourceTitle": "Warwick Trilogy — packshot produit"
+  },
+  "bar-reel-11-vins-rouges-04-chateau-de-remandine": {
+    "name": "Château de Remandine",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.vivino.com/en/remandine-saint-estephe/w/1309222",
+    "sourceTitle": "Château Remandine Saint-Estèphe | Vivino English"
+  },
+  "bar-reel-11-vins-rouges-05-chateau-pontet-fumet": {
+    "name": "Château Pontet Fumet",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.vivino.com/fr/philippe-bardet-saint-emilion-grand-cru/w/1259302",
+    "sourceTitle": "Château Pontet-Fumet Saint-Émilion Grand Cru | Vivino Français"
+  },
+  "bar-reel-11-vins-rouges-06-margaux-brio": {
+    "name": "Margaux Brio",
+    "category": "Vins rouges",
+    "sourceUrl": "https://sf.flatiron-wines.com/products/brio-de-cantenac-brown-margaux-2019-375ml-375ml",
+    "sourceTitle": "Margaux Brio — packshot vérifié"
+  },
+  "bar-reel-11-vins-rouges-07-tour-de-segur": {
+    "name": "Tour de Ségur",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.avenuedesvins.fr/en/vin-aoc-lussac-saint-emilion-chateau-tour-de-segur-8313.html",
+    "sourceTitle": "Tour de Ségur — photo produit"
+  },
+  "bar-reel-11-vins-rouges-08-chateau-grand-meynau": {
+    "name": "Château Grand Meynau",
+    "category": "Vins rouges",
+    "sourceUrl": "https://westgatewinestore.com/2018-chateau-grand-meynau",
+    "sourceTitle": "2018 Chateau Grand Meynau"
+  },
+  "bar-reel-11-vins-rouges-09-chateau-gravet-renaissance": {
+    "name": "Château Gravet Renaissance",
+    "category": "Vins rouges",
+    "sourceUrl": "https://premiumcellars.ae/products/chateau-gravet-renaissance-75-cl",
+    "sourceTitle": "Chateau Gravet Renaissance 750ml - Buy online at best price | Premium Cellars Dubai and RAK"
+  },
+  "bar-reel-11-vins-rouges-10-chateau-fernande-grattes": {
+    "name": "Château Fernande Grattes",
+    "category": "Vins rouges",
+    "sourceUrl": "https://rlacave.com/1377-franc-grace-dieu.html",
+    "sourceTitle": "Franc grace dieu"
+  },
+  "bar-reel-11-vins-rouges-11-marquis-de-loges": {
+    "name": "Marquis de Loges",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.b-winery.com/fr/accueil/695-la-tulipe-noire-bordeaux-2020-rouge-75-cl.html",
+    "sourceTitle": "MARQUIS DES LOGES  - BORDEAUX 2020 ROUGE 75 CL."
+  },
+  "bar-reel-11-vins-rouges-12-le-lievre": {
+    "name": "Le Lièvre",
+    "category": "Vins rouges",
+    "sourceUrl": "https://eirovins.lv/en/grand-cru-wines/1324-chateau-smith-haut-lafitte-075-l-3700232902369.html",
+    "sourceTitle": "Le Lièvre — packshot vérifié"
+  },
+  "bar-reel-11-vins-rouges-13-mission-du-pape": {
+    "name": "Mission du Pape",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.drive.leshallesdelaveyron.com/rodez/boissons/287-marcillac-exception.html",
+    "sourceTitle": "Mission du Pape — photo produit"
+  },
+  "bar-reel-11-vins-rouges-14-chateau-talbot": {
+    "name": "Château Talbot",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.n-wines.com/boutique/chateau-talbot-2018/",
+    "sourceTitle": "Château Talbot — photo produit"
+  },
+  "bar-reel-11-vins-rouges-15-la-fiole-de-pape": {
+    "name": "La Fiole de Pape",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.aevin.dk/en/brotte-la-fiole-du-pape-chateauneuf-du-pape/?srsltid=AfmBOoqHpqNhw8qIM6IO84zzAapgFNxXcdw_UI1XjU8yogZmoU5_PPqK",
+    "sourceTitle": "La Fiole de Pape — packshot vérifié"
+  },
+  "bar-reel-11-vins-rouges-16-chateau-vieux-guinot": {
+    "name": "Château Vieux Guinot",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.extime.com/en/paris/product/saint-emilion-grand-cru-la-petite-chapelle-100899978?srsltid=AfmBOoryE3gim17nl9dfl_M-Z75DBPH9wRB6aJ4hPRMfwSRDB0yCzEAt",
+    "sourceTitle": "Extime - Château Vieux Guinot Saint-Emilion Grand Cru - La Petite Chapelle"
+  },
+  "bar-reel-11-vins-rouges-17-bourgogne-pinot-noir": {
+    "name": "Bourgogne Pinot Noir",
+    "category": "Vins rouges",
+    "sourceUrl": "https://winecellar.vn/ruou-vang-phap/bouchard-pere-fils-la-vignee-bourgogne-pinot-noir-2020/",
+    "sourceTitle": "AZDIGI Challenge"
+  },
+  "bar-reel-11-vins-rouges-18-la-sirene-de-giscours": {
+    "name": "La Sirène de Giscours",
+    "category": "Vins rouges",
+    "sourceUrl": "https://giscours.com/wp-content/uploads/2021/03/Sirene-de-giscours.jpg",
+    "sourceTitle": "La Sirène de Giscours — visuel officiel"
+  },
+  "bar-reel-11-vins-rouges-19-le-palatin": {
+    "name": "Le Palatin",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.cavesduroy.fr/commande-en-ligne/bordeaux-rouge/7729-les-terrasses-du-chateau-palatin-2021-contenance-vin-375cl-millesime-2021-origine-france-cepages-rouges-80-merlot-20-cabernet-fr.html",
+    "sourceTitle": "Le Palatin — photo produit"
+  },
+  "bar-reel-11-vins-rouges-20-domaine-de-baume": {
+    "name": "Domaine de Baume",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.houra.fr/vin-de-pays-d-oc-rouge-igp-syrah-du-domaine-de-la-baume-75cl/1269318/",
+    "sourceTitle": "Domaine de Baume — photo produit"
+  },
+  "bar-reel-11-vins-rouges-21-cote-rotie": {
+    "name": "Côte-Rôtie",
+    "category": "Vins rouges",
+    "sourceUrl": "https://rwmselections.com/products/xavier-gerard-cote-rotie-2021",
+    "sourceTitle": "Côte-Rôtie — photo produit"
+  },
+  "bar-reel-11-vins-rouges-22-hartenberg": {
+    "name": "Hartenberg",
+    "category": "Vins rouges",
+    "sourceUrl": "https://jrgermanier.ch/en/products/humagne-rouge",
+    "sourceTitle": "Hartenberg — photo produit"
+  },
+  "bar-reel-11-vins-rouges-23-l-hospitalet": {
+    "name": "L’Hospitalet",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.monvinfrancais.com/vin/295-la-clape-chateau-l-hospitalet-grand-vin-rouge-2022.html",
+    "sourceTitle": "La Clape Château l'Hospitalet Grand Vin Rouge 2022 - Gérard Bertrand"
+  },
+  "bar-reel-11-vins-rouges-24-chateau-vieux-fort": {
+    "name": "Château Vieux Fort",
+    "category": "Vins rouges",
+    "sourceUrl": "https://bordeauxindex.com/fine-wine/france/bordeaux/zzaw00160-2008",
+    "sourceTitle": "2008 Chateau Vieux Fortin, Saint-Emilion - Bordeaux Index Fine Wine & Spirits"
+  },
+  "bar-reel-11-vins-rouges-25-chateau-la-croix-de-chereau": {
+    "name": "Château La Croix de Chéreau",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.vino.com/dettaglio/lussac-saint-emilion-aop-grand-vin-chateau-la-croix-de-chereau-2023.html",
+    "sourceTitle": "Lussac Saint-Émilion AOP Grand Vin Château La Croix de Chéreau 2023..."
+  },
+  "bar-reel-11-vins-rouges-26-chateau-de-seguin": {
+    "name": "Château de Seguin",
+    "category": "Vins rouges",
+    "sourceUrl": "https://www.foie-gras-sarlat.com/3583-chateau-de-seguin-aoc-bordeaux-superieur-2019-75cl.html?srsltid=AfmBOoo19QjcbX0vBP99Kbo-IVxYPspIPj7dguX74W9hul8Z5HMbKOZ9",
+    "sourceTitle": "Château de Seguin — photo produit"
+  },
+  "bar-reel-12-whiskies-japonais-01-togouchi": {
+    "name": "Togouchi",
+    "category": "Whiskies japonais",
+    "sourceUrl": "https://www.yamatoya-e.com/SHOP/chug23308.html",
+    "sourceTitle": "シングルモルトジャパニーズウイスキー　戸河内 43度　700ml（SAKURAO DISTILLERY）"
+  },
+  "bar-reel-12-whiskies-japonais-02-akashi": {
+    "name": "Akashi",
+    "category": "Whiskies japonais",
+    "sourceUrl": "https://theliquorstore.com/products/akashi-single-malt-whiskey-white-oak-750ml?srsltid=AfmBOop9M_rki0hHbqKvA1K4OjLn2lFCu88SqMyP-AAZV4qRky-F1j_N",
+    "sourceTitle": "Akashi Single Malt Whiskey \"White Oak\" - Liquor Store New York"
+  },
+  "bar-reel-12-whiskies-japonais-03-ibiki": {
+    "name": "Ibiki",
+    "category": "Whiskies japonais",
+    "sourceUrl": "https://www.wallywine.com/products/suntory-hibiki-harmony-blended-japanese-whisky-750ml",
+    "sourceTitle": "Suntory Hibiki Harmony Blended Japanese Whisky 750mL | Wally's Wine & Spirits"
+  },
+  "bar-reel-12-whiskies-japonais-04-nikka-days": {
+    "name": "Nikka Days",
+    "category": "Whiskies japonais",
+    "sourceUrl": "https://pasanellaandson.com/products/nikka-days-whisky-750ml",
+    "sourceTitle": "Nikka Days Whisky 750ml – Pasanella & Son"
+  },
+  "bar-reel-12-whiskies-japonais-05-koshi-no-shinobo": {
+    "name": "Koshi No Shinobo",
+    "category": "Whiskies japonais",
+    "sourceUrl": "https://shop.tachiharasaketen.com/?pid=143890068",
+    "sourceTitle": "越乃忍ブレンデット白ウィスキーの販売-立原酒店[新潟・上越]新潟の地酒,イタリアワインなどを扱う創業明治43年新潟地酒の老舗酒屋"
+  },
+  "bar-reel-12-whiskies-japonais-06-nikka-coffey": {
+    "name": "Nikka Coffey",
+    "category": "Whiskies japonais",
+    "sourceUrl": "https://www.whisky.fr/nikka-coffey-malt-18121e.html",
+    "sourceTitle": "Nikka Coffey Malt 45% - Le whisky inclassable à découvrir absolument - Maison du Whisky"
+  },
+  "bar-reel-12-whiskies-japonais-07-suntory-tory": {
+    "name": "Suntory Tory",
+    "category": "Whiskies japonais",
+    "sourceUrl": "https://www.freshdirect.com/fdw/vin_spirits_whiskey/sc/vin_spirits_japanese_whisky/p/win_pid_5002960",
+    "sourceTitle": "Suntory Tory — packshot vérifié"
+  },
+  "bar-reel-12-whiskies-japonais-08-kamiki": {
+    "name": "Kamiki",
+    "category": "Whiskies japonais",
+    "sourceUrl": "https://winepalace.es/whisky/japan-kamiki-intense",
+    "sourceTitle": "Kamiki — photo produit"
+  },
+  "bar-reel-13-rhums-01-mangoustans": {
+    "name": "Mangoustans",
+    "category": "Rhums",
+    "sourceUrl": "https://sanagacm.com/produit/rhum-mangoustan-blanc-1l-40/?srsltid=AfmBOoqy-fqHid3_et9XDBGSLbB2URzEOg37R8sgr3ltFGi78Bt4fAAy",
+    "sourceTitle": "Mangoustans — photo produit"
+  },
+  "bar-reel-13-rhums-02-black-tears": {
+    "name": "Black Tears",
+    "category": "Rhums",
+    "sourceUrl": "https://www.liquorland.co.nz/black-tears-roble-superior-rum-700ml-852283",
+    "sourceTitle": "Shop Black Tears Roble Superior Rum 700ml at Liquorland"
+  },
+  "bar-reel-13-rhums-03-ron-perla": {
+    "name": "Ron Perla",
+    "category": "Rhums",
+    "sourceUrl": "https://rumauctioneer.com/learn/explore-rum/bottles/ron-perla-del-norte-blanca",
+    "sourceTitle": "Ron Perla del Norte Blanca Rum | Rum Auctioneer"
+  },
+  "bar-reel-13-rhums-04-havana-edition-professionnelle": {
+    "name": "Havana Édition Professionnelle",
+    "category": "Rhums",
+    "sourceUrl": "https://www.diffordsguide.com/beer-wine-spirits/6271/havana-club-professional-edicion-b",
+    "sourceTitle": "Havana Club Professional Edition B — packshot produit"
+  },
+  "bar-reel-13-rhums-05-ritual": {
+    "name": "Ritual",
+    "category": "Rhums",
+    "sourceUrl": "https://snapklik.com/en-ca/product/ritual-zero-proof-rum-alternative-award-winning-non-alcoholic-spirit-25-4-fl-oz-750ml-only-5-calories-sustainably-made-in-usa-make-alcohol-free-cocktails/08I14PH71P8A5",
+    "sourceTitle": "Snapklik.com : RITUAL ZERO PROOF Rum Alternative Award-Winning Non-Alcoholic Spirit 25.4 Fl Oz"
+  },
+  "bar-reel-13-rhums-06-diplomatico": {
+    "name": "Diplomatico",
+    "category": "Rhums",
+    "sourceUrl": "https://operals.cl/products/diplomatico-reserva",
+    "sourceTitle": "Ron Diplomático Reserva Exclusiva"
+  },
+  "bar-reel-13-rhums-07-havana-club-smuky": {
+    "name": "Havana Club Smuky",
+    "category": "Rhums",
+    "sourceUrl": "https://brutbebidas.com.ar/productos/havana-club-cuban-smoky-1000ml/?srsltid=AfmBOor0AWCLSClPoiDcqzthz0YUJjKx5tl1xZPfg-ARgRXyeTOYQyaK",
+    "sourceTitle": "HAVANA CLUB · CUBAN SMOKY · 1000ML"
+  },
+  "bar-reel-13-rhums-08-havana-reserva": {
+    "name": "Havana Réserva",
+    "category": "Rhums",
+    "sourceUrl": "https://www.wineandbeyond.ca/products/havana-club-anejo-rum-750ml-2",
+    "sourceTitle": "Havana Réserva — packshot vérifié"
+  },
+  "bar-reel-13-rhums-09-malibu": {
+    "name": "Malibu",
+    "category": "Rhums",
+    "sourceUrl": "https://citrusliquors.com/inverness-liquor-delivery/malibu-original-caribbean-rum-750-ml.html",
+    "sourceTitle": "Malibu — photo produit"
+  },
+  "bar-reel-13-rhums-10-plantation-xo": {
+    "name": "Plantation XO",
+    "category": "Rhums",
+    "sourceUrl": "https://www.cavaromanos.gr/index.php?product_id=1354&route=product%2Fproduct",
+    "sourceTitle": "Plantation XO — packshot vérifié"
+  },
+  "bar-reel-14-liqueurs-01-get-27": {
+    "name": "Get 27",
+    "category": "Liqueurs",
+    "sourceUrl": "https://liquorshop.hk/product/get-27-peppermint-liqueur-700ml/",
+    "sourceTitle": "Get 27 — packshot vérifié"
+  },
+  "bar-reel-14-liqueurs-02-martini-rouge": {
+    "name": "Martini Rouge",
+    "category": "Liqueurs",
+    "sourceUrl": "https://tagliquorstores.com/products/martini-rossi-rosso-sweet-red-vermouth-500ml?srsltid=AfmBOorsm22ZV7EHDzRy_oiQVPtI8lUV3rYmxdNDnz0kRuzBoCubqnqo",
+    "sourceTitle": "Martini Rouge"
+  },
+  "bar-reel-14-liqueurs-03-martini-blanc": {
+    "name": "Martini Blanc",
+    "category": "Liqueurs",
+    "sourceUrl": "https://www.bp-peru.com/products/vermouth-martini-bianco-750ml",
+    "sourceTitle": "VERMOUTH MARTINI BIANCO 750ML – BP PERÚ"
+  },
+  "bar-reel-14-liqueurs-04-amarula-ethiopian": {
+    "name": "Amarula Ethiopian",
+    "category": "Liqueurs",
+    "sourceUrl": "https://www.dinhobebidas.com.br/outras-bebidas/licor/licor-amarula-ethiopian-coffee-750ml",
+    "sourceTitle": "Licor Amarula Ethiopian Coffee 750Ml"
+  },
+  "bar-reel-14-liqueurs-05-amarula-cream": {
+    "name": "Amarula Cream",
+    "category": "Liqueurs",
+    "sourceUrl": "https://forwhiskeylovers.com/products/amarula-cream-liqueur-1",
+    "sourceTitle": "Amarula Cream Liqueur – ForWhiskeyLovers.com"
+  },
+  "bar-reel-14-liqueurs-06-baileys": {
+    "name": "Baileys",
+    "category": "Liqueurs",
+    "sourceUrl": "https://www.beicevrei.ro/baileys-irish-whiskey-cream-1l-alc-17-7447?srsltid=AfmBOorK7ZxlO7FB_9aJOTYlji-_dv8DyltLdOMZ15xVkvZIpdc0ufVB",
+    "sourceTitle": "Baileys — packshot vérifié"
+  },
+  "bar-reel-14-liqueurs-07-cointreau": {
+    "name": "Cointreau",
+    "category": "Liqueurs",
+    "sourceUrl": "https://wellenmark.sk/en/liquor/3126-liquor-cointreau-40-07l-3035542004206.html",
+    "sourceTitle": "Liquor Cointreau 40% 0,7l"
+  },
+  "bar-reel-14-liqueurs-08-suze": {
+    "name": "Suze",
+    "category": "Liqueurs",
+    "sourceUrl": "https://internetwines.com/products/suze-liqueur",
+    "sourceTitle": "Suze — photo produit"
+  },
+  "bar-reel-14-liqueurs-09-campari": {
+    "name": "Campari",
+    "category": "Liqueurs",
+    "sourceUrl": "https://krymwine.ru/catalog/krepkie-napitki/liker_desertnyy_kampari_aperitiv.html",
+    "sourceTitle": "Campari — photo produit"
+  },
+  "bar-reel-14-liqueurs-10-bottega-limoncino": {
+    "name": "Bottega Limoncino",
+    "category": "Liqueurs",
+    "sourceUrl": "https://www.saq.com/fr/12720101",
+    "sourceTitle": "Bottega Limoncino | Fiche produit | SAQ.COM"
+  },
+  "bar-reel-14-liqueurs-11-bottega-fior-di-latte": {
+    "name": "Bottega Fior di Latte",
+    "category": "Liqueurs",
+    "sourceUrl": "https://kegnbottle.com/products/fior-di-latte-crema-di-cioccoato-bianco-700-ml",
+    "sourceTitle": "Bottega Fior di Latte"
+  },
+  "bar-reel-14-liqueurs-12-bottega-gianduia": {
+    "name": "Bottega Gianduia",
+    "category": "Liqueurs",
+    "sourceUrl": "https://onice.co.za/products/bottega-gianduia-brown-choc-grappa-500ml",
+    "sourceTitle": "Bottega Gianduia — photo produit"
+  },
+  "bar-reel-14-liqueurs-13-richard": {
+    "name": "Richard",
+    "category": "Liqueurs",
+    "sourceUrl": "https://craftcellars.ca/products/ricard-pastis",
+    "sourceTitle": "Richard — packshot vérifié"
+  },
+  "bar-reel-14-liqueurs-14-anisette": {
+    "name": "Anisette",
+    "category": "Liqueurs",
+    "sourceUrl": "https://mariebrizard.com/bottles/anisette/",
+    "sourceTitle": "Marie Brizard Anisette — site officiel"
+  },
+  "bar-reel-14-liqueurs-15-porto": {
+    "name": "Porto",
+    "category": "Liqueurs",
+    "sourceUrl": "https://www.delhaize.be/fr/shop/Bieres-Alcools-and-Non-Alcoolises/Aperitifs-and-Spiritueux/Aperitifs/Porto-Blanc-19-alc/p/S2013100200244320001",
+    "sourceTitle": "Porto — photo produit"
+  },
+  "bar-reel-14-liqueurs-16-sheridans": {
+    "name": "Sheridans",
+    "category": "Liqueurs",
+    "sourceUrl": "https://tienda.soysantander.com.uy/catalogo/licor-sheridans-700-ml_LS700ML_2763",
+    "sourceTitle": "Licor Sheridans - 700 ml — Tienda Soy Santander"
+  }
+}

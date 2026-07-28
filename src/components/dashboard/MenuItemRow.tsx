@@ -29,8 +29,8 @@ export function MenuItemRow({ item }: { item: Item }) {
   const [isPending, startTransition] = useTransition();
 
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-border-subtle/60 py-3 last:border-0">
-      <div className="flex min-w-0 items-center gap-3">
+    <div className="grid min-w-0 gap-3 border-b border-border-subtle/60 py-3 last:border-0 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+      <div className="flex min-w-0 items-start gap-3">
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -43,7 +43,7 @@ export function MenuItemRow({ item }: { item: Item }) {
           <BrandedVisual className="h-12 w-12 shrink-0" watermarkSize={20} />
         )}
         <div className="min-w-0">
-          <p className="truncate text-sm text-champagne">
+          <p className="line-clamp-2 text-sm text-champagne">
             {item.name}
             {item.is_daily_special ? (
               <span className="ml-2 rounded-full border border-gold/40 px-2 py-0.5 text-[10px] uppercase tracking-widest text-gold">
@@ -52,7 +52,7 @@ export function MenuItemRow({ item }: { item: Item }) {
             ) : null}
           </p>
           {item.description ? (
-            <p className="truncate text-xs text-muted">{item.description}</p>
+            <p className="line-clamp-2 text-xs text-muted">{item.description}</p>
           ) : null}
           <ImageUploadButton
             pathPrefix={`items/${item.id}`}
@@ -65,7 +65,7 @@ export function MenuItemRow({ item }: { item: Item }) {
           />
         </div>
       </div>
-      <div className="flex shrink-0 items-center gap-3">
+      <div className="flex min-w-0 flex-wrap items-center gap-2 sm:justify-end">
         <input
           type="number"
           value={price}
@@ -75,6 +75,7 @@ export function MenuItemRow({ item }: { item: Item }) {
               startTransition(() => updateMenuItemPrice(item.id, price));
             }
           }}
+          aria-label={`Prix de ${item.name}`}
           className="w-24 rounded-lg border border-border-subtle bg-background px-2 py-1.5 text-xs text-foreground outline-none focus:border-gold"
         />
         <button

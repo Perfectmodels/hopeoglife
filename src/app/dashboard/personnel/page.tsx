@@ -20,11 +20,11 @@ export default async function PersonnelPage() {
     <div>
       <PageHeader title="Personnel" description="Gérez les membres de l'équipe et leurs rôles." />
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
+      <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
         <Card>
           {employees && employees.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="table-responsive w-full text-left text-sm lg:min-w-[640px]">
+            <div className="overflow-hidden">
+              <table className="table-responsive w-full text-left text-sm">
                 <thead className="text-xs uppercase tracking-wider text-muted">
                   <tr>
                     <th className="px-4 py-2">Nom</th>

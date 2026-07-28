@@ -25,7 +25,7 @@ export default async function StockPage() {
         action={<ScanStockButton />}
       />
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+      <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
         <Card>
           <StockItemsTable items={items ?? []} />
         </Card>

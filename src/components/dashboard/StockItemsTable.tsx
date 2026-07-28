@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import { Search, PackageSearch } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, PackageSearch } from "lucide-react";
 import { EmptyState } from "@/components/dashboard/Card";
 import { StatusBadge } from "@/components/dashboard/StatusBadge";
 import { cn } from "@/lib/utils";
@@ -18,10 +18,12 @@ type StockItem = {
 };
 
 const UNCATEGORIZED = "Sans catégorie";
+const ITEMS_PER_PAGE = 20;
 
 export function StockItemsTable({ items }: { items: StockItem[] }) {
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>("Tous");
+  const [page, setPage] = useState(1);
 
   const categories = useMemo(() => {
     const names = new Set(items.map((item) => item.category || UNCATEGORIZED));
@@ -38,15 +40,21 @@ export function StockItemsTable({ items }: { items: StockItem[] }) {
     });
   }, [items, query, activeCategory]);
 
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+  const pageItems = useMemo(
+    () => filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE),
+    [filtered, page]
+  );
+
   const groups = useMemo(() => {
     const map = new Map<string, StockItem[]>();
-    for (const item of filtered) {
+    for (const item of pageItems) {
       const category = item.category || UNCATEGORIZED;
       if (!map.has(category)) map.set(category, []);
       map.get(category)!.push(item);
     }
     return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0], "fr"));
-  }, [filtered]);
+  }, [pageItems]);
 
   if (items.length === 0) {
     return <EmptyState message="Aucun produit de stock enregistré." />;
@@ -60,7 +68,10 @@ export function StockItemsTable({ items }: { items: StockItem[] }) {
           <input
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setPage(1);
+            }}
             placeholder="Rechercher un produit..."
             aria-label="Rechercher un produit"
             className="w-full rounded-lg border border-border-subtle bg-background py-2 pl-9 pr-3 text-sm text-foreground outline-none focus:border-gold"
@@ -78,7 +89,10 @@ export function StockItemsTable({ items }: { items: StockItem[] }) {
             <button
               key={category}
               type="button"
-              onClick={() => setActiveCategory(category)}
+              onClick={() => {
+                setActiveCategory(category);
+                setPage(1);
+              }}
               aria-pressed={activeCategory === category}
               className={cn(
                 "min-h-9 shrink-0 rounded-full border px-3.5 py-1.5 text-xs uppercase tracking-widest transition-colors",
@@ -102,8 +116,8 @@ export function StockItemsTable({ items }: { items: StockItem[] }) {
                   {category} <span className="text-muted/60">({groupItems.length})</span>
                 </p>
               ) : null}
-              <div className="overflow-x-auto">
-                <table className="table-responsive w-full text-left text-sm lg:min-w-[560px]">
+              <div className="overflow-hidden">
+                <table className="table-responsive w-full text-left text-sm">
                   <thead className="text-xs uppercase tracking-wider text-muted">
                     <tr>
                       <th className="py-2 pr-4">Produit</th>
@@ -136,7 +150,9 @@ export function StockItemsTable({ items }: { items: StockItem[] }) {
                               <span className="text-champagne">{item.name}</span>
                             </div>
                           </td>
-                          <td className="py-3 pr-4 text-muted" data-label="Catégorie">{item.category || "—"}</td>
+                          <td className="py-3 pr-4 text-muted" data-label="Catégorie">
+                            {item.category || "—"}
+                          </td>
                           <td className="py-3 pr-4 text-muted" data-label="Quantité">
                             {item.quantity_on_hand} {item.unit}
                           </td>
@@ -161,6 +177,30 @@ export function StockItemsTable({ items }: { items: StockItem[] }) {
       ) : (
         <p className="mt-6 text-sm text-muted">Aucun produit ne correspond à cette recherche.</p>
       )}
+
+      {totalPages > 1 ? (
+        <div className="mt-5 flex items-center justify-between gap-3 border-t border-border-subtle pt-4">
+          <button
+            type="button"
+            onClick={() => setPage((current) => Math.max(1, current - 1))}
+            disabled={page === 1}
+            className="inline-flex min-h-10 items-center gap-1 rounded-full border border-border-subtle px-3 text-xs text-muted hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            <ChevronLeft size={14} /> Précédent
+          </button>
+          <span className="text-xs text-muted">
+            Page {page} / {totalPages}
+          </span>
+          <button
+            type="button"
+            onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+            disabled={page === totalPages}
+            className="inline-flex min-h-10 items-center gap-1 rounded-full border border-border-subtle px-3 text-xs text-muted hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            Suivant <ChevronRight size={14} />
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

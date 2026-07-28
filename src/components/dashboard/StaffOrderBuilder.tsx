@@ -12,6 +12,8 @@ import {
   X,
   Search,
   ScanBarcode,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { createStaffOrder } from "@/lib/actions/dashboard/orders";
 import { formatXAF, cn } from "@/lib/utils";
@@ -48,6 +50,8 @@ const SERVICE_TYPES = [
   { value: "livraison", label: "Livraison" },
 ] as const;
 
+const ITEMS_PER_PAGE = 12;
+
 export function StaffOrderBuilder({
   restaurantMenu,
   barMenu,
@@ -59,6 +63,7 @@ export function StaffOrderBuilder({
 }) {
   const [tab, setTab] = useState<"restaurant" | "bar">("restaurant");
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<Record<"restaurant" | "bar", string>>({
     restaurant: restaurantMenu[0]?.id ?? "",
     bar: barMenu[0]?.id ?? "",
@@ -96,6 +101,11 @@ export function StaffOrderBuilder({
     );
   }, [allItems, categories, normalizedQuery, selectedCategory, tab]);
   const cartLines = useMemo(() => Object.values(cart), [cart]);
+  const totalPages = Math.max(1, Math.ceil(visibleItems.length / ITEMS_PER_PAGE));
+  const paginatedItems = useMemo(
+    () => visibleItems.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE),
+    [page, visibleItems]
+  );
   const total = useMemo(
     () => cartLines.reduce((sum, l) => sum + l.price * l.quantity, 0),
     [cartLines]
@@ -193,7 +203,7 @@ export function StaffOrderBuilder({
     <div>
       <IdentifyServer value={server} onChange={setServer} />
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-[1.5fr_1fr]">
+      <div className="mt-8 grid min-w-0 gap-8 xl:grid-cols-[minmax(0,1.5fr)_minmax(19rem,0.85fr)]">
         <div>
           <div className="flex gap-2">
             {(["restaurant", "bar"] as const).map((key) => (
@@ -203,6 +213,7 @@ export function StaffOrderBuilder({
                 onClick={() => {
                   setTab(key);
                   setQuery("");
+                  setPage(1);
                 }}
                 className={cn(
                   "rounded-full border px-5 py-2 text-xs uppercase tracking-widest transition-colors",
@@ -220,7 +231,10 @@ export function StaffOrderBuilder({
             <Search size={18} className="shrink-0 text-gold" />
             <input
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setPage(1);
+              }}
               onKeyDown={(event) => {
                 if (event.key === "Enter") {
                   event.preventDefault();
@@ -234,7 +248,10 @@ export function StaffOrderBuilder({
             {query ? (
               <button
                 type="button"
-                onClick={() => setQuery("")}
+                onClick={() => {
+                  setQuery("");
+                  setPage(1);
+                }}
                 aria-label="Effacer la recherche"
                 className="flex h-9 w-9 items-center justify-center rounded-full text-muted hover:bg-background hover:text-champagne"
               >
@@ -249,24 +266,51 @@ export function StaffOrderBuilder({
           </p>
 
           {!normalizedQuery ? (
-            <div className="mt-5 flex gap-2 overflow-x-auto pb-2" aria-label="Catégories de produits">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  type="button"
-                  onClick={() =>
-                    setSelectedCategory((previous) => ({ ...previous, [tab]: category.id }))
-                  }
-                  className={cn(
-                    "min-h-11 shrink-0 rounded-full border px-4 text-xs transition-colors",
-                    (selectedCategory[tab] || categories[0]?.id) === category.id
-                      ? "border-gold bg-gold/10 text-gold"
-                      : "border-border-subtle text-muted hover:border-gold/50 hover:text-champagne"
-                  )}
-                >
-                  {category.name} <span className="opacity-60">({category.items.length})</span>
-                </button>
-              ))}
+            <div className="mt-5" aria-label="Catégories de produits">
+              <label className="sr-only" htmlFor={`staff-category-${tab}`}>
+                Catégorie
+              </label>
+              <select
+                id={`staff-category-${tab}`}
+                value={selectedCategory[tab] || categories[0]?.id}
+                onChange={(event) => {
+                  setSelectedCategory((previous) => ({
+                    ...previous,
+                    [tab]: event.target.value,
+                  }));
+                  setPage(1);
+                }}
+                className={cn(inputClasses, "md:hidden")}
+              >
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name} ({category.items.length})
+                  </option>
+                ))}
+              </select>
+              <div className="hidden flex-wrap gap-2 md:flex">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory((previous) => ({
+                        ...previous,
+                        [tab]: category.id,
+                      }));
+                      setPage(1);
+                    }}
+                    className={cn(
+                      "min-h-10 rounded-full border px-4 text-xs transition-colors",
+                      (selectedCategory[tab] || categories[0]?.id) === category.id
+                        ? "border-gold bg-gold/10 text-gold"
+                        : "border-border-subtle text-muted hover:border-gold/50 hover:text-champagne"
+                    )}
+                  >
+                    {category.name} <span className="opacity-60">({category.items.length})</span>
+                  </button>
+                ))}
+              </div>
             </div>
           ) : null}
 
@@ -284,53 +328,78 @@ export function StaffOrderBuilder({
             </div>
 
             {visibleItems.length > 0 ? (
-              <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                {visibleItems.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => addToCart(item)}
-                    className="group flex min-h-20 items-center gap-3 rounded-xl border border-border-subtle bg-background-elevated p-2 text-left transition-transform duration-150 hover:border-gold/50 active:scale-[0.97]"
-                  >
-                    <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-background">
-                      {item.imageUrl ? (
-                        <Image
-                          src={item.imageUrl}
-                          alt=""
-                          fill
-                          sizes="64px"
-                          className="object-cover"
-                        />
-                      ) : (
-                        <ShoppingBag
-                          size={20}
-                          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-muted"
-                        />
-                      )}
+              <>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2 2xl:grid-cols-3">
+                  {paginatedItems.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => addToCart(item)}
+                      className="group flex min-h-20 min-w-0 items-center gap-3 rounded-xl border border-border-subtle bg-background-elevated p-2 text-left transition-transform duration-150 hover:border-gold/50 active:scale-[0.97]"
+                    >
+                      <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-background">
+                        {item.imageUrl ? (
+                          <Image
+                            src={item.imageUrl}
+                            alt=""
+                            fill
+                            sizes="64px"
+                            className="object-cover"
+                          />
+                        ) : (
+                          <ShoppingBag
+                            size={20}
+                            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-muted"
+                          />
+                        )}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="line-clamp-2 text-sm leading-snug text-champagne">
+                          {item.name}
+                        </span>
+                        <span className="mt-1 block truncate text-[10px] text-muted">
+                          {item.reference ?? item.categoryName}
+                        </span>
+                        <span className="mt-1 flex items-center gap-2 text-xs text-gold">
+                          {formatXAF(item.price)}
+                          {item.regularPrice ? (
+                            <span className="text-[10px] text-muted line-through">
+                              {formatXAF(item.regularPrice)}
+                            </span>
+                          ) : null}
+                        </span>
+                      </span>
+                      <Plus
+                        size={16}
+                        className="mr-1 shrink-0 text-muted transition-colors group-hover:text-gold"
+                      />
+                    </button>
+                  ))}
+                </div>
+                {totalPages > 1 ? (
+                  <div className="mt-5 flex items-center justify-between gap-3 rounded-xl border border-border-subtle bg-background-elevated px-3 py-2">
+                    <button
+                      type="button"
+                      onClick={() => setPage((current) => Math.max(1, current - 1))}
+                      disabled={page === 1}
+                      className="inline-flex min-h-10 items-center gap-1 rounded-full border border-border-subtle px-3 text-xs text-muted hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35"
+                    >
+                      <ChevronLeft size={14} /> Précédent
+                    </button>
+                    <span className="text-xs text-muted">
+                      Page <span className="text-champagne">{page}</span> / {totalPages}
                     </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="line-clamp-2 text-sm leading-snug text-champagne">
-                        {item.name}
-                      </span>
-                      <span className="mt-1 block truncate text-[10px] text-muted">
-                        {item.reference ?? item.categoryName}
-                      </span>
-                      <span className="mt-1 flex items-center gap-2 text-xs text-gold">
-                        {formatXAF(item.price)}
-                        {item.regularPrice ? (
-                          <span className="text-[10px] text-muted line-through">
-                            {formatXAF(item.regularPrice)}
-                          </span>
-                        ) : null}
-                      </span>
-                    </span>
-                    <Plus
-                      size={16}
-                      className="mr-1 shrink-0 text-muted transition-colors group-hover:text-gold"
-                    />
-                  </button>
-                ))}
-              </div>
+                    <button
+                      type="button"
+                      onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+                      disabled={page === totalPages}
+                      className="inline-flex min-h-10 items-center gap-1 rounded-full border border-border-subtle px-3 text-xs text-muted hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35"
+                    >
+                      Suivant <ChevronRight size={14} />
+                    </button>
+                  </div>
+                ) : null}
+              </>
             ) : (
               <div className="mt-4 rounded-xl border border-border-subtle p-8 text-center">
                 <p className="text-sm text-champagne">Aucun produit trouvé.</p>
@@ -340,7 +409,7 @@ export function StaffOrderBuilder({
           </div>
         </div>
 
-        <aside className="h-fit rounded-2xl border border-border-subtle bg-background-elevated p-6 lg:sticky lg:top-6">
+        <aside className="h-fit min-w-0 rounded-2xl border border-border-subtle bg-background-elevated p-4 sm:p-6 xl:sticky xl:top-6">
           <div className="flex items-center gap-2">
             <ShoppingBag size={18} className="text-gold" />
             <p className="font-display text-lg text-champagne">Commande</p>
@@ -349,7 +418,7 @@ export function StaffOrderBuilder({
           {cartLines.length === 0 ? (
             <p className="mt-6 text-sm text-muted">Sélectionnez des articles.</p>
           ) : (
-            <div className="mt-6 space-y-4">
+            <div className="dashboard-scrollbar mt-6 max-h-[42dvh] space-y-4 overflow-y-auto pr-1">
               {cartLines.map((line) => (
                 <div
                   key={line.menuItemId}
@@ -463,7 +532,7 @@ export function StaffOrderBuilder({
                 <input id="customerName" name="customerName" className={inputClasses} />
               </FormField>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid gap-3 sm:grid-cols-2">
                 <FormField label="Table (optionnel)" htmlFor="tableId">
                   <select id="tableId" name="tableId" className={inputClasses} defaultValue="">
                     <option value="">—</option>

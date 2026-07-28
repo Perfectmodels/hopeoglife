@@ -1,4 +1,5 @@
 import barMenuCatalog from "../../data/bar-menu.json";
+import realBarImageSources from "../../data/product-image-sources.json";
 
 // Données affichées tant que Supabase n'est pas connecté
 // (voir isSupabaseConfigured dans lib/supabase/env.ts) ou que les tables
@@ -99,13 +100,26 @@ function stableCatalogUuid(scope: "category" | "item", index: number) {
 
 let barItemIndex = 0;
 
+function catalogSlug(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/œ/g, "oe")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 export const demoBarMenu: DemoMenuCategory[] = barMenuCatalog.categories.map(
   (category, categoryIndex) => ({
     id: stableCatalogUuid("category", categoryIndex + 1),
     name: category.name,
-    items: category.items.map((item) => {
+    items: category.items.map((item, itemIndex) => {
       barItemIndex += 1;
       const service = "service" in item ? item.service : category.service;
+      const slug = `bar-reel-${String(categoryIndex + 1).padStart(2, "0")}-${category.slug}-${String(
+        itemIndex + 1
+      ).padStart(2, "0")}-${catalogSlug(item.name)}`;
       return {
         id: stableCatalogUuid("item", barItemIndex),
         name: item.name,
@@ -118,6 +132,8 @@ export const demoBarMenu: DemoMenuCategory[] = barMenuCatalog.categories.map(
                 ? "Shot."
                 : "Servi au verre.",
         price: item.price,
+        imageUrl:
+          slug in realBarImageSources ? `/products/bar/${slug}.webp` : undefined,
         isOrderable: false,
       };
     }),

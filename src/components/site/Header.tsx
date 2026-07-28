@@ -4,10 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { MapPin, Menu, Phone, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "./Button";
 import { Container } from "./Container";
+import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
   { href: "/a-propos", label: "À propos" },
@@ -36,20 +37,40 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border-subtle/80 bg-background/90 backdrop-blur">
-      <Container className="flex h-20 items-center justify-between">
-        <Link href="/" aria-label="Hope Of Life — Accueil" className="flex items-center">
+    <header className="sticky top-0 z-50 border-b border-gold/20 bg-[#050506]/92 shadow-[0_12px_50px_rgba(0,0,0,.35)] backdrop-blur-xl">
+      <div className="hidden border-b border-white/[0.04] sm:block">
+        <Container className="flex h-8 items-center justify-between text-[10px] uppercase tracking-[0.2em] text-muted">
+          <span className="flex items-center gap-2">
+            <MapPin size={11} className="text-gold" />
+            {siteConfig.location}
+          </span>
+          <a href={`tel:${siteConfig.phone}`} className="flex items-center gap-2 hover:text-gold">
+            <Phone size={11} className="text-gold" />
+            {siteConfig.phone}
+          </a>
+        </Container>
+      </div>
+      <Container className="flex h-[4.5rem] items-center justify-between">
+        <Link href="/" aria-label="Hope Of Life — Accueil" className="flex min-w-0 items-center gap-3">
           <Image
             src="/Logo.png"
             alt="Hope Of Life"
             width={56}
             height={63}
             priority
-            className="h-14 w-auto"
+            className="h-12 w-auto"
           />
+          <span className="hidden min-w-0 sm:block">
+            <span className="block font-display text-lg font-semibold leading-none text-champagne">
+              Hope Of Life
+            </span>
+            <span className="mt-1 block text-[8px] uppercase tracking-[0.28em] text-gold">
+              Restaurant · Bar · Lounge
+            </span>
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-6 xl:flex">
           {navLinks.map((link) => {
             const active = pathname === link.href;
             return (
@@ -67,7 +88,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden items-center lg:flex">
+        <div className="hidden items-center xl:flex">
           <ButtonLink href="/reservation" variant="primary">
             Réserver une table
           </ButtonLink>
@@ -79,7 +100,7 @@ export function Header() {
           aria-expanded={open}
           aria-controls="mobile-nav-panel"
           onClick={() => setOpen((v) => !v)}
-          className="relative flex h-11 w-11 shrink-0 items-center justify-center text-champagne lg:hidden"
+          className="relative flex h-11 w-11 shrink-0 items-center justify-center text-champagne xl:hidden"
         >
           <Menu
             size={26}
@@ -101,7 +122,7 @@ export function Header() {
       <div
         id="mobile-nav-panel"
         className={cn(
-          "overflow-hidden border-t border-border-subtle/80 bg-background transition-[max-height,opacity] duration-300 [transition-timing-function:var(--ease-out-quart)] lg:hidden",
+          "overflow-hidden border-t border-border-subtle/80 bg-[#070708] transition-[max-height,opacity] duration-300 [transition-timing-function:var(--ease-out-quart)] xl:hidden",
           open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
         )}
       >

@@ -42,7 +42,7 @@ export function RevenueChart({ points }: { points: RevenuePoint[] }) {
         viewBox={`0 0 ${width} ${height}`}
         role="img"
         aria-label="Évolution du chiffre d'affaires par tranche horaire"
-        className="h-auto w-full min-w-[34rem]"
+        className="h-auto w-full"
       >
         <title>Évolution du chiffre d&apos;affaires du service</title>
         <defs>

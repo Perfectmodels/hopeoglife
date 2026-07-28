@@ -4,6 +4,7 @@ import { Container } from "@/components/site/Container";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { ReservationForm } from "@/components/site/ReservationForm";
 import { siteConfig } from "@/lib/site-config";
+import { LuxuryHero } from "@/components/site/LuxuryHero";
 
 export const metadata: Metadata = {
   title: "Réservation",
@@ -12,8 +13,16 @@ export const metadata: Metadata = {
 
 export default function ReservationPage() {
   return (
-    <section className="py-24">
-      <Container className="grid gap-16 lg:grid-cols-[1.4fr_1fr]">
+    <>
+      <LuxuryHero
+        image="/hero/hero-terrace.jpg"
+        alt="Terrasse lounge Hope Of Life"
+        eyebrow="Réservation"
+        title="Votre table vous attend"
+        description="Dîner, soirée lounge ou moment privé : confiez-nous les détails, notre équipe vous confirme votre réservation."
+      />
+      <section className="py-16 sm:py-20">
+      <Container className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.8fr)]">
         <div>
           <SectionHeading
             eyebrow="Réservation"
@@ -26,7 +35,7 @@ export default function ReservationPage() {
         </div>
 
         <aside className="space-y-6">
-          <div className="rounded-2xl border border-border-subtle bg-background-elevated p-8">
+          <div className="onyx-panel rounded-2xl p-6 sm:p-8">
             <p className="font-display text-lg text-champagne">Informations pratiques</p>
             <div className="mt-6 space-y-5 text-sm text-muted">
               <div className="flex items-start gap-3">
@@ -61,6 +70,7 @@ export default function ReservationPage() {
           </div>
         </aside>
       </Container>
-    </section>
+      </section>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { Container } from "@/components/site/Container";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { OrderBuilder } from "@/components/site/OrderBuilder";
 import { getMenuByKind } from "@/lib/queries/menu";
+import { LuxuryHero } from "@/components/site/LuxuryHero";
 
 export const metadata: Metadata = {
   title: "Commander en ligne",
@@ -17,17 +18,26 @@ export default async function OrderPage() {
   ]);
 
   return (
-    <section className="py-24">
-      <Container>
-        <SectionHeading
-          eyebrow="Commande en ligne"
-          title="Composez votre commande"
-          description="Sélectionnez vos plats et boissons, choisissez votre heure de retrait : votre commande sera prête à votre arrivée."
-        />
-        <div className="mt-14">
+    <>
+      <LuxuryHero
+        image="/hero/hero-cocktail.jpg"
+        alt="Bar Hope Of Life"
+        eyebrow="Commande en ligne"
+        title="Votre expérience, à emporter"
+        description="Parcourez une catégorie à la fois, composez votre sélection et choisissez votre heure de retrait."
+      />
+      <section className="py-16 sm:py-20">
+        <Container>
+          <div className="mb-8">
+            <SectionHeading
+              eyebrow="Sélection"
+              title="Composez votre commande"
+              description="Une navigation courte, sans listes interminables, pensée pour le mobile comme pour l’ordinateur."
+            />
+          </div>
           <OrderBuilder restaurantMenu={restaurantMenu} barMenu={barMenu} />
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </>
   );
 }

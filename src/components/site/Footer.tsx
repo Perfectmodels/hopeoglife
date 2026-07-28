@@ -44,7 +44,7 @@ const serviceLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border-subtle/80 bg-background-elevated">
+    <footer className="border-t border-gold/20 bg-[radial-gradient(circle_at_15%_0%,rgba(201,155,67,.1),transparent_24rem),#050506]">
       <Container className="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Image src="/Logo.png" alt="Hope Of Life" width={64} height={72} className="h-16 w-auto" />

@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const sourcePath = path.join(process.cwd(), "data", "bar-menu.json");
+const imageSourcesPath = path.join(process.cwd(), "data", "product-image-sources.json");
 const outputPath = path.join(
   process.cwd(),
   "supabase",
@@ -10,6 +11,17 @@ const outputPath = path.join(
 );
 
 const catalog = JSON.parse(await fs.readFile(sourcePath, "utf8"));
+const imageSources = JSON.parse(await fs.readFile(imageSourcesPath, "utf8").catch(() => "{}"));
+
+function slugify(value) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/œ/g, "oe")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 
 function stableCatalogUuid(scope, index) {
   const prefix = scope === "category" ? "ba100000" : "ba200000";
@@ -41,6 +53,10 @@ const itemRows = catalog.categories.flatMap((category, categoryIndex) => {
           ? "Shot."
           : "Servi au verre.");
     const reference = `HOL-BAR-REAL-${String(itemIndex).padStart(3, "0")}`;
+    const slug = `bar-reel-${String(categoryIndex + 1).padStart(2, "0")}-${category.slug}-${String(
+      sortOrder + 1
+    ).padStart(2, "0")}-${slugify(item.name)}`;
+    const imageUrl = imageSources[slug] ? `/products/bar/${slug}.webp` : null;
 
     return [
       "  (",
@@ -48,7 +64,7 @@ const itemRows = catalog.categories.flatMap((category, categoryIndex) => {
       `${sqlString(categoryId)}::uuid, `,
       `${sqlString(item.name)}, `,
       `${sqlString(description)}, `,
-      `${Number(item.price)}, null, null, true, false, ${sortOrder}, `,
+      `${Number(item.price)}, ${sqlString(imageUrl)}, null, true, false, ${sortOrder}, `,
       `${sqlString(reference)}, null, null, null, 0, 0, 18, true, 'bar', 5`,
       ")",
     ].join("");

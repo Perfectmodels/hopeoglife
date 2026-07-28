@@ -44,8 +44,8 @@ export default async function ReceptionsPage() {
 
       <Card>
         {receipts && receipts.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="table-responsive w-full text-left text-sm lg:min-w-[640px]">
+          <div className="overflow-hidden">
+            <table className="table-responsive w-full text-left text-sm">
               <thead className="text-xs uppercase tracking-wider text-muted">
                 <tr>
                   <th className="py-2 pr-4">N°</th>

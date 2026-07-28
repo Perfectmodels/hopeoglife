@@ -23,11 +23,11 @@ export default async function FournisseursPage() {
         description="Gérez les fournisseurs utilisés lors des réceptions de stock."
       />
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
+      <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
         <Card>
           {suppliers && suppliers.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="table-responsive w-full text-left text-sm lg:min-w-[560px]">
+            <div className="overflow-hidden">
+              <table className="table-responsive w-full text-left text-sm">
                 <thead className="text-xs uppercase tracking-wider text-muted">
                   <tr>
                     <th className="py-2 pr-4">Nom</th>
