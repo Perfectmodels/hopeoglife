@@ -113,7 +113,7 @@ export default async function RapportsPage({
         title="Rapports"
         description="Ventes, encaissements et performance sur une période donnée."
         action={
-          <form className="flex items-center gap-2">
+          <form className="flex flex-wrap items-center gap-2">
             <input
               type="date"
               name="from"

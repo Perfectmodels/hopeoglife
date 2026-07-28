@@ -49,7 +49,7 @@ export default async function ReservationsPage({
         title="Réservations"
         description="Gérez les réservations de tables et leur statut."
         action={
-          <form className="flex items-center gap-2">
+          <form className="flex flex-wrap items-center gap-2">
             <input
               type="date"
               name="date"

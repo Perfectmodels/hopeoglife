@@ -142,7 +142,7 @@ export async function ServerOverview({ employee }: { employee: CurrentEmployee }
                   Math.round((Date.now() - new Date(o.created_at).getTime()) / 60000)
                 );
                 return (
-                  <li key={o.id} className="flex items-center justify-between gap-3">
+                  <li key={o.id} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5">
                     <span className="text-champagne">{table?.label ?? "À emporter"}</span>
                     <span className="text-xs text-muted">{elapsedMin} min</span>
                     <span className="text-gold">{formatXAF(Number(o.total_amount))}</span>
