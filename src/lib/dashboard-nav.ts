@@ -12,6 +12,7 @@ export const dashboardNav: NavItem[] = [
   { href: "/dashboard/salle", label: "Tables & salles", roles: ["admin", "manager", "serveur"] },
   { href: "/dashboard/cuisine", label: "Cuisine", roles: ["admin", "manager", "cuisine"] },
   { href: "/dashboard/bar", label: "Bar", roles: ["admin", "manager", "bar"] },
+  { href: "/dashboard/bar/stock", label: "Stock du bar", roles: ["admin", "manager", "stock", "bar"] },
   { href: "/dashboard/reservations", label: "Réservations", roles: ["admin", "manager", "serveur"] },
   { href: "/dashboard/caisse", label: "Caisse", roles: ["admin", "manager", "caissier"] },
   { href: "/dashboard/menu", label: "Catalogue", roles: ["admin", "manager"] },

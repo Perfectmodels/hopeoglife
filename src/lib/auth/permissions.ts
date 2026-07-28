@@ -8,6 +8,12 @@ export function canAdministerStock(role: EmployeeRole): boolean {
   return role === "admin" || role === "manager" || role === "stock";
 }
 
+// Le bar ajuste les quantités de ses propres produits sans pouvoir en créer
+// ni toucher au stock des autres services (cf. recordStockMovement).
+export function canManageBarStock(role: EmployeeRole): boolean {
+  return role === "bar" || canManageStock(role);
+}
+
 export function canOperatePos(role: EmployeeRole): boolean {
   return role === "admin" || role === "manager" || role === "serveur" || role === "caissier";
 }

@@ -19,6 +19,7 @@ import {
   History,
   Truck,
   Settings,
+  Wine,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/lib/dashboard-nav";
@@ -30,6 +31,7 @@ const icons: Record<string, React.ElementType> = {
   "/dashboard/commandes": ClipboardList,
   "/dashboard/cuisine": ChefHat,
   "/dashboard/bar": Martini,
+  "/dashboard/bar/stock": Wine,
   "/dashboard/caisse": Wallet,
   "/dashboard/menu": UtensilsCrossed,
   "/dashboard/stock": Boxes,

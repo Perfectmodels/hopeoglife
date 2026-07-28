@@ -4,6 +4,7 @@ import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentEmployee } from "@/lib/auth/session";
+import { canAdministerStock, canManageBarStock } from "@/lib/auth/permissions";
 import type { ActionResult } from "@/lib/actions/types";
 import { decodeBarcodeImageBuffer } from "@/lib/barcode/decode-image";
 
@@ -200,7 +201,9 @@ export async function recordStockMovement(
   formData: FormData
 ): Promise<ActionResult> {
   const employee = await getCurrentEmployee();
-  if (!employee) return { success: false, message: "Non autorisé." };
+  if (!employee || !canManageBarStock(employee.role)) {
+    return { success: false, message: "Non autorisé." };
+  }
 
   const parsed = movementSchema.safeParse({
     stockItemId: formData.get("stockItemId"),
@@ -218,11 +221,17 @@ export async function recordStockMovement(
 
   const { data: item } = await supabase
     .from("stock_items")
-    .select("quantity_on_hand")
+    .select("quantity_on_hand, destination")
     .eq("id", stockItemId)
     .maybeSingle();
 
   if (!item) return { success: false, message: "Produit introuvable." };
+
+  // Le rôle bar n'agit que sur son propre stock : l'identifiant vient d'un
+  // formulaire, on ne peut donc pas se fier au filtrage fait côté page.
+  if (employee.role === "bar" && item.destination !== "bar") {
+    return { success: false, message: "Ce produit ne fait pas partie du stock du bar." };
+  }
 
   const current = Number(item.quantity_on_hand);
   let delta = 0;
@@ -253,5 +262,177 @@ export async function recordStockMovement(
   await supabase.from("stock_items").update({ quantity_on_hand: newQuantity }).eq("id", stockItemId);
 
   revalidatePath("/dashboard/stock");
+  revalidatePath("/dashboard/bar/stock");
   return { success: true, message: "Mouvement de stock enregistré." };
+}
+
+type SupabaseClient = ReturnType<typeof createAdminClient>;
+
+type BarMenuItemCheck =
+  | { ok: false; message: string }
+  | { ok: true; name: string };
+
+/**
+ * Confirme qu'un produit du menu relève bien du bar. `menu_items.destination`
+ * fait autorité quand il est renseigné, sinon on retombe sur le type de la
+ * catégorie — même résolution que la prise de commande (`createStaffOrder`).
+ */
+async function loadUnlinkedBarMenuItem(
+  supabase: SupabaseClient,
+  menuItemId: string
+): Promise<BarMenuItemCheck> {
+  const { data: menuItem } = await supabase
+    .from("menu_items")
+    .select("id, name, destination, stock_item_id, menu_categories ( kind )")
+    .eq("id", menuItemId)
+    .maybeSingle();
+
+  if (!menuItem) return { ok: false, message: "Produit du menu introuvable." };
+  if (menuItem.stock_item_id) {
+    return { ok: false, message: "Ce produit est déjà relié à une fiche de stock." };
+  }
+
+  const category = Array.isArray(menuItem.menu_categories)
+    ? menuItem.menu_categories[0]
+    : menuItem.menu_categories;
+  const isBar =
+    menuItem.destination === "bar" ||
+    (menuItem.destination !== "cuisine" && category?.kind === "bar");
+
+  if (!isBar) return { ok: false, message: "Ce produit n'est pas un produit du bar." };
+
+  return { ok: true, name: menuItem.name };
+}
+
+const stockForMenuItemSchema = z.object({
+  menuItemId: z.string().min(1),
+  unit: z.string().trim().min(1, "L'unité est requise"),
+  category: z.string().trim().optional(),
+  quantityOnHand: z.coerce.number().nonnegative().default(0),
+  lowStockThreshold: z.coerce.number().nonnegative().default(0),
+  purchasePrice: z.coerce.number().nonnegative().optional(),
+  salePrice: z.coerce.number().nonnegative().optional(),
+});
+
+export async function createStockItemForMenuItem(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const employee = await getCurrentEmployee();
+  if (!employee || !canAdministerStock(employee.role)) {
+    return { success: false, message: "Non autorisé." };
+  }
+
+  const parsed = stockForMenuItemSchema.safeParse({
+    menuItemId: formData.get("menuItemId"),
+    unit: formData.get("unit"),
+    category: formData.get("category"),
+    quantityOnHand: formData.get("quantityOnHand"),
+    lowStockThreshold: formData.get("lowStockThreshold"),
+    purchasePrice: formData.get("purchasePrice") || undefined,
+    salePrice: formData.get("salePrice") || undefined,
+  });
+
+  if (!parsed.success) {
+    return { success: false, message: parsed.error.issues[0]?.message ?? "Formulaire invalide." };
+  }
+
+  const data = parsed.data;
+  const supabase = createAdminClient();
+
+  const check = await loadUnlinkedBarMenuItem(supabase, data.menuItemId);
+  if (!check.ok) return { success: false, message: check.message };
+
+  const { data: item, error: itemError } = await supabase
+    .from("stock_items")
+    .insert({
+      name: check.name,
+      unit: data.unit,
+      category: data.category || null,
+      quantity_on_hand: data.quantityOnHand,
+      low_stock_threshold: data.lowStockThreshold,
+      purchase_price: data.purchasePrice ?? null,
+      sale_price: data.salePrice ?? null,
+      destination: "bar",
+    })
+    .select("id")
+    .single();
+
+  if (itemError || !item) {
+    return { success: false, message: "Impossible de créer la fiche de stock." };
+  }
+
+  const { error: linkError } = await supabase
+    .from("menu_items")
+    .update({ stock_item_id: item.id })
+    .eq("id", data.menuItemId);
+
+  if (linkError) {
+    await supabase.from("stock_items").delete().eq("id", item.id);
+    return { success: false, message: "Impossible de relier la fiche au produit du menu." };
+  }
+
+  revalidatePath("/dashboard/bar/stock");
+  revalidatePath("/dashboard/stock");
+  return { success: true, message: `Fiche de stock créée pour ${check.name}.` };
+}
+
+const linkStockSchema = z.object({
+  menuItemId: z.string().min(1),
+  stockItemId: z.string().min(1, "Sélectionnez une fiche de stock"),
+});
+
+export async function linkExistingStockItem(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const employee = await getCurrentEmployee();
+  if (!employee || !canAdministerStock(employee.role)) {
+    return { success: false, message: "Non autorisé." };
+  }
+
+  const parsed = linkStockSchema.safeParse({
+    menuItemId: formData.get("menuItemId"),
+    stockItemId: formData.get("stockItemId"),
+  });
+
+  if (!parsed.success) {
+    return { success: false, message: parsed.error.issues[0]?.message ?? "Formulaire invalide." };
+  }
+
+  const { menuItemId, stockItemId } = parsed.data;
+  const supabase = createAdminClient();
+
+  const check = await loadUnlinkedBarMenuItem(supabase, menuItemId);
+  if (!check.ok) return { success: false, message: check.message };
+
+  const { data: stockItem } = await supabase
+    .from("stock_items")
+    .select("id, name, destination")
+    .eq("id", stockItemId)
+    .maybeSingle();
+
+  if (!stockItem) return { success: false, message: "Fiche de stock introuvable." };
+  if (stockItem.destination !== "bar") {
+    return { success: false, message: "Cette fiche de stock n'appartient pas au bar." };
+  }
+
+  const { error } = await supabase
+    .from("menu_items")
+    .update({ stock_item_id: stockItemId })
+    .eq("id", menuItemId);
+
+  if (error) {
+    return {
+      success: false,
+      message:
+        error.code === "23505"
+          ? "Cette fiche de stock est déjà reliée à un autre produit."
+          : "Impossible de relier cette fiche de stock.",
+    };
+  }
+
+  revalidatePath("/dashboard/bar/stock");
+  revalidatePath("/dashboard/stock");
+  return { success: true, message: `${check.name} relié à ${stockItem.name}.` };
 }
